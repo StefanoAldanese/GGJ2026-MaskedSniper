@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dd0tjli0617fy"
-path="res://.godot/imported/Mirino.png-329fb798653fd8cf2b29f21f385f87ce.ctex"
+uid="uid://dxki60ygpgt87"
+path="res://.godot/imported/Mirinorosso.png-6f1fe6832eea83202d21fbe96d645bcd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Mirino.png"
-dest_files=["res://.godot/imported/Mirino.png-329fb798653fd8cf2b29f21f385f87ce.ctex"]
+source_file="res://assets/scope/Mirinorosso.png"
+dest_files=["res://.godot/imported/Mirinorosso.png-6f1fe6832eea83202d21fbe96d645bcd.ctex"]
 
 [params]
 
