@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://btkoix1h2xv5w"]
+[gd_scene load_steps=8 format=3 uid="uid://btkoix1h2xv5w"]
 
 [ext_resource type="Script" uid="uid://dfehvkp3wopmf" path="res://scripts/Player.gd" id="1_3vyb7"]
 [ext_resource type="Shader" uid="uid://ppmk1j163gcr" path="res://shaders/PostProcessShader.gdshader" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://dxki60ygpgt87" path="res://assets/scope/Mirinorosso.png" id="2_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://bre1yi2b5omv3" path="res://scenes/notepad.tscn" id="4_dqkch"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g2els"]
 
@@ -71,19 +72,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SniperUI" type="CanvasLayer" parent="Character/Head/Camera3D"]
-
-[node name="LeftBar" type="ColorRect" parent="Character/Head/Camera3D/SniperUI"]
-anchors_preset = 9
-anchor_bottom = 1.0
-grow_vertical = 2
-color = Color(0.103743516, 0.10374353, 0.103743516, 1)
-
-[node name="RightBar" type="ColorRect" parent="Character/Head/Camera3D/SniperUI"]
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 0
-grow_vertical = 2
-color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+[node name="Notepad" parent="Character/Head/Camera3D" instance=ExtResource("4_dqkch")]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0.25, -0.25, -0.5)
+visible = false
