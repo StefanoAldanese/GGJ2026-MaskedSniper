@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dk8rdh4am63ag"]
+
+[node name="Ballroom" type="CSGBox3D"]
+size = Vector3(64, 16, 32)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 6, 0)
+operation = 2
+size = Vector3(20, 16, 28)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 6, 0)
+operation = 2
+size = Vector3(20, 16, 28)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+operation = 2
+size = Vector3(48, 16, 24)
