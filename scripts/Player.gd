@@ -125,7 +125,7 @@ func _process(delta):
 		var target_pos = notepad_hidden_pos
 		
 		# Se tengo premuto SPAZIO ("ui_accept"), il target diventa la posizione alta
-		if Input.is_action_pressed("ui_accept"):
+		if Input.is_action_pressed("notepad"):
 			target_pos = notepad_visible_pos
 		
 		# Muoviamo gradualmente il notepad verso il target
