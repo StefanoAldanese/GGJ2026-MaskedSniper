@@ -42,7 +42,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5835725, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Character/Head"]
 
-<<<<<<< HEAD
 [node name="RayCast3D" type="RayCast3D" parent="Character/Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, -8.742278e-06, -1, 0, 200, -4.371139e-08, 0, 0, 0)
 collide_with_areas = true
@@ -62,7 +61,6 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_g2els")
-=======
 [node name="ColorRect" type="ColorRect" parent="Character/Head/Camera3D"]
 material = SubResource("ShaderMaterial_g2els")
 anchors_preset = 15
@@ -70,4 +68,3 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
->>>>>>> origin/main
