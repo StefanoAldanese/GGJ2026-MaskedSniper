@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MaskVisualData" load_steps=2 format=3 uid="uid://cyenfveatum6t"]
+
+[ext_resource type="Script" uid="uid://cjws032mue5uq" path="res://scripts/MaskVisualData.gd" id="1_b0ddo"]
+
+[resource]
+script = ExtResource("1_b0ddo")
+tint_color = Color(0.8352941, 0, 0, 1)
+description_segment = "Rossa"
+metadata/_custom_type_script = "uid://cjws032mue5uq"

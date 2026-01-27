@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MaskAccessoryData" load_steps=3 format=3 uid="uid://ctf328a8lvr5r"]
+
+[ext_resource type="Script" uid="uid://da67xd8nxud5i" path="res://scripts/MaskAccessoryData.gd" id="1_item8"]
+[ext_resource type="Texture2D" uid="uid://dx5y5xgpbipu6" path="res://Resource/sketch stefano.png" id="2_2hh7x"]
+
+[resource]
+script = ExtResource("1_item8")
+sprite = ExtResource("2_2hh7x")
+description_segment = "piuma"
+metadata/_custom_type_script = "uid://da67xd8nxud5i"

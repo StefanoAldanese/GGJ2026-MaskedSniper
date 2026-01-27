@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyrnsiwiax653"]
+
+[ext_resource type="Script" uid="uid://dbqp7tw6dinei" path="res://scripts/lab_generation.gd" id="1_6se57"]
+[ext_resource type="PackedScene" uid="uid://b7jjmyiu1xgg5" path="res://scenes/enemy.tscn" id="2_vl5d6"]
+
+[node name="LabGeneration" type="Node3D"]
+script = ExtResource("1_6se57")
+
+[node name="Enemy" parent="." instance=ExtResource("2_vl5d6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.81662846, -7.165867)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0477042, -3.2227783)
+use_collision = true
+size = Vector3(6, 0.002, 12.445557)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+sky_mode = 1
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.40490794, 0)

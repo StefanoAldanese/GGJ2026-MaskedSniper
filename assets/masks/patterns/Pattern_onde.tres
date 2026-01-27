@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MaskVisualData" load_steps=3 format=3 uid="uid://lds70s1e2i0n"]
+
+[ext_resource type="Script" uid="uid://cjws032mue5uq" path="res://scripts/MaskVisualData.gd" id="1_8lci8"]
+[ext_resource type="Texture2D" uid="uid://ck2lcmivrsrvc" path="res://Resource/patter1.png" id="1_bjweq"]
+
+[resource]
+script = ExtResource("1_8lci8")
+albedo_texture = ExtResource("1_bjweq")
+description_segment = "Pettern Onde"
+metadata/_custom_type_script = "uid://cjws032mue5uq"

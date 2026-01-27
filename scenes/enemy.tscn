@@ -1,0 +1,25 @@
+[gd_scene load_steps=9 format=3 uid="uid://b7jjmyiu1xgg5"]
+
+[ext_resource type="Script" uid="uid://buwb261yjyrby" path="res://scripts/enemy.gd" id="1_7p1mj"]
+[ext_resource type="Script" uid="uid://bdf7vufye8llu" path="res://scripts/maskShapeData.gd" id="2_md484"]
+[ext_resource type="Resource" path="res://Resource/Shape_Cubo.tres" id="3_ipns3"]
+[ext_resource type="Script" uid="uid://cjws032mue5uq" path="res://scripts/MaskVisualData.gd" id="4_8qclf"]
+[ext_resource type="Resource" path="res://Resource/Color_Rosso.tres" id="5_w8i8w"]
+[ext_resource type="Resource" path="res://Resource/Pattern_onde.tres" id="6_otmr2"]
+[ext_resource type="Script" uid="uid://da67xd8nxud5i" path="res://scripts/MaskAccessoryData.gd" id="7_wtq4b"]
+[ext_resource type="Resource" path="res://Resource/Accessory_Cappello_Giullare.tres" id="8_j0cyh"]
+
+[node name="Enemy" type="CharacterBody3D"]
+script = ExtResource("1_7p1mj")
+shapes = Array[ExtResource("2_md484")]([ExtResource("3_ipns3")])
+colors = Array[ExtResource("4_8qclf")]([ExtResource("5_w8i8w")])
+patterns = Array[ExtResource("4_8qclf")]([ExtResource("6_otmr2")])
+accessories = Array[ExtResource("7_wtq4b")]([ExtResource("8_j0cyh")])
+
+[node name="BodySprite" type="Sprite3D" parent="."]
+
+[node name="MaskPivot" type="Node3D" parent="."]
+
+[node name="MaskMesh" type="MeshInstance3D" parent="MaskPivot"]
+
+[node name="AccessorySprite" type="Sprite3D" parent="MaskPivot"]

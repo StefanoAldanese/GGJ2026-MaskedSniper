@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MaskShapeData" load_steps=3 format=3 uid="uid://ba1beyueilau8"]
+
+[ext_resource type="Script" uid="uid://bdf7vufye8llu" path="res://scripts/maskShapeData.gd" id="1_mgovd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mgovd"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[resource]
+script = ExtResource("1_mgovd")
+mesh = SubResource("BoxMesh_mgovd")
+description_segment = "Cubica"
+metadata/_custom_type_script = "uid://bdf7vufye8llu"
