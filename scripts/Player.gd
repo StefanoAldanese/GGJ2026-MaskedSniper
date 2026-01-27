@@ -5,7 +5,7 @@ const NORMAL_FOV = 70.0
 const ZOOM_FOV = 20.0
 const ZOOM_SPEED = 5.0  # how fast camera zooms
 
-const NOTEPAD_SPEED = 10.0
+const NOTEPAD_SPEED = 8.0
 
 var yaw_limit_min = 0
 var pitch_limit_min = 0
@@ -23,14 +23,14 @@ var current_nest_index := 0
 var notepad_visible_pos: Vector3
 var notepad_hidden_pos: Vector3
 
+var msg_tween: Tween
+
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var shoot_ray: RayCast3D = $Head/Camera3D/RayCast3D
 
-
-
-
 @onready var notepad: Node3D = $Head/Camera3D/Notepad
+@onready var console_msg: Label = $Head/Camera3D/SniperUI/MessageHolder/ConsoleMsg
 
 func set_sniper_nests(nests: Array):
 	sniper_nests = nests
@@ -72,10 +72,23 @@ func teleport_to_next_nest():
 	pitch = 0
 
 func shoot() -> void:
-	print("I'm shooting")
 	if shoot_ray.is_colliding():
 		var collider = shoot_ray.get_collider()
+		
+		# Controlliamo se è un nemico e se ha la funzione die
 		if collider is Area3D and collider.has_method("die"):
+			
+			# -- NUOVA LOGICA MESSAGGI --
+			# Verifichiamo se è il target (leggendo la variabile dal nemico)
+			if "is_target" in collider:
+				if collider.is_target:
+					# Messaggio vittoria
+					print_console_message("STATUS: BAROQUE 2\nBERSAGLIO ELIMINATO", 5.0)
+				else:
+					# Messaggio errore
+					print_console_message("STATUS: WRONG\n ARCHANGEL IS DISAPPOINTED", 5.0)
+			
+			# Procediamo con l'eliminazione
 			collider.die()
 
 			
@@ -87,6 +100,9 @@ func _ready():
 		notepad_visible_pos = notepad.position
 		notepad_hidden_pos = notepad_visible_pos - Vector3(0, 0.8, 0)
 		notepad.position = notepad_hidden_pos
+	
+	if console_msg:
+		console_msg.text = ""
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -111,6 +127,38 @@ func receive_target_list(targets: Array):
 		notepad.update_target_info(targets)
 	else:
 		print("Errore: Nodo Notepad non trovato o script mancante!")
+
+
+func print_console_message(text_content: String, duration: float = 3.0):
+	if not console_msg: return
+	
+	# 1. Se c'è già un messaggio che sta scrivendo, lo interrompiamo
+	if msg_tween:
+		msg_tween.kill()
+	
+	# 2. Impostiamo il testo e lo rendiamo invisibile (0 caratteri mostrati)
+	console_msg.text = text_content
+	console_msg.visible_ratio = 0.0 # Nasconde tutto il testo
+	console_msg.modulate.a = 1.0    # Assicura che sia opaco (visibile)
+	
+	# 3. Creiamo l'animazione (Tween)
+	msg_tween = create_tween()
+	
+	# A. Effetto Macchina da scrivere (da 0% a 100% visibile)
+	# Calcoliamo la velocità: 0.05 secondi per ogni lettera
+	var typing_speed = text_content.length() * 0.05 
+	msg_tween.tween_property(console_msg, "visible_ratio", 1.0, typing_speed)
+	
+	# B. Pausa per leggere (duration)
+	msg_tween.tween_interval(duration)
+	
+	# C. Dissolvenza finale (Fade out)
+	msg_tween.tween_property(console_msg, "modulate:a", 0.0, 1.0)
+	
+	# D. Pulizia finale
+	msg_tween.tween_callback(func(): console_msg.text = "")
+
+
 
 func _process(delta):
 	# Check right mouse button

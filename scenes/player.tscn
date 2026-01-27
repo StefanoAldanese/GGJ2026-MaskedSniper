@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://btkoix1h2xv5w"]
+[gd_scene load_steps=9 format=3 uid="uid://btkoix1h2xv5w"]
 
 [ext_resource type="Script" uid="uid://dfehvkp3wopmf" path="res://scripts/Player.gd" id="1_3vyb7"]
 [ext_resource type="Shader" uid="uid://ppmk1j163gcr" path="res://shaders/PostProcessShader.gdshader" id="2_g2els"]
@@ -26,6 +26,12 @@ shader_parameter/grain_strength = 0.2
 shader_parameter/tint_color = Vector3(0.95, 1.03, 0.9)
 shader_parameter/tint_strength = 0.15
 shader_parameter/viewport_size_override = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dqkch"]
+font_size = 24
+font_color = Color(0.5661261, 0, 0.21075535, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Player" type="Node3D"]
 
@@ -75,3 +81,17 @@ grow_vertical = 2
 [node name="Notepad" parent="Character/Head/Camera3D" instance=ExtResource("4_dqkch")]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0.25, -0.25, -0.5)
 visible = false
+
+[node name="SniperUI" type="CanvasLayer" parent="Character/Head/Camera3D"]
+
+[node name="MessageHolder" type="CenterContainer" parent="Character/Head/Camera3D/SniperUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConsoleMsg" type="Label" parent="Character/Head/Camera3D/SniperUI/MessageHolder"]
+layout_mode = 2
+text = "Ciao"
+label_settings = SubResource("LabelSettings_dqkch")

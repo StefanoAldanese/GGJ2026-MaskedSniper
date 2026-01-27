@@ -51,3 +51,9 @@ func _initialize_enemies_logic():
 	# Invia la descrizione del target al blocco note del giocatore
 	if player.has_method("receive_target_list"):
 		player.receive_target_list([target_description])
+		
+	# --- NUOVO: MESSAGGIO DI BENVENUTO ---
+	if player.has_method("print_console_message"):
+		# Attende 1 secondo per non sovrapporsi al caricamento
+		await get_tree().create_timer(1.0).timeout
+		player.print_console_message("SYSTEM: HELLO.\n MANKIND IS DEAD. \n BULLET ARE LIMITED. \n BALLROOM IS FULL.", 4.0)
