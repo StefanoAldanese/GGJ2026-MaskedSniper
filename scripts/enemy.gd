@@ -8,11 +8,13 @@ extends Area3D
 
 # Variabile per memorizzare chi sono
 var full_description: String = ""
+var is_target: bool = false # Per logica di gioco futura (punteggio/streak)
 
 func _ready() -> void:
-	spawn_mask()
+# Non facciamo nulla qui. Aspettiamo il World.
+	pass
 
-func spawn_mask() -> void:
+func spawn_mask(forbidden_desc: String = "") -> void:
 	if mask_scene == null:
 		push_error("Mask Scene non assegnata nel nemico!")
 		return
@@ -30,10 +32,19 @@ func spawn_mask() -> void:
 	# 4. Leggiamo la descrizione generata dalla maschera
 	# Nota: _ready() della maschera viene chiamato appena facciamo add_child
 	# quindi la descrizione è già pronta.
-	if current_mask is VenetianMask:
-		full_description = current_mask.description
-		print("Nemico creato: ", full_description)
+	if current_mask.has_method("generate_safe_look"):
+			current_mask.generate_safe_look(forbidden_desc)
+			full_description = current_mask.description
+			
+			# Debug print
+			if is_target:
+				print("[TARGET] ", full_description)
+			else:
+				print("[NEMICO] ", full_description)
 
 func die() -> void:
-	print("Hai eliminato il bersaglio: ", full_description)
+	if is_target:
+		print("VITTORIA! Hai eliminato il bersaglio: ", full_description)
+	else:
+		print("ERRORE! Hai ucciso un civile: ", full_description)
 	queue_free()
