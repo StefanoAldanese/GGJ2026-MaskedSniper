@@ -3,7 +3,9 @@ extends CharacterBody3D
 const MOUSE_SENS = 0.002
 const NORMAL_FOV = 70.0
 const ZOOM_FOV = 20.0
-const ZOOM_SPEED = 5.0  # how fast camera zoomsù
+const ZOOM_SPEED = 5.0  # how fast camera zooms
+
+const BAR_WIDTH_PERCENT = 0.20
 
 var yaw_limit_min = 0
 var pitch_limit_min = 0
@@ -21,6 +23,9 @@ var current_nest_index := 0
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var shoot_ray: RayCast3D = $Head/Camera3D/RayCast3D
+
+@onready var left_bar: ColorRect = $Head/Camera3D/SniperUI/LeftBar
+@onready var right_bar: ColorRect = $Head/Camera3D/SniperUI/RightBar
 
 func set_sniper_nests(nests: Array):
 	sniper_nests = nests
@@ -88,13 +93,36 @@ func _input(event):
 
 func _process(delta):
 	# Check right mouse button
-	var zooming = Input.is_action_pressed("aim")  #  "aim" mapped to Right Mouse Button
+	var zooming = Input.is_action_pressed("aim")
 	var target_fov = ZOOM_FOV if zooming else NORMAL_FOV
-	# Smoothly interpolate camera FOV
-	camera.fov = lerp(camera.fov, target_fov, delta * ZOOM_SPEED)
-	 # or camera.fov = lerp(camera.fov, target_fov, delta * ZOOM_SPEED)
 	
-	# Teleport
+	# Smoothly interpolate camera FOV (codice esistente)
+	camera.fov = lerp(camera.fov, target_fov, delta * ZOOM_SPEED)
+	
+	# --- C. NUOVO CODICE PER LE BANDE NERE ---
+	# 1. Calcoliamo la larghezza target dello schermo
+	var viewport_width = get_viewport().get_visible_rect().size.x
+	var target_bar_width = 0.0
+	
+	# Se stiamo mirando, la larghezza target è il 20% dello schermo, altrimenti è 0
+	if zooming:
+		target_bar_width = viewport_width * BAR_WIDTH_PERCENT
+	
+	# 2. Interpoliamo (animiamo) la larghezza attuale verso il target
+	var current_width = left_bar.size.x
+	var new_width = lerp(current_width, target_bar_width, delta * ZOOM_SPEED)
+	
+	# 3. Applichiamo la nuova larghezza alla barra Sinistra
+	left_bar.size.x = new_width
+	left_bar.position.x = 0 # Sempre ancorata a sinistra
+	
+	# 4. Applichiamo la nuova larghezza alla barra Destra
+	right_bar.size.x = new_width
+	# La barra destra deve spostarsi per rimanere ancorata al bordo destro
+	right_bar.position.x = viewport_width - new_width
+	
+	
+	# Teleport (codice esistente)
 	if Input.is_action_just_pressed("teleport"):
 		teleport_to_next_nest()
 		
