@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://chqiabfct1qxx"]
+[gd_scene load_steps=6 format=3 uid="uid://chqiabfct1qxx"]
 
 [ext_resource type="PackedScene" uid="uid://btkoix1h2xv5w" path="res://scenes/player.tscn" id="1_nnsk1"]
+[ext_resource type="PackedScene" uid="uid://dk8rdh4am63ag" path="res://scenes/ballroom.tscn" id="2_rwgxs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e5uuo"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -29,3 +30,6 @@ size = Vector3(6, 0.002, 6)
 
 [node name="Node3D" parent="." instance=ExtResource("1_nnsk1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013288021, 1.0009999, 0.09802246)
+
+[node name="Ballroom" parent="." instance=ExtResource("2_rwgxs")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.36204147, -9.847794, -34.978237)
