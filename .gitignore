@@ -1,7 +1,8 @@
 .import/
+*.uid
+.DS_Store
 .export/
 .godot/editor/
 *.translation
 .mono/
 .vs/
-
