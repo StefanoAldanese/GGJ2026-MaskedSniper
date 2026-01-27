@@ -20,7 +20,7 @@ var current_nest_index := 0
 
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
-
+@onready var shoot_ray: RayCast3D = $Head/Camera3D/RayCast3D
 
 func set_sniper_nests(nests: Array):
 	sniper_nests = nests
@@ -57,7 +57,14 @@ func teleport_to_next_nest():
 	yaw = 0
 	pitch = 0
 
+func shoot() -> void:
+	print("I'm shooting")
+	if shoot_ray.is_colliding():
+		var collider = shoot_ray.get_collider()
+		if collider is Area3D and collider.has_method("die"):
+			collider.die()
 
+			
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	camera.fov = NORMAL_FOV
@@ -71,8 +78,9 @@ func _input(event):
 		# Vertical (head)
 		pitch += -event.relative.y * MOUSE_SENS
 		head.rotation.x = clamp(pitch + pitch_offset, -pitch_limit_min + pitch_offset, pitch_limit_max + pitch_offset)
-
-
+	
+	if event.is_action_pressed("shoot"):
+		shoot()
 
 func _process(delta):
 	# Check right mouse button
@@ -85,3 +93,5 @@ func _process(delta):
 	# Teleport
 	if Input.is_action_just_pressed("teleport"):
 		teleport_to_next_nest()
+		
+		
