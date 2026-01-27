@@ -4,9 +4,9 @@ extends Node3D
 @onready var player: CharacterBody3D = $Player/Character
 @onready var enemies: Node = $Enemies
 
-func _ready():
+func set_nests_ready():
 	var raw_children := $SniperNests.get_children() # Array[Node]
-	print()
+
 	var nests: Array[Node3D] = []
 
 	for child in raw_children:
@@ -21,3 +21,6 @@ func _ready():
 		if enemy is Node3D:
 			enemies.append(enemy)
 			
+
+func _ready():
+	set_nests_ready()
