@@ -1,5 +1,5 @@
 [gd_scene load_steps=6 format=3 uid="uid://btkoix1h2xv5w"]
-
+[ext_resource type="Texture2D" uid="uid://dxki60ygpgt87" path="res://Images/Mirinorosso.png" id="2_g2els"]
 [ext_resource type="Script" uid="uid://dfehvkp3wopmf" path="res://scripts/Player.gd" id="1_3vyb7"]
 [ext_resource type="Shader" uid="uid://ppmk1j163gcr" path="res://shader/PostProcessShader.gdshader" id="2_g2els"]
 
@@ -31,6 +31,7 @@ shader_parameter/viewport_size_override = Vector2(0, 0)
 script = ExtResource("1_3vyb7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Character"]
+visible = false
 mesh = SubResource("CapsuleMesh_g2els")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Character"]
@@ -41,6 +42,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5835725, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Character/Head"]
 
+<<<<<<< HEAD
+[node name="RayCast3D" type="RayCast3D" parent="Character/Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -8.742278e-06, -1, 0, 200, -4.371139e-08, 0, 0, 0)
+collide_with_areas = true
+debug_shape_thickness = 5
+
+[node name="TextureRect" type="TextureRect" parent="Character/Head/Camera3D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -255.0
+offset_right = 768.0
+offset_bottom = 769.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_g2els")
+=======
 [node name="ColorRect" type="ColorRect" parent="Character/Head/Camera3D"]
 material = SubResource("ShaderMaterial_g2els")
 anchors_preset = 15
@@ -48,3 +70,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+>>>>>>> origin/main

@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://chqiabfct1qxx"]
+[gd_scene load_steps=9 format=3 uid="uid://chqiabfct1qxx"]
 
 [ext_resource type="Script" uid="uid://biwtu8713ebg0" path="res://scripts/world.gd" id="1_k0juu"]
 [ext_resource type="PackedScene" uid="uid://btkoix1h2xv5w" path="res://scenes/player.tscn" id="1_nnsk1"]
 [ext_resource type="PackedScene" uid="uid://dk27tgg7uxpvs" path="res://scenes/ballroom.tscn" id="2_rwgxs"]
 [ext_resource type="PackedScene" uid="uid://bgnhijarargp6" path="res://scenes/sniper_nest.tscn" id="3_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://b7jjmyiu1xgg5" path="res://scenes/enemy.tscn" id="5_71j4m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e5uuo"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -65,3 +66,11 @@ pitch_min = 0.6
 pitch_max = 0.6
 yaw_min = 0.2
 yaw_max = 0.2
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("5_71j4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.197459, -9.770313, -25.597872)
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("5_71j4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2728558, -9.857442, -21.023155)
