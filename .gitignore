@@ -1,0 +1,7 @@
+.import/
+.export/
+.godot/editor/
+*.translation
+.mono/
+.vs/
+

@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://chqiabfct1qxx"]
+
+[ext_resource type="Script" uid="uid://biwtu8713ebg0" path="res://scripts/world.gd" id="1_k0juu"]
+[ext_resource type="PackedScene" uid="uid://btkoix1h2xv5w" path="res://scenes/player.tscn" id="1_nnsk1"]
+[ext_resource type="PackedScene" uid="uid://dk27tgg7uxpvs" path="res://scenes/ballroom.tscn" id="2_rwgxs"]
+[ext_resource type="PackedScene" uid="uid://bgnhijarargp6" path="res://scenes/sniper_nest.tscn" id="3_4wyf3"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e5uuo"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_nnsk1"]
+sky_material = SubResource("ProceduralSkyMaterial_e5uuo")
+
+[sub_resource type="Environment" id="Environment_rwgxs"]
+background_mode = 2
+sky = SubResource("Sky_nnsk1")
+tonemap_mode = 2
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_k0juu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rwgxs")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.048702717, 0.106173754, 1.2626097)
+use_collision = true
+size = Vector3(6, 0.002, 6)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.048702717, -9.553593, 33.837112)
+use_collision = true
+size = Vector3(6, 0.002, 6)
+
+[node name="Ballroom" parent="." instance=ExtResource("2_rwgxs")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.36204147, -8.847794, -31.978237)
+
+[node name="Player" parent="." instance=ExtResource("1_nnsk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.221158, 0)
+
+[node name="SniperNests" type="Node3D" parent="."]
+
+[node name="InternBalcony" parent="SniperNests" instance=ExtResource("3_4wyf3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22392464, 0.8485931, 0.132267)
+pitch_min = 0.8
+pitch_max = 0.8
+yaw_min = 0.8
+yaw_max = 0.0
+
+[node name="HiddenNest" parent="SniperNests" instance=ExtResource("3_4wyf3")]
+transform = Transform3D(-0.6769914, 0, -0.7359909, 0, 1, 0, 0.7359909, 0, -0.6769914, -13.260497, -9.332917, -59.17485)
+pitch_min = 0.6
+pitch_max = 0.6
+yaw_min = 0.4
+yaw_max = 0.4
+
+[node name="ExternBuilding" parent="SniperNests" instance=ExtResource("3_4wyf3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0017080158, -8.9193125, 33.60441)
+pitch_min = 0.6
+pitch_max = 0.6
+yaw_min = 0.2
+yaw_max = 0.2
