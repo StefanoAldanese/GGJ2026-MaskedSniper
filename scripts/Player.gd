@@ -24,6 +24,7 @@ var current_nest_index := 0
 
 func set_sniper_nests(nests: Array):
 	sniper_nests = nests
+	# set starting limits based on first nest's
 	yaw_limit_min = sniper_nests[0].pitch_min
 	pitch_limit_min = sniper_nests[0].yaw_min
 	yaw_limit_max = sniper_nests[0].pitch_max
@@ -36,10 +37,13 @@ func teleport_to_next_nest():
 	current_nest_index = (current_nest_index + 1) % sniper_nests.size()
 	var target = sniper_nests[current_nest_index]
 
+	# set limits after teleport --> unique to nest
 	yaw_limit_min = target.pitch_min
 	pitch_limit_min = target.yaw_min
 	yaw_limit_max = target.pitch_max
 	pitch_limit_max = target.yaw_max
+	
+	
 	velocity = Vector3.ZERO
 	global_position = target.global_position
 

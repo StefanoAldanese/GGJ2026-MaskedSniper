@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bgnhijarargp6"]
 
-[ext_resource type="Script" uid="uid://cexuskganw1s" path="res://scenes/sniper_nest.gd" id="1_k8my0"]
+[ext_resource type="Script" uid="uid://cexuskganw1s" path="res://scripts/sniper_nest.gd" id="1_k8my0"]
 
 [node name="SniperNest" type="Node3D"]
 script = ExtResource("1_k8my0")
