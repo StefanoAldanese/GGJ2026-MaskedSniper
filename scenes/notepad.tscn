@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bre1yi2b5omv3"]
+
+[ext_resource type="Script" uid="uid://bok08ur1r78pq" path="res://scripts/notepad.gd" id="1_nkxj1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_36oin"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nkxj1"]
+material = SubResource("StandardMaterial3D_36oin")
+size = Vector3(0.3, 0.4, 0.01)
+
+[node name="Notepad" type="Node3D"]
+script = ExtResource("1_nkxj1")
+
+[node name="Paper" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_nkxj1")
+
+[node name="Text" type="Label3D" parent="Paper"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13, 0.18, 0.01)
+pixel_size = 0.001
+double_sided = false
+modulate = Color(0, 0, 0, 1)
+text = "Baroque 2"
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0

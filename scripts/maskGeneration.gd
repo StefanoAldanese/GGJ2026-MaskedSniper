@@ -32,7 +32,26 @@ var description: String = ""
 
 func _ready() -> void:
 	# Appena la maschera viene creata, generiamo il suo aspetto
-	_generate_random_look()
+	# _generate_random_look()
+	pass
+	
+# forbidden_description: La descrizione che NON deve uscire (quella del target)
+func generate_safe_look(forbidden_description: String = "") -> void:
+	var unique = false
+	var attempts = 0
+	
+	# Tentiamo fino a 50 volte di generare qualcosa di diverso
+	while !unique and attempts < 50:
+		_generate_random_look()
+		
+		# Se non c'è divieto O se la descrizione è diversa da quella vietata
+		if forbidden_description == "" or description != forbidden_description:
+			unique = true
+		else:
+			attempts += 1
+			
+	if attempts >= 50:
+		print("WARNING: Impossible to generate a Mask after 50 tries!")
 
 func _generate_random_look() -> void:
 	# Creiamo una nuova istanza del materiale shader per questa specifica maschera
