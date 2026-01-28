@@ -25,6 +25,8 @@ var notepad_hidden_pos: Vector3
 
 var random_hour_start: float = 0.0
 
+var force_scope_out: bool = false
+
 # --- RIFERIMENTI AI NODI ---
 # --- RIFERIMENTI AI NODI ---
 @onready var head: Node3D = $Head
@@ -47,6 +49,12 @@ var current_timer_value: float = 0.0
 
 var container_visible_pos: Vector3
 var container_hidden_pos: Vector3
+
+var sniper_scene_resource = load("res://scenes/SniperRifle.tscn") # Carica la risorsa
+var sniper_instance: Node3D
+
+@export var aim_sens_multiplier := 0.2 
+var current_sens_mod := 1.0
 
 func set_sniper_nests(nests: Array):
 	sniper_nests = nests
@@ -89,6 +97,10 @@ func teleport_to_next_nest():
 
 func shoot() -> void:
 	print("I'm shooting")
+	if sniper_instance:
+		sniper_instance.play_shoot_anim()
+	
+	force_scope_out = true
 	if shoot_ray.is_colliding():
 		var collider = shoot_ray.get_collider()
 		print(collider)
@@ -118,7 +130,22 @@ func _ready():
 	random_hour_start = randf_range(0.0, 360.0)
 	if clock_hand_short:
 		clock_hand_short.rotation_degrees.y = random_hour_start
+		
+	if sniper_scene_resource:
+		sniper_instance = sniper_scene_resource.instantiate()
+		# Aggiungi il fucile come figlio della Camera, così si muove con essa
+		$Head/Camera3D.call_deferred("add_child", sniper_instance)
+		
+		# Aspetta un attimo prima di settare i parametri
+		await get_tree().process_frame
+		
+		# Passa il riferimento alla Camera del Player allo script del fucile
+		if sniper_instance.has_method("set_camera_node_path"):
+			sniper_instance.camera_node_path = $Head/Camera3D.get_path()
+	else:
+		print("Player: Sniper scene not assigned!")
 		  
+		
 func _input(event):
 	if event is InputEventMouseMotion:
 		# Horizontal (body)
@@ -138,6 +165,17 @@ func _input(event):
 	if event.is_action_pressed("teleport"):
 		teleport_to_next_nest()
 	
+	# Gestione Mira (Sensibilità e Animazione)
+	# GESTIONE MIRA
+	if event.is_action_pressed("aim"):
+		if sniper_instance:
+			sniper_instance.set_aiming(true)
+			current_sens_mod = aim_sens_multiplier
+	elif event.is_action_released("aim"):
+		if sniper_instance:
+			sniper_instance.set_aiming(false)
+			current_sens_mod = 1.0
+	
 
 func toggle_notepad():
 	if notepad:
@@ -151,6 +189,20 @@ func receive_target_list(targets: Array):
 		print("Errore: Nodo Notepad non trovato o script mancante!")
 
 func _process(delta):
+	# Se molli il tasto destro, resettiamo il blocco, così puoi mirare di nuovo
+	if Input.is_action_just_released("aim"):
+		force_scope_out = false
+
+	# Puoi mirare SOLO SE premi il tasto E non sei stato buttato fuori dal rinculo
+	var is_aiming = Input.is_action_pressed("aim") and not force_scope_out
+	
+	#FOV
+	var target_fov = ZOOM_FOV if Input.is_action_pressed("aim") else NORMAL_FOV 
+	camera.fov = lerp(camera.fov, target_fov, delta * ZOOM_SPEED)
+	
+	#Facciamo nascondere il fucile
+	if sniper_instance:
+		sniper_instance.set_aiming(is_aiming)
 	# --- LOGICA TIMER E LANCETTE ---
 	if current_timer_value < kill_timer_limit:
 		current_timer_value += delta
@@ -178,9 +230,9 @@ func _process(delta):
 			
 		
 
-	# --- ANIMAZIONE TOOLS (Salita/Discesa) ---
-	var target_fov = ZOOM_FOV if Input.is_action_pressed("aim") else NORMAL_FOV
-	camera.fov = lerp(camera.fov, target_fov, delta * ZOOM_SPEED)
+	# --- ANIMAZIONE TOOLS (Salita/Discesa) --- OLD
+	# var target_fov = ZOOM_FOV if Input.is_action_pressed("aim") else NORMAL_FOV
+	# camera.fov = lerp(camera.fov, target_fov, delta * ZOOM_SPEED)
 	
 	if tool_container:
 		var target_pos = container_hidden_pos
