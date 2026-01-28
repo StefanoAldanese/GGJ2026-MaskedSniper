@@ -95,8 +95,6 @@ func shoot() -> void:
 		if collider is CharacterBody3D and collider.has_method("die"):
 			collider.die()
 			
-
-			
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	camera.fov = NORMAL_FOV
