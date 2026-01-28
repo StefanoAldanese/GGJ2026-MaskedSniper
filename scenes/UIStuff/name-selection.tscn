@@ -1,7 +1,93 @@
-[gd_scene format=3 uid="uid://lk3j3gp3ogu3"]
+[gd_scene load_steps=10 format=3 uid="uid://lk3j3gp3ogu3"]
 
-[node name="Control" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[ext_resource type="FontFile" uid="uid://cqbqyiwq06rql" path="res://assets/uistuff/Kalnia-Medium.ttf" id="1_ebshc"]
+[ext_resource type="Script" uid="uid://b48brp6020dn6" path="res://scripts/name_selection.gd" id="1_u52h2"]
+[ext_resource type="Texture2D" uid="uid://csn6kk7nw22ct" path="res://assets/uistuff/BUTTON YES (Inactive).png" id="2_s14l5"]
+[ext_resource type="Texture2D" uid="uid://chfgb1ao7ebb4" path="res://assets/uistuff/BUTTON YES (Hover).png" id="3_u52h2"]
+[ext_resource type="Texture2D" uid="uid://cwry2vhv2ul7c" path="res://assets/uistuff/BUTTON NO (Inactive.png" id="4_570co"]
+[ext_resource type="Texture2D" uid="uid://dqaplurokovmm" path="res://assets/uistuff/BUTTON YES (Hidden).png" id="5_570co"]
+[ext_resource type="Texture2D" uid="uid://4sj5mqtrew5q" path="res://assets/uistuff/BUTTON NO (Hover).png" id="5_ynu4w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ahxov"]
+font = ExtResource("1_ebshc")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_w0w0x"]
+font = ExtResource("1_ebshc")
+
+[node name="MarginContainer" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u52h2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 128
+theme_override_constants/margin_bottom = 128
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Your name is..."
+label_settings = SubResource("LabelSettings_ahxov")
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_ebshc")
+theme_override_font_sizes/font_size = 64
+placeholder_text = "Dextera"
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "I agree to help the Angel in protecting La Serenissima."
+label_settings = SubResource("LabelSettings_w0w0x")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Button YES" type="TextureButton" parent="MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_s14l5")
+texture_pressed = ExtResource("3_u52h2")
+texture_hover = ExtResource("3_u52h2")
+texture_disabled = ExtResource("5_570co")
+texture_focused = ExtResource("3_u52h2")
+
+[node name="Button NO" type="TextureButton" parent="MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_570co")
+texture_pressed = ExtResource("5_ynu4w")
+texture_hover = ExtResource("5_ynu4w")
+texture_disabled = ExtResource("4_570co")
+texture_focused = ExtResource("5_ynu4w")
