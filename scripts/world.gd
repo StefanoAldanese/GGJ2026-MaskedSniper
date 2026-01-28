@@ -55,16 +55,8 @@ func _initialize_enemies_logic(created_enemies: Array):
 	# Aspettiamo un frame per sicurezza che tutti i nodi siano pronti
 	await get_tree().process_frame
 	
-	var all_enemies = []
-	for child in created_enemies:
-		if child.has_method("spawn_mask"):
-			all_enemies.append(child)
-	
-	if all_enemies.size() == 0:
-		return
-
 	# --- FASE A: SCELTA TARGET ---
-	var target_enemy = all_enemies.pick_random()
+	var target_enemy = created_enemies.pick_random()
 	target_enemy.is_target = true
 	
 	# Genera il target liberamente (stringa vuota = nessuna restrizione)
@@ -72,7 +64,7 @@ func _initialize_enemies_logic(created_enemies: Array):
 	var target_description = target_enemy.full_description
 	
 	# --- FASE B: GENERAZIONE ALTRI NEMICI ---
-	for enemy in all_enemies:
+	for enemy in created_enemies:
 		if enemy != target_enemy:
 			# Diciamo agli altri: "Generati come vuoi, ma NON diventare come target_description"
 			enemy.spawn_mask(target_description)
