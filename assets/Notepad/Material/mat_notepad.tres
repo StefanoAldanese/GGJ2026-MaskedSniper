@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://us5gpgqv3vkp"]
+
+[ext_resource type="Texture2D" uid="uid://copcrwradix4t" path="res://assets/Notepad/Material/PBR/blocknotes_LP_blocknote_mat_BaseColor_Utility - sRGB - Texture.1001.png" id="1_ayn6k"]
+[ext_resource type="Texture2D" uid="uid://pnepgl3tuwsx" path="res://assets/Notepad/Material/PBR/blocknotes_LP_blocknote_mat_Metallic_Utility - Raw.1001.png" id="2_6o2cp"]
+[ext_resource type="Texture2D" uid="uid://bd687jiqvfxql" path="res://assets/Notepad/Material/PBR/blocknotes_LP_blocknote_mat_Normal_Utility - Raw.1001.png" id="3_37nf6"]
+[ext_resource type="Texture2D" uid="uid://duy2hmjb85c0x" path="res://assets/Notepad/Material/PBR/blocknotes_LP_blocknote_mat_Roughness_Utility - Raw.1001.png" id="4_83g4t"]
+
+[resource]
+albedo_texture = ExtResource("1_ayn6k")
+metallic = 1.0
+metallic_texture = ExtResource("2_6o2cp")
+roughness_texture = ExtResource("4_83g4t")
+normal_enabled = true
+normal_texture = ExtResource("3_37nf6")
