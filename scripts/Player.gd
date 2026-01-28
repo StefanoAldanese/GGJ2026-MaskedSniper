@@ -134,6 +134,10 @@ func _input(event):
 		
 	if event.is_action_pressed("restart_scene"):
 		get_tree().reload_current_scene()
+	
+	if event.is_action_pressed("teleport"):
+		teleport_to_next_nest()
+	
 
 func toggle_notepad():
 	if notepad:

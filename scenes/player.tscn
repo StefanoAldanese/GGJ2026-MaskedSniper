@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dfehvkp3wopmf" path="res://scripts/Player.gd" id="1_3vyb7"]
 [ext_resource type="Shader" uid="uid://6wwx6ig6giuv" path="res://shaders/PostProcessShader.gdshader" id="2_g2els"]
-[ext_resource type="Texture2D" uid="uid://dxki60ygpgt87" path="res://assets/scope/Mirinorosso.png" id="2_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://dxki60ygpgt87" path="res://assets/Images/Mirinorosso.png" id="2_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://bre1yi2b5omv3" path="res://scenes/notepad.tscn" id="4_dqkch"]
 [ext_resource type="PackedScene" uid="uid://bgwqaube5jf28" path="res://scenes/clock.tscn" id="5_qlg0r"]
 
