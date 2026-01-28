@@ -3,7 +3,9 @@ extends CharacterBody3D
 const MOUSE_SENS = 0.002
 const NORMAL_FOV = 70.0
 const ZOOM_FOV = 20.0
-const ZOOM_SPEED = 5.0  # how fast camera zoomsù
+const ZOOM_SPEED = 5.0  # how fast camera zooms
+
+const NOTEPAD_SPEED = 10.0
 
 var yaw_limit_min = 0
 var pitch_limit_min = 0
@@ -18,9 +20,17 @@ var pitch_offset := 0.0
 var sniper_nests: Array[Node3D] = []
 var current_nest_index := 0
 
+var notepad_visible_pos: Vector3
+var notepad_hidden_pos: Vector3
+
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var shoot_ray: RayCast3D = $Head/Camera3D/RayCast3D
+
+
+
+
+@onready var notepad: Node3D = $Head/Camera3D/Notepad
 
 func set_sniper_nests(nests: Array):
 	sniper_nests = nests
@@ -72,6 +82,11 @@ func shoot() -> void:
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	camera.fov = NORMAL_FOV
+	if notepad:
+		notepad.visible = true
+		notepad_visible_pos = notepad.position
+		notepad_hidden_pos = notepad_visible_pos - Vector3(0, 0.8, 0)
+		notepad.position = notepad_hidden_pos
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -86,16 +101,40 @@ func _input(event):
 	if event.is_action_pressed("shoot"):
 		shoot()
 
+func toggle_notepad():
+	if notepad:
+		notepad.visible = !notepad.visible
+
+func receive_target_list(targets: Array):
+	# Passiamo i dati al nodo Notepad che aggiornerà la Label3D
+	if notepad and notepad.has_method("update_target_info"):
+		notepad.update_target_info(targets)
+	else:
+		print("Errore: Nodo Notepad non trovato o script mancante!")
+
 func _process(delta):
 	# Check right mouse button
-	var zooming = Input.is_action_pressed("aim")  #  "aim" mapped to Right Mouse Button
+	var zooming = Input.is_action_pressed("aim")
 	var target_fov = ZOOM_FOV if zooming else NORMAL_FOV
-	# Smoothly interpolate camera FOV
-	camera.fov = lerp(camera.fov, target_fov, delta * ZOOM_SPEED)
-	 # or camera.fov = lerp(camera.fov, target_fov, delta * ZOOM_SPEED)
 	
-	# Teleport
+	# Smoothly interpolate camera FOV (codice esistente)
+	camera.fov = lerp(camera.fov, target_fov, delta * ZOOM_SPEED)
+	
+	# --- ANIMAZIONE NOTEPAD (Hold Space) ---
+	if notepad:
+		var target_pos = notepad_hidden_pos
+		
+		# Se tengo premuto SPAZIO ("ui_accept"), il target diventa la posizione alta
+		if Input.is_action_pressed("notepad"):
+			target_pos = notepad_visible_pos
+		
+		# Muoviamo gradualmente il notepad verso il target
+		notepad.position = notepad.position.lerp(target_pos, delta * NOTEPAD_SPEED)
+	
+	# Teleport (codice esistente)
 	if Input.is_action_just_pressed("teleport"):
 		teleport_to_next_nest()
+		
+
 		
 		
