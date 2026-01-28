@@ -89,7 +89,7 @@ func _process(delta):
 	else:
 		_process_normal_mode(delta)
 
-# --- NUOVA LOGICA PANIC MODE (VISUAL EFFECT) ---
+# --- LOGICA PANIC MODE (VISUAL EFFECT) ---
 func _process_panic_mode(delta):
 	if is_game_over: return
 	
@@ -103,7 +103,7 @@ func _process_panic_mode(delta):
 		
 	if clock_hand_short:
 		# 2 giri al secondo
-		clock_hand_short.rotation_degrees.y += 720.0 * delta
+		clock_hand_short.rotation_degrees.y -= 720.0 * delta
 
 	# Controllo sconfitta
 	if panic_timer <= 0:
