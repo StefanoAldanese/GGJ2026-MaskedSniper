@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://djh60c1pt22rg"]
+
+[ext_resource type="Texture2D" uid="uid://d22ma70w6kgm6" path="res://assets/masks/maskMaterials/Larva/Color Map from Mesh maschera_ovale_geo2_copy1.1001.png" id="1_cl14g"]
+[ext_resource type="Texture2D" uid="uid://cdpp65sng7eps" path="res://assets/masks/maskMaterials/Larva/Ambient Occlusion Map from Mesh maschera_ovale_geo2_copy1.1001.png" id="2_fl8ib"]
+[ext_resource type="Texture2D" uid="uid://6px3qfdcijbo" path="res://assets/masks/maskMaterials/Larva/Normal Map from Mesh maschera_ovale_geo2_copy1.1001.png" id="3_hdik3"]
+
+[resource]
+albedo_texture = ExtResource("1_cl14g")
+normal_enabled = true
+normal_texture = ExtResource("3_hdik3")
+ao_enabled = true
+ao_texture = ExtResource("2_fl8ib")

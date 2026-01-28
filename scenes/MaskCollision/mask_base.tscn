@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c22b8bwvk00kf"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e3h3p"]
+radius = 3.8134766
+height = 11.068115
+
+[node name="Mask_Base" type="Node3D"]
+
+[node name="VisualGeo" type="MeshInstance3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.43701172, 0)
+shape = SubResource("CapsuleShape3D_e3h3p")

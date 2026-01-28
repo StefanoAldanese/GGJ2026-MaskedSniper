@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsriskjktdxbp"]
+
+[ext_resource type="PackedScene" uid="uid://c22b8bwvk00kf" path="res://scenes/MaskCollision/mask_base.tscn" id="1_s02g6"]
+[ext_resource type="ArrayMesh" uid="uid://c5a5ftmpca7gh" path="res://assets/masks/shapes/Larva.obj" id="2_hkjtj"]
+[ext_resource type="Material" uid="uid://djh60c1pt22rg" path="res://assets/masks/maskMaterials/Larva/LarvaMaterial.tres" id="3_62w55"]
+
+[node name="Mask_Base" instance=ExtResource("1_s02g6")]
+
+[node name="VisualGeo" parent="." index="0"]
+mesh = ExtResource("2_hkjtj")
+surface_material_override/0 = ExtResource("3_62w55")
+
+[node name="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.824829, 0)

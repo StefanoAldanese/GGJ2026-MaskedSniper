@@ -2,15 +2,15 @@ extends Node3D
 
 @onready var label: Label3D = $Paper/Text
 
-const PAPER_WIDTH = 0.3
-const PAPER_HEIGHT = 0.4
-const MARGIN = 0.04
+const PAPER_WIDTH = 1.2
+const PAPER_HEIGHT = 1.6
+const MARGIN = 0.15            
 const MAX_WIDTH_3D = PAPER_WIDTH - MARGIN
 const MAX_HEIGHT_3D = PAPER_HEIGHT - MARGIN
 
 
 # 0.0005 significa che ogni pixel è grande mezzo millimetro.
-const BASE_PIXEL_SIZE = 0.0005 
+const BASE_PIXEL_SIZE = 0.001    
 
 func update_target_info(targets: Array):
 	var content = "ORDINE DI ELIMINAZIONE:\n\n"

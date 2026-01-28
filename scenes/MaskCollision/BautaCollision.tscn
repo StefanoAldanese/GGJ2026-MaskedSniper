@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bd04sa7u2deur"]
+
+[ext_resource type="PackedScene" uid="uid://c22b8bwvk00kf" path="res://scenes/MaskCollision/mask_base.tscn" id="1_g6fek"]
+[ext_resource type="ArrayMesh" uid="uid://cwp85u0u7ynvr" path="res://assets/masks/shapes/Bauta.obj" id="2_wis0a"]
+[ext_resource type="Material" uid="uid://bnqq8bvpc26di" path="res://assets/masks/maskMaterials/Bauta/BautaMaterial.tres" id="3_37w2m"]
+
+[node name="Mask_Base" instance=ExtResource("1_g6fek")]
+
+[node name="VisualGeo" parent="." index="0"]
+mesh = ExtResource("2_wis0a")
+surface_material_override/0 = ExtResource("3_37w2m")
+
+[node name="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14287949, 0.5693996)

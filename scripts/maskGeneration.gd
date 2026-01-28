@@ -41,7 +41,7 @@ func generate_safe_look(forbidden_description: String = "") -> void:
 	var attempts = 0
 	
 	# Tentiamo fino a 50 volte di generare qualcosa di diverso
-	while !unique and attempts < 50:
+	while !unique:
 		_generate_random_look()
 		
 		# Se non c'è divieto O se la descrizione è diversa da quella vietata
@@ -153,6 +153,9 @@ func _generate_random_look() -> void:
 		description = desc_base + " che " + " e ".join(extras)
 	else:
 		description = desc_base
+		
+	# Size Mask
+	_force_mesh_size(2)
 
 
 # --- FUNZIONI HELPER (DI UTILITÀ) ---
@@ -214,3 +217,37 @@ func _get_random_mesh_from_folder(folder_path: String):
 			return { "name": clean_name, "mesh": mesh }
 	
 	return null
+
+func _force_mesh_size(target_size: float) -> void:
+	if visual_mesh.mesh == null:
+		return
+		
+	# 1. Reset
+	visual_mesh.scale = Vector3.ONE
+	visual_mesh.position = Vector3.ZERO
+	
+	# 2. Calcolo dimensione
+	var aabb = visual_mesh.mesh.get_aabb()
+	var current_max = max(aabb.size.x, max(aabb.size.y, aabb.size.z))
+	
+	if current_max == 0: return
+		
+	# 3. Scala
+	var factor = target_size / current_max
+	visual_mesh.scale = Vector3(factor, factor, factor)
+	
+	# 4. Centramento (Fix altezza)
+	var center_offset = aabb.get_center() * factor
+	
+	# 5. Applichiamo la posizione centrata...
+	var base_position = -center_offset
+	
+	# 6. SPOSTAMENTO IN AVANTI (Fix "troppo dentro")
+	# Aggiungiamo valore all'asse Z per spingerla fuori dalla faccia.
+	# Prova con 0.15 o 0.20 (metri).
+	var forward_push = 0.7 
+	
+	# NOTA: Se la maschera va ALL'INDIETRO, cambia il "+" in "-".
+	base_position.z += forward_push 
+	
+	visual_mesh.position = base_position
