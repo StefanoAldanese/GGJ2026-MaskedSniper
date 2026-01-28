@@ -23,14 +23,28 @@ var current_nest_index := 0
 var notepad_visible_pos: Vector3
 var notepad_hidden_pos: Vector3
 
+# --- RIFERIMENTI AI NODI ---
+# --- RIFERIMENTI AI NODI ---
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var shoot_ray: RayCast3D = $Head/Camera3D/RayCast3D
 
+# Riferimenti al ToolContainer e Orologio
+@onready var tool_container: Node3D = $Head/Camera3D/ToolContainer
+@onready var notepad: Node3D = $Head/Camera3D/ToolContainer/Notepad
+@onready var clock: Node3D = $Head/Camera3D/ToolContainer/Clock      
 
+# Riferimento dinamico alla lancetta (usa il nome esatto che mi hai dato)
+# Assumiamo che "Clock" sia il nodo padre che contiene le mesh importate
+@onready var clock_hand_long: MeshInstance3D = $Head/Camera3D/ToolContainer/Clock/empty_1/empty_2/"g lancetta_lunga_geo"
+@onready var clock_hand_short: MeshInstance3D = $Head/Camera3D/ToolContainer/Clock/empty_1/empty_2/"g lancetta_corta_geo"
 
+# --- VARIABILI TIMER ---
+@export var kill_timer_limit: float = 90.0 
+var current_timer_value: float = 0.0
 
-@onready var notepad: Node3D = $Head/Camera3D/Notepad
+var container_visible_pos: Vector3
+var container_hidden_pos: Vector3
 
 func set_sniper_nests(nests: Array):
 	sniper_nests = nests
@@ -82,11 +96,19 @@ func shoot() -> void:
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	camera.fov = NORMAL_FOV
-	if notepad:
-		notepad.visible = true
-		notepad_visible_pos = notepad.position
-		notepad_hidden_pos = notepad_visible_pos - Vector3(0, 0.8, 0)
-		notepad.position = notepad_hidden_pos
+	
+	if tool_container:
+		# 1. Forza la visibilità su tutto
+		tool_container.visible = true
+		if notepad: notepad.visible = true
+		if clock: clock.visible = true # O usa il riferimento al padre dell'orologio
+		
+		# 2. Salva la posizione "SU" (quella che hai impostato nell'editor)
+		container_visible_pos = tool_container.position
+		
+		# 3. Calcola la posizione "GIÙ" e nascondilo subito
+		container_hidden_pos = container_visible_pos - Vector3(0, 1.2, 0) 
+		tool_container.position = container_hidden_pos
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -113,28 +135,36 @@ func receive_target_list(targets: Array):
 		print("Errore: Nodo Notepad non trovato o script mancante!")
 
 func _process(delta):
-	# Check right mouse button
-	var zooming = Input.is_action_pressed("aim")
-	var target_fov = ZOOM_FOV if zooming else NORMAL_FOV
-	
-	# Smoothly interpolate camera FOV (codice esistente)
+	# --- LOGICA TIMER E LANCETTE ---
+	if current_timer_value < kill_timer_limit:
+		current_timer_value += delta
+		
+		# Calcolo rotazione (360 gradi * percentuale tempo trascorso)
+		var progress = current_timer_value / kill_timer_limit
+		var rotation_angle = progress * -360.0 # Segno meno per senso orario
+		
+		if clock_hand_long:
+		# Assicurati che l'asse di rotazione sia quello giusto (solitamente Z o Y)
+			clock_hand_long.rotation_degrees.y = rotation_angle
+		
+		if clock_hand_short:
+		# Si muove a 1/12 della velocità dei minuti
+			clock_hand_short.rotation_degrees.y = rotation_angle / 12.0
+			
+		if current_timer_value >= kill_timer_limit:
+			_on_time_expired()
+
+	# --- ANIMAZIONE TOOLS (Salita/Discesa) ---
+	var target_fov = ZOOM_FOV if Input.is_action_pressed("aim") else NORMAL_FOV
 	camera.fov = lerp(camera.fov, target_fov, delta * ZOOM_SPEED)
 	
-	# --- ANIMAZIONE NOTEPAD (Hold Space) ---
-	if notepad:
-		var target_pos = notepad_hidden_pos
+	if tool_container:
+		var target_pos = container_hidden_pos
+		if Input.is_action_pressed("notepad"): # Se tieni premuto Spazio
+			target_pos = container_visible_pos
 		
-		# Se tengo premuto SPAZIO ("ui_accept"), il target diventa la posizione alta
-		if Input.is_action_pressed("notepad"):
-			target_pos = notepad_visible_pos
-		
-		# Muoviamo gradualmente il notepad verso il target
-		notepad.position = notepad.position.lerp(target_pos, delta * NOTEPAD_SPEED)
-	
-	# Teleport (codice esistente)
-	if Input.is_action_just_pressed("teleport"):
-		teleport_to_next_nest()
-		
+		tool_container.position = tool_container.position.lerp(target_pos, delta * NOTEPAD_SPEED)
 
-		
-		
+func _on_time_expired():
+	print("TEMPO SCADUTO! Il target è fuggito.")
+	# Aggiungi qui la logica di sconfitta

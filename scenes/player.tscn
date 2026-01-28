@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://btkoix1h2xv5w"]
+[gd_scene load_steps=9 format=3 uid="uid://btkoix1h2xv5w"]
 
 [ext_resource type="Script" uid="uid://dfehvkp3wopmf" path="res://scripts/Player.gd" id="1_3vyb7"]
-[ext_resource type="Shader" uid="uid://dvwxd7leturlu" path="res://shaders/PostProcessShader.gdshader" id="2_g2els"]
+[ext_resource type="Shader" uid="uid://6wwx6ig6giuv" path="res://shaders/PostProcessShader.gdshader" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://dxki60ygpgt87" path="res://assets/scope/Mirinorosso.png" id="2_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://bre1yi2b5omv3" path="res://scenes/notepad.tscn" id="4_dqkch"]
+[ext_resource type="PackedScene" uid="uid://bgwqaube5jf28" path="res://scenes/clock.tscn" id="5_qlg0r"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g2els"]
 
@@ -72,6 +73,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Notepad" parent="Character/Head/Camera3D" instance=ExtResource("4_dqkch")]
+[node name="ToolContainer" type="Node3D" parent="Character/Head/Camera3D"]
+
+[node name="Notepad" parent="Character/Head/Camera3D/ToolContainer" instance=ExtResource("4_dqkch")]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0.25, -0.25, -0.5)
 visible = false
+
+[node name="Clock" parent="Character/Head/Camera3D/ToolContainer" instance=ExtResource("5_qlg0r")]
+transform = Transform3D(1.611477, -0.1388028, 1.1763822, -0.07017591, 1.9715462, 0.32875624, -1.1824621, -0.30616844, 1.5836805, -0.37369144, -0.16392446, -0.4117999)

@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://cokphko3fhn37"]
+
+[ext_resource type="Texture2D" uid="uid://dcbp8e4qkbnrb" path="res://assets/clock/Material/PACKED/orologio_lp_orologio_mat_BaseColor_Utility - sRGB - Texture.1001.png" id="1_qw6ct"]
+[ext_resource type="Texture2D" uid="uid://7ukxwy1uyj6g" path="res://assets/clock/Material/PBR/orologio_lp_orologio_mat_Height_Utility - Raw.1001.png" id="2_sa1bd"]
+[ext_resource type="Texture2D" uid="uid://bcl44aoqmv6y7" path="res://assets/clock/Material/PBR/orologio_lp_orologio_mat_Metallic_Utility - Raw.1001.png" id="3_qnsqd"]
+[ext_resource type="Texture2D" uid="uid://xwp2uqq1b13v" path="res://assets/clock/Material/PBR/orologio_lp_orologio_mat_Normal_Utility - Raw.1001.png" id="4_bgek6"]
+[ext_resource type="Texture2D" uid="uid://cfy2gi26eranl" path="res://assets/clock/Material/PBR/orologio_lp_orologio_mat_Roughness_Utility - Raw.1001.png" id="5_5o1b0"]
+
+[resource]
+albedo_texture = ExtResource("1_qw6ct")
+metallic = 1.0
+metallic_texture = ExtResource("3_qnsqd")
+roughness_texture = ExtResource("5_5o1b0")
+normal_enabled = true
+normal_texture = ExtResource("4_bgek6")
+ao_enabled = true
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_sa1bd")
