@@ -11,6 +11,9 @@ func _ready():
 	# 2. Setup Nemici e Obiettivi (nuova logica)
 	_initialize_enemies_logic()
 
+func restart_scene():
+	get_tree().reload_current_scene()
+
 # Funzione originale per i nidi
 func set_nests_ready():
 	var raw_children = $SniperNests.get_children()

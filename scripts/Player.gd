@@ -75,8 +75,10 @@ func shoot() -> void:
 	print("I'm shooting")
 	if shoot_ray.is_colliding():
 		var collider = shoot_ray.get_collider()
-		if collider is Area3D and collider.has_method("die"):
+		print(collider)
+		if collider is CharacterBody3D and collider.has_method("die"):
 			collider.die()
+			
 
 			
 func _ready():
@@ -100,6 +102,9 @@ func _input(event):
 	
 	if event.is_action_pressed("shoot"):
 		shoot()
+		
+	if event.is_action_pressed("restart_scene"):
+		get_tree().reload_current_scene()
 
 func toggle_notepad():
 	if notepad:

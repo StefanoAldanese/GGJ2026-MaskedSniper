@@ -43,9 +43,12 @@ shape = SubResource("ConvexPolygonShape3D_qhqgy")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5835725, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Character/Head"]
+doppler_tracking = 1
+size = 10.0
 
 [node name="RayCast3D" type="RayCast3D" parent="Character/Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, -8.742278e-06, -1, 0, 200, -4.371139e-08, 0, 0, 0)
+collision_mask = 2
 collide_with_areas = true
 debug_shape_thickness = 5
 

@@ -41,7 +41,7 @@ func generate_safe_look(forbidden_description: String = "") -> void:
 	var attempts = 0
 	
 	# Tentiamo fino a 50 volte di generare qualcosa di diverso
-	while !unique and attempts < 50:
+	while !unique:
 		_generate_random_look()
 		
 		# Se non c'è divieto O se la descrizione è diversa da quella vietata
