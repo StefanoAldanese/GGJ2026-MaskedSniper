@@ -23,6 +23,8 @@ var current_nest_index := 0
 var notepad_visible_pos: Vector3
 var notepad_hidden_pos: Vector3
 
+var random_hour_start: float = 0.0
+
 # --- RIFERIMENTI AI NODI ---
 # --- RIFERIMENTI AI NODI ---
 @onready var head: Node3D = $Head
@@ -109,7 +111,12 @@ func _ready():
 		# 3. Calcola la posizione "GIÙ" e nascondilo subito
 		container_hidden_pos = container_visible_pos - Vector3(0, 1.2, 0) 
 		tool_container.position = container_hidden_pos
-
+		
+	# --- RANDOMIZZAZIONE ORA ---
+	random_hour_start = randf_range(0.0, 360.0)
+	if clock_hand_short:
+		clock_hand_short.rotation_degrees.y = random_hour_start
+		  
 func _input(event):
 	if event is InputEventMouseMotion:
 		# Horizontal (body)
@@ -150,9 +157,17 @@ func _process(delta):
 		if clock_hand_short:
 		# Si muove a 1/12 della velocità dei minuti
 			clock_hand_short.rotation_degrees.y = rotation_angle / 12.0
+		
+		# 2. Lancetta Ore (Randomizzata + Movimento lento)
+		if clock_hand_short:
+			# Parte dall'ora casuale (random_hour_start)
+			# E si muove di 1/12 rispetto ai minuti
+			clock_hand_short.rotation_degrees.y = random_hour_start + (rotation_angle / 12.0)
 			
 		if current_timer_value >= kill_timer_limit:
 			_on_time_expired()
+			
+		
 
 	# --- ANIMAZIONE TOOLS (Salita/Discesa) ---
 	var target_fov = ZOOM_FOV if Input.is_action_pressed("aim") else NORMAL_FOV
