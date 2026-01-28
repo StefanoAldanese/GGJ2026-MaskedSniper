@@ -1,18 +1,21 @@
 [gd_scene load_steps=3 format=3 uid="uid://bgwqaube5jf28"]
 
-[ext_resource type="PackedScene" uid="uid://be2e4o88ds1ek" path="res://assets/clock/Orologio_final_mesh.gltf" id="1_y58p0"]
+[ext_resource type="PackedScene" uid="uid://c3g6lirvya5pp" path="res://assets/clock/Material/PACKED/orologio.glb" id="1_y58p0"]
 [ext_resource type="Material" uid="uid://cokphko3fhn37" path="res://assets/clock/Material/clockMaterial.tres" id="2_eptq3"]
 
 [node name="Clock" type="Node3D"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
-[node name="empty_1" parent="." instance=ExtResource("1_y58p0")]
-transform = Transform3D(9.553427e-17, -2.1855695e-09, -0.05, -0.05, -2.1855695e-09, 0, -2.1855695e-09, 0.05, -2.1855695e-09, 0, 0, 0)
+[node name="orologio" parent="." instance=ExtResource("1_y58p0")]
+transform = Transform3D(9.553427e-15, -2.1855695e-07, -5, -5, -2.1855695e-07, 0, -2.1855695e-07, 5, -2.1855695e-07, 0, 0, 0)
 
-[node name="g lancetta_lunga_geo" parent="empty_1/empty_2" index="1"]
+[node name="lancetta_lunga_geo" parent="orologio" index="0"]
 surface_material_override/0 = ExtResource("2_eptq3")
 
-[node name="g lancetta_corta_geo" parent="empty_1/empty_2" index="2"]
+[node name="orologio_geo" parent="orologio" index="1"]
 surface_material_override/0 = ExtResource("2_eptq3")
 
-[editable path="empty_1"]
+[node name="lancetta_corta_geo" parent="orologio" index="2"]
+surface_material_override/0 = ExtResource("2_eptq3")
+
+[editable path="orologio"]

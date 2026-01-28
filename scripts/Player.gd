@@ -38,8 +38,8 @@ var random_hour_start: float = 0.0
 
 # Riferimento dinamico alla lancetta (usa il nome esatto che mi hai dato)
 # Assumiamo che "Clock" sia il nodo padre che contiene le mesh importate
-@onready var clock_hand_long: MeshInstance3D = $Head/Camera3D/ToolContainer/Clock/empty_1/empty_2/"g lancetta_lunga_geo"
-@onready var clock_hand_short: MeshInstance3D = $Head/Camera3D/ToolContainer/Clock/empty_1/empty_2/"g lancetta_corta_geo"
+@onready var clock_hand_long: MeshInstance3D = $Head/Camera3D/ToolContainer/Clock/orologio/lancetta_lunga_geo
+@onready var clock_hand_short: MeshInstance3D = $Head/Camera3D/ToolContainer/Clock/orologio/lancetta_corta_geo
 
 # --- VARIABILI TIMER ---
 @export var kill_timer_limit: float = 90.0 
@@ -94,6 +94,8 @@ func shoot() -> void:
 		print(collider)
 		if collider is CharacterBody3D and collider.has_method("die"):
 			collider.die()
+			
+
 			
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
