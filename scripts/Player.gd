@@ -26,10 +26,6 @@ var notepad_hidden_pos: Vector3
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var shoot_ray: RayCast3D = $Head/Camera3D/RayCast3D
-
-
-
-
 @onready var notepad: Node3D = $Head/Camera3D/Notepad
 
 func set_sniper_nests(nests: Array):
@@ -77,7 +73,6 @@ func shoot() -> void:
 		var collider = shoot_ray.get_collider()
 		if collider is Area3D and collider.has_method("die"):
 			collider.die()
-
 			
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -87,7 +82,7 @@ func _ready():
 		notepad_visible_pos = notepad.position
 		notepad_hidden_pos = notepad_visible_pos - Vector3(0, 0.8, 0)
 		notepad.position = notepad_hidden_pos
-
+		
 func _input(event):
 	if event is InputEventMouseMotion:
 		# Horizontal (body)
