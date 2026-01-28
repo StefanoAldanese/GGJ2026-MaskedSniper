@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c3hvdhjskh6r6"]
 
-[ext_resource type="Script" uid="uid://cbs3wxkckfbwl" path="res://scripts/maskGeneration.gd" id="1_in0c2"]
+[ext_resource type="Script" uid="uid://biu6ww7fx11bm" path="res://scripts/maskGeneration.gd" id="1_in0c2"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_rv8xw"]
 

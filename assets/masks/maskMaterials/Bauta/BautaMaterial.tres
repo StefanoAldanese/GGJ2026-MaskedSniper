@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bnqq8bvpc26di"]
+
+[ext_resource type="Texture2D" uid="uid://daernwc1veh76" path="res://assets/masks/maskMaterials/Bauta/bauta_ao.png" id="1_5bbml"]
+[ext_resource type="Texture2D" uid="uid://d34b3jkeqia1u" path="res://assets/masks/maskMaterials/Bauta/bauta_normal.png" id="2_y634x"]
+
+[resource]
+normal_enabled = true
+normal_texture = ExtResource("2_y634x")
+ao_enabled = true
+ao_texture = ExtResource("1_5bbml")
