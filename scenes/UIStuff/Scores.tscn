@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cs5gra6s2nic7"]
+[gd_scene load_steps=6 format=3 uid="uid://cs5gra6s2nic7"]
 
+[ext_resource type="Script" uid="uid://rc66j6vhv2d4" path="res://scripts/scores.gd" id="1_dqn78"]
 [ext_resource type="FontFile" uid="uid://bx4s41xrc4ury" path="res://assets/uistuff/Kalnia-Regular.ttf" id="1_rya75"]
+[ext_resource type="Texture2D" uid="uid://bfyfkf2ug146q" path="res://assets/uistuff/BaroqueII - BUTTON Back (inactive).png" id="2_r7c7b"]
+[ext_resource type="Texture2D" uid="uid://d0fnmmb1blfkl" path="res://assets/uistuff/BaroqueII - BUTTON Back.png" id="3_dqn78"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_f2gge"]
 font = ExtResource("1_rya75")
@@ -14,6 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_dqn78")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 2
@@ -28,8 +32,21 @@ theme_override_constants/margin_bottom = 128
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Scores"
 label_settings = SubResource("LabelSettings_f2gge")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ButtonBack" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_r7c7b")
+texture_pressed = ExtResource("3_dqn78")
+texture_hover = ExtResource("3_dqn78")
+texture_disabled = ExtResource("2_r7c7b")
+texture_focused = ExtResource("3_dqn78")

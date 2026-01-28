@@ -15,7 +15,7 @@ var bob_time := 0.0
 # Personality stats
 @export var base_speed := 2.5
 @export var base_wander_radius := 10.0
-@export var base_wait_time := 50.0
+@export var base_wait_time := 5.0
 
 var speed: float
 var wander_radius: float
@@ -27,6 +27,8 @@ var wait_timer := 0.0
 func _ready() -> void:
 	personality = Personality.values().pick_random()
 	apply_personality()
+
+func start_pathing():
 	_set_new_random_target()
 
 func apply_personality():
@@ -63,9 +65,11 @@ func _physics_process(delta: float) -> void:
 
 	var destination = navigation_agent_3d.get_next_path_position()
 	var direction = global_position.direction_to(destination)
-	
-	velocity = direction * speed
-	move_and_slide()
+	if global_position.distance_to(destination) > 0.1:
+		velocity = direction * speed
+		move_and_slide()
+	else:
+		_handle_waiting(delta)
 	
 	# 3. OPTIONAL: 2D Body Wobble (Visual Polish)
 	if velocity.length() > 0.1:
@@ -82,9 +86,12 @@ func _handle_waiting(delta):
 		wait_timer = 0.0
 
 func _set_new_random_target():
+	var map = get_world_3d().navigation_map
 	var random_dir = Vector3(randf_range(-1, 1), 0, randf_range(-1, 1)).normalized()
-	var target = global_position + (random_dir * wander_radius)
-	navigation_agent_3d.target_position = target
+	var raw_target = global_position + (random_dir * wander_radius)
+	
+	var safe_target = NavigationServer3D.map_get_closest_point(map, raw_target)
+	navigation_agent_3d.target_position = safe_target
 
 func spawn_mask(forbidden_desc: String = "") -> void:
 	if mask_scene == null: return

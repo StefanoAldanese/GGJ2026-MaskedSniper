@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="GGJ2026-Sniper"
-run/main_scene="uid://chqiabfct1qxx"
+run/main_scene="uid://c4xqmn55vtr72"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+PlayerData="*res://scripts/player_data.gd"
 
 [input]
 
