@@ -38,7 +38,7 @@ var panic_material: StandardMaterial3D = null
 @onready var sniper_camera: Camera3D = $Head/Camera3D/SubViewportContainer/SubViewport/SniperCamera
 
 @onready var lens_camera: Camera3D = $Head/Camera3D/ScopeViewport/LensCamera
-
+@onready var scope_viewport: SubViewport = $Head/Camera3D/ScopeViewport
 # --- VARIABILI TIMER ---
 @export var kill_timer_limit: float = 90.0 
 
@@ -68,6 +68,19 @@ func _ready():
 	camera.fov = NORMAL_FOV
 	
 	$Head/Camera3D/SubViewportContainer/SubViewport.size = DisplayServer.window_get_size()
+	
+	# --- AGGIUNGI QUESTO BLOCCO ---
+	# Aspettiamo un frame per essere sicuri che il Viewport sia inizializzato
+	await get_tree().process_frame
+	
+	if scope_viewport and sniper_camera:
+		# Otteniamo la texture dinamica dal viewport
+		var scope_texture = scope_viewport.get_texture()
+		
+		# Chiamiamo la funzione che abbiamo appena scritto nell'altro script
+		if sniper_camera.has_method("setup_scope_material"):
+			sniper_camera.setup_scope_material(scope_texture)
+			
 	
 	# Lancette Luminose rosse in panicMode
 	panic_material = StandardMaterial3D.new()
