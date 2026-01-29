@@ -4,7 +4,7 @@
 [ext_resource type="ArrayMesh" uid="uid://blfsxumc4fk2v" path="res://assets/scope/sniper.obj" id="1_wxa0x"]
 
 [node name="SniperCamera" type="Camera3D"]
-cull_mask = 1047553
+cull_mask = 1047561
 fov = 28.8
 script = ExtResource("1_dl66a")
 
