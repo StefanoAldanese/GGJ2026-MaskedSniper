@@ -1,40 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://dk27tgg7uxpvs"]
+[gd_scene load_steps=5 format=3 uid="uid://dk27tgg7uxpvs"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kd3cm"]
-transparency = 3
-alpha_hash_scale = 0.0
-alpha_antialiasing_mode = 0
-blend_mode = 3
+[ext_resource type="ArrayMesh" uid="uid://dumtm8u8bxipo" path="res://assets/map/area_di_gioco_completa.obj" id="1_ta5f1"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_kd3cm"]
-vertices = PackedVector3Array(-19.4682, 0.9182145, 11.654783, -19.4682, 0.9182145, 8.904783, -20.7182, 0.9182145, 8.404783, -29.4682, 0.9182145, 11.654783, -19.7182, 0.9182145, 4.1547832, -19.9682, 0.9182145, -11.345217, -29.4682, 0.9182145, -11.345217, -17.9682, 0.9182145, 4.1547832, -9.968201, 0.9182145, -0.34521675, -9.968201, 0.9182145, -1.3452168, -8.718201, 0.9182145, -2.0952168, -8.718201, 0.9182145, -11.345217, -1.2182007, 0.9182145, -7.3452168, -0.21820068, 0.9182145, -7.5952168, -0.21820068, 0.9182145, -11.345217, -7.4682007, 0.9182145, -1.3452168, -4.2182007, 0.9182145, 3.6547832, -1.2182007, 0.9182145, 3.6547832, 1.0317993, 0.9182145, -4.5952168, 4.2817993, 0.9182145, -4.5952168, 4.5317993, 0.9182145, -5.8452168, 1.0317993, 0.9182145, -7.3452168, 10.781799, 0.9182145, -6.5952168, 10.531799, 0.9182145, -11.345217, 16.2818, 0.9182145, -7.0952168, 16.5318, 0.9182145, -6.5952168, 16.7818, 0.9182145, -11.345217, 15.031799, 0.9182145, -7.0952168, 16.5318, 0.9182145, -4.8452168, 29.2818, 0.9182145, -11.345217, 14.531799, 0.9182145, 11.654783, 29.2818, 0.9182145, 11.654783, 14.281799, 0.9182145, -4.5952168, 4.5317993, 0.9182145, -3.5952168, 1.0317993, 0.9182145, 7.4047832, 0.031799316, 0.9182145, 7.6547832, 0.031799316, 0.9182145, 11.654783, -18.4682, 0.9182145, 8.654783, -17.4682, 0.9182145, 5.9047832, -6.7182007, 0.9182145, 11.654783, -6.7182007, 0.9182145, 4.4047832, -17.4682, 0.9182145, 4.4047832, -4.9682007, 0.9182145, 4.9047832, -1.2182007, 0.9182145, 7.4047832, -6.2182007, 0.9182145, 4.9047832)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(2, 3, 4), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(9, 8, 7), PackedInt32Array(11, 10, 9), PackedInt32Array(7, 4, 9), PackedInt32Array(9, 4, 11), PackedInt32Array(11, 4, 5), PackedInt32Array(14, 13, 12), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 12), PackedInt32Array(15, 10, 12), PackedInt32Array(12, 10, 14), PackedInt32Array(14, 10, 11), PackedInt32Array(19, 18, 20), PackedInt32Array(20, 18, 21), PackedInt32Array(21, 14, 20), PackedInt32Array(20, 14, 22), PackedInt32Array(22, 14, 23), PackedInt32Array(14, 21, 13), PackedInt32Array(26, 25, 24), PackedInt32Array(26, 24, 27), PackedInt32Array(22, 23, 27), PackedInt32Array(27, 23, 26), PackedInt32Array(25, 26, 28), PackedInt32Array(28, 26, 29), PackedInt32Array(30, 28, 31), PackedInt32Array(31, 28, 29), PackedInt32Array(30, 32, 28), PackedInt32Array(19, 33, 18), PackedInt32Array(18, 33, 34), PackedInt32Array(36, 35, 34), PackedInt32Array(34, 33, 36), PackedInt32Array(36, 33, 32), PackedInt32Array(36, 32, 30), PackedInt32Array(0, 1, 37), PackedInt32Array(37, 38, 0), PackedInt32Array(0, 38, 39), PackedInt32Array(39, 38, 40), PackedInt32Array(40, 38, 8), PackedInt32Array(41, 7, 8), PackedInt32Array(38, 41, 8), PackedInt32Array(16, 17, 42), PackedInt32Array(42, 17, 43), PackedInt32Array(43, 35, 36), PackedInt32Array(44, 39, 40), PackedInt32Array(42, 43, 44), PackedInt32Array(44, 43, 36), PackedInt32Array(44, 36, 39)]
+vertices = PackedVector3Array(-12.859533, 1.0435699, -6.5359383, -12.859533, 1.0435699, -0.53593826, -12.359533, 1.0435699, -0.28593826, 11.390467, 1.0435699, 3.2140617, 11.390467, 1.0435699, -10.535938, -12.359533, 1.0435699, -6.7859383, -12.359533, 1.0435699, -10.535938, -12.359533, 1.0435699, 3.2140617, -18.859533, 1.0435699, 0.21406174, -17.859533, 1.0435699, 0.71406174, -15.109533, 1.0435699, 0.71406174, -20.109533, 1.0435699, -6.0359383, -20.609533, 1.0435699, -4.7859383, -20.609533, 1.0435699, -2.0359383, -15.109533, 1.0435699, -7.7859383, -17.609533, 1.0435699, -7.7859383)
+polygons = [PackedInt32Array(0, 5, 1), PackedInt32Array(1, 5, 2), PackedInt32Array(2, 5, 3), PackedInt32Array(3, 5, 4), PackedInt32Array(5, 6, 4), PackedInt32Array(3, 7, 2), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 1), PackedInt32Array(13, 12, 11), PackedInt32Array(15, 14, 0), PackedInt32Array(13, 11, 8), PackedInt32Array(8, 11, 15), PackedInt32Array(8, 15, 0), PackedInt32Array(8, 0, 1)]
 geometry_parsed_geometry_type = 0
 
-[node name="Ballroom" type="CSGBox3D"]
-use_collision = true
-size = Vector3(64, 16, 32)
+[sub_resource type="PlaneMesh" id="PlaneMesh_ta5f1"]
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.312744, 2.5670195, 0)
-size = Vector3(2.8493652, 9, 28)
-material = SubResource("StandardMaterial3D_kd3cm")
+[sub_resource type="CylinderMesh" id="CylinderMesh_ta5f1"]
+top_radius = 4.7
+bottom_radius = 4.7
+height = 0.1
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 6, 0)
-operation = 2
-size = Vector3(20, 16, 28)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 6, 0)
-operation = 2
-size = Vector3(20, 16, 28)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
-operation = 2
-size = Vector3(48, 16, 24)
+[node name="Ballroom" type="Node3D"]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.9999643, -0.008447293, 0, 0.008447293, 0.9999643, 0, -2.437828, 0)
+transform = Transform3D(-1.0773445, 7.3848583e-10, 8.741966e-08, 0, 0.9999644, -0.008447294, -9.418446e-08, -0.008447294, -0.9999644, -7.6274624, -2.437828, -3.622342)
 navigation_mesh = SubResource("NavigationMesh_kd3cm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(12.387832, -7.2164497e-16, -8.526513e-13, -3.5527137e-15, 1.0428411, 1.8626451e-08, -1.1368684e-13, 7.450581e-09, 7.3947067, -0.4399295, 0.5845289, -3.6412323)
+mesh = SubResource("PlaneMesh_ta5f1")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(1.0000001, -5.89806e-17, -1.2079227e-13, 1.110223e-16, 0.056403942, 6.519258e-09, 9.2370556e-14, 8.731149e-11, 1.0079696, -16.40953, 0.54639006, -3.514259)
+mesh = SubResource("CylinderMesh_ta5f1")
+
+[node name="AreaDiGiocoCompleta" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371141e-08, 0, -1, 0, 1.0000002, -2.7755576e-17, 1.0000002, 0, -4.371138e-08, -2.3841858e-07, -1.8908558, 3.5762787e-07)
+mesh = ExtResource("1_ta5f1")
