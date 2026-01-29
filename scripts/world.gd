@@ -35,8 +35,18 @@ func set_nests_ready():
 func _spawn_enemies() -> Array:
 	# Wait for NavMesh to be ready
 	await get_tree().process_frame
-	await NavigationServer3D.map_changed
+	
+	NavigationServer3D.map_changed.connect(func(_id): pass, CONNECT_ONE_SHOT) # Dummy connect to wake it up
+	await get_tree().physics_frame
+	
+	# await NavigationServer3D.map_changed
 	var map = get_world_3d().navigation_map
+	
+	var test_point = NavigationServer3D.map_get_closest_point(map, Vector3(10, 0, 10))
+	if test_point == Vector3.ZERO:
+		# If it failed, wait one more frame. This usually solves reload race conditions.
+		await get_tree().create_timer(0.1).timeout
+	
 	var created_enemies = []
 	
 	for i in range(spawn_count):
@@ -46,7 +56,11 @@ func _spawn_enemies() -> Array:
 		# Position randomly
 		var random_pos = Vector3(randf_range(-spawn_range, spawn_range), 0, randf_range(-spawn_range, spawn_range))
 		var snapped_pos = NavigationServer3D.map_get_closest_point(map, random_pos)
-		enemy.global_position = snapped_pos
+		# If it still returns ZERO, at least use the random_pos so they don't bunch up
+		if snapped_pos == Vector3.ZERO:
+			enemy.global_position = random_pos
+		else:
+			enemy.global_position = snapped_pos
 		
 		created_enemies.append(enemy)
 	
@@ -73,7 +87,7 @@ func _initialize_enemies_logic(created_enemies: Array):
 		if enemy != target_enemy:
 			# Diciamo agli altri: "Generati come vuoi, ma NON diventare come target_description"
 			enemy.spawn_mask(target_description)
-			enemy.start_pathing()
+		enemy.start_pathing()
 	
 	# --- FASE C: COMUNICAZIONE AL PLAYER ---
 	# Invia la descrizione del target al blocco note del giocatore
