@@ -54,6 +54,7 @@ spawn_count = 62
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25000003, 0.3789648, -0.24227887, 0.89313304, -0.3261683, 0.8682171, 0.37391624, 0, 8, 30)
 shadow_enabled = true
+shadow_caster_mask = 4294967287
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rwgxs")

@@ -23,6 +23,8 @@ var notepad_visible_pos: Vector3
 var notepad_hidden_pos: Vector3
 
 var random_hour_start: float = 0.0
+var normal_material: StandardMaterial3D = null
+var panic_material: StandardMaterial3D = null
 
 # --- RIFERIMENTI AI NODI ---
 @onready var head: Node3D = $Head
@@ -33,6 +35,7 @@ var random_hour_start: float = 0.0
 @onready var clock: Node3D = $Head/Camera3D/ToolContainer/Clock      
 @onready var clock_hand_long: MeshInstance3D = $Head/Camera3D/ToolContainer/Clock/orologio/lancetta_lunga_geo
 @onready var clock_hand_short: MeshInstance3D = $Head/Camera3D/ToolContainer/Clock/orologio/lancetta_corta_geo
+@onready var sniper_camera: Camera3D = $Head/Camera3D/SubViewportContainer/SubViewport/SniperCamera
 
 # --- VARIABILI TIMER ---
 @export var kill_timer_limit: float = 90.0 
@@ -56,6 +59,15 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	camera.fov = NORMAL_FOV
 	
+	$Head/Camera3D/SubViewportContainer/SubViewport.size = DisplayServer.window_get_size()
+	
+	# Lancette Luminose rosse in panicMode
+	panic_material = StandardMaterial3D.new()
+	panic_material.albedo_color = Color.RED
+	panic_material.emission_enabled = true
+	panic_material.emission = Color.RED
+	panic_material.emission_energy_multiplier = 2.0
+	
 	if tool_container:
 		tool_container.visible = true
 		if notepad: notepad.visible = true
@@ -69,6 +81,9 @@ func _ready():
 	random_hour_start = randf_range(0.0, 360.0)
 	# Impostiamo l'orologio a zero all'avvio
 	update_clock_hands(0.0)
+	
+func _physics_process(delta):
+	$Head/Camera3D/SubViewportContainer/SubViewport/SniperCamera.global_transform = camera.global_transform
 
 func _process(delta):
 	if is_game_over: return
@@ -76,6 +91,12 @@ func _process(delta):
 	# --- ANIMAZIONE TOOLS ---
 	var target_fov = ZOOM_FOV if Input.is_action_pressed("aim") else NORMAL_FOV
 	camera.fov = lerp(camera.fov, target_fov, delta * ZOOM_SPEED)
+	
+	var is_notepad_open = Input.is_action_pressed("notepad")
+	var is_holding_f = Input.is_key_pressed(KEY_F)
+	
+	if sniper_camera and sniper_camera.has_method("set_lowered"):
+		sniper_camera.set_lowered(is_notepad_open or is_holding_f)
 	
 	if tool_container:
 		var target_pos = container_hidden_pos
@@ -173,6 +194,7 @@ func _handle_civilian_kill():
 		is_panic_mode = true
 		# Resettiamo il timer usando la COSTANTE
 		panic_timer = PANIC_DURATION
+		_apply_clock_color(true)
 
 func _shot_missed():
 	if not is_panic_mode:
@@ -180,6 +202,7 @@ func _shot_missed():
 		is_panic_mode = true
 		# Resettiamo il timer usando la COSTANTE
 		panic_timer = PANIC_DURATION
+		_apply_clock_color(true)
 
 func _on_time_expired():
 	print("TEMPO SCADUTO! Il target è fuggito.")
@@ -196,11 +219,11 @@ func _input(event):
 		rotation.y = clamp(yaw + yaw_offset, -yaw_limit_min + yaw_offset, yaw_limit_max + yaw_offset)
 		pitch += -event.relative.y * MOUSE_SENS
 		head.rotation.x = clamp(pitch + pitch_offset, -pitch_limit_min + pitch_offset, pitch_limit_max + pitch_offset)
-	
+		sniper_camera.sway(Vector2(event.relative.x, event.relative.y))
+		
 	if event.is_action_pressed("shoot"):
 		shoot()
 		
-	
 	if event.is_action_pressed("teleport"):
 		teleport_to_next_nest()
 
@@ -241,3 +264,11 @@ func toggle_notepad():
 func receive_target_list(targets: Array):
 	if notepad and notepad.has_method("update_target_info"):
 		notepad.update_target_info(targets)
+
+# Funzione di supporto per cambiare il colore
+func _apply_clock_color(is_panic: bool):
+	var mat = panic_material if is_panic else null # Null resetta al materiale originale
+	if clock_hand_long:
+		clock_hand_long.set_surface_override_material(0, mat)
+	if clock_hand_short:
+		clock_hand_short.set_surface_override_material(0, mat)
