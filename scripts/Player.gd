@@ -156,6 +156,7 @@ func _process_panic_mode(delta):
 	if panic_timer <= 0:
 		if not is_game_over:
 			print("GAME OVER: 30 secondi scaduti dopo aver ucciso un civile!")
+			emit_signal("i_lost")
 			is_game_over = true
 
 func _process_normal_mode(delta):
@@ -179,6 +180,11 @@ func update_clock_hands(progress_ratio: float):
 		clock_hand_short.rotation_degrees.y = random_hour_start + (minutes_angle / 12.0)
 
 func shoot() -> void:
+	if current_ammo == 2:
+		emit_signal("i_shot_once")
+	if current_ammo == 1:
+		emit_signal("i_shot_twice")
+		
 	if is_game_over: return
 	
 	if current_ammo <= 0:
@@ -215,10 +221,12 @@ func shoot() -> void:
 	
 	if current_ammo <= 0 and not is_game_over:
 		print("GAME OVER: Munizioni finite senza colpire il bersaglio!")
+		emit_signal("i_lost")
 		is_game_over = true
 
 func _handle_victory():
 	print("VITTORIA! Bersaglio eliminato.")
+	emit_signal("i_won")
 	is_game_over = true
 
 func _handle_civilian_kill():
@@ -239,21 +247,23 @@ func _shot_missed():
 
 func _on_time_expired():
 	print("TEMPO SCADUTO! Il target è fuggito.")
+	emit_signal("i_lost")
 	is_game_over = true
+	
 
 func _input(event):
 	if event.is_action_pressed("restart_scene"):
 		get_tree().reload_current_scene()
 		
 	if is_game_over: return
-	
+
 	if event is InputEventMouseMotion:
 		yaw += -event.relative.x * MOUSE_SENS
 		rotation.y = clamp(yaw + yaw_offset, -yaw_limit_min + yaw_offset, yaw_limit_max + yaw_offset)
 		pitch += -event.relative.y * MOUSE_SENS
 		head.rotation.x = clamp(pitch + pitch_offset, -pitch_limit_min + pitch_offset, pitch_limit_max + pitch_offset)
 		sniper_camera.sway(Vector2(event.relative.x, event.relative.y))
-		
+
 	if event.is_action_pressed("shoot"):
 		shoot()
 		
@@ -305,3 +315,8 @@ func _apply_clock_color(is_panic: bool):
 		clock_hand_long.set_surface_override_material(0, mat)
 	if clock_hand_short:
 		clock_hand_short.set_surface_override_material(0, mat)
+
+signal i_shot_once
+signal i_shot_twice
+signal i_won
+signal i_lost
