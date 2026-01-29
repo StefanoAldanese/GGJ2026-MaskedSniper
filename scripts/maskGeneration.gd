@@ -155,7 +155,7 @@ func _generate_random_look() -> void:
 		description = desc_base
 		
 	# Size Mask
-	_force_mesh_size(2)
+	_force_mesh_size(0.5)
 
 
 # --- FUNZIONI HELPER (DI UTILITÀ) ---
@@ -245,7 +245,7 @@ func _force_mesh_size(target_size: float) -> void:
 	# 6. SPOSTAMENTO IN AVANTI (Fix "troppo dentro")
 	# Aggiungiamo valore all'asse Z per spingerla fuori dalla faccia.
 	# Prova con 0.15 o 0.20 (metri).
-	var forward_push = 0.7 
+	var forward_push = -0.2
 	
 	# NOTA: Se la maschera va ALL'INDIETRO, cambia il "+" in "-".
 	base_position.z += forward_push 
