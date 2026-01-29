@@ -25,7 +25,6 @@ var notepad_hidden_pos: Vector3
 var random_hour_start: float = 0.0
 
 
-
 # --- RIFERIMENTI AI NODI ---
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
@@ -84,6 +83,12 @@ func _process(delta):
 	# --- ANIMAZIONE TOOLS ---
 	var target_fov = ZOOM_FOV if Input.is_action_pressed("aim") else NORMAL_FOV
 	camera.fov = lerp(camera.fov, target_fov, delta * ZOOM_SPEED)
+	
+	var is_notepad_open = Input.is_action_pressed("notepad")
+	var is_holding_f = Input.is_key_pressed(KEY_F)
+	
+	if sniper_camera and sniper_camera.has_method("set_lowered"):
+		sniper_camera.set_lowered(is_notepad_open or is_holding_f)
 	
 	if tool_container:
 		var target_pos = container_hidden_pos
@@ -204,6 +209,7 @@ func _input(event):
 	
 	if event.is_action_pressed("teleport"):
 		teleport_to_next_nest()
+	
 
 func set_sniper_nests(nests: Array):
 	sniper_nests = nests
