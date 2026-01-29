@@ -37,6 +37,8 @@ var panic_material: StandardMaterial3D = null
 @onready var clock_hand_short: MeshInstance3D = $Head/Camera3D/ToolContainer/Clock/orologio/lancetta_corta_geo
 @onready var sniper_camera: Camera3D = $Head/Camera3D/SubViewportContainer/SubViewport/SniperCamera
 
+@onready var lens_camera: Camera3D = $Head/Camera3D/ScopeViewport/LensCamera
+
 # --- VARIABILI TIMER ---
 @export var kill_timer_limit: float = 90.0 
 
@@ -90,6 +92,9 @@ func _ready():
 	
 func _physics_process(delta):
 	$Head/Camera3D/SubViewportContainer/SubViewport/SniperCamera.global_transform = camera.global_transform
+	
+	if lens_camera:
+		lens_camera.global_transform = camera.global_transform
 
 func _process(delta):
 	if is_game_over: return
@@ -105,8 +110,22 @@ func _process(delta):
 		if sniper_camera.has_method("play_scope_anim"):
 			sniper_camera.play_scope_anim(is_aiming)
 
-	var target_fov = ZOOM_FOV if is_aiming else NORMAL_FOV
-	camera.fov = lerp(camera.fov, target_fov, delta * ZOOM_SPEED)
+	# LOGICA PIP:
+	# 1. La camera principale (periferica) zooma solo leggermente o per nulla
+	var main_target_fov = 50.0 if is_aiming else NORMAL_FOV 
+	camera.fov = lerp(camera.fov, main_target_fov, delta * ZOOM_SPEED)
+	
+	# 2. La camera interna alla lente (LensCamera) ha il vero zoom (es. 10 o 20 FOV)
+	if lens_camera:
+		var scope_target_fov = ZOOM_FOV # (es. 20.0 definito nelle costanti )
+		# Quando non miri, tieni il FOV della lente normale per evitare distorsioni strane se guardi il fucile
+		if not is_aiming: scope_target_fov = NORMAL_FOV 
+		
+		lens_camera.fov = lerp(lens_camera.fov, scope_target_fov, delta * ZOOM_SPEED)
+		
+	#Deprecated!!!!!
+	# ar target_fov = ZOOM_FOV if is_aiming else NORMAL_FOV
+	# camera.fov = lerp(camera.fov, target_fov, delta * ZOOM_SPEED)
 	
 	# --- GESTIONE NOTEPAD (BLOCCATO SE IN MIRA) ---
 	# Aggiunta condizione "and not is_aiming"

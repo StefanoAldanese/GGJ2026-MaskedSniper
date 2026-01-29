@@ -1,7 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://blha173thvevt"]
+[gd_scene load_steps=13 format=3 uid="uid://blha173thvevt"]
 
 [ext_resource type="ArrayMesh" uid="uid://blfsxumc4fk2v" path="res://assets/scope/sniper.obj" id="1_7ph7k"]
 [ext_resource type="Script" uid="uid://tdmi52p5e1s8" path="res://scripts/sniper_camera.gd" id="1_n1y1x"]
+[ext_resource type="Texture2D" uid="uid://dd0tjli0617fy" path="res://assets/scope/Mirino.png" id="3_hsh5v"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_l170o"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_n1y1x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hsh5v"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_n1y1x")
 
 [sub_resource type="Animation" id="Animation_hsh5v"]
 length = 0.001
@@ -165,6 +175,17 @@ transform = Transform3D(0.9958257, -0.0001258518, -0.091275565, -2.8704856e-11, 
 transform = Transform3D(-1.2903839, 0, -0.15782158, 0, 1.3000021, 0, 0.15782177, 0, -1.2903823, 2.1544676, -2.1034596, -3.0869339)
 layers = 10
 mesh = ExtResource("1_7ph7k")
+
+[node name="Sprite3D" type="Sprite3D" parent="fps_rig/Sniper/MeshInstance3D"]
+transform = Transform3D(0.05, -5.002221e-12, -2.3283064e-10, 5.002221e-12, 0.05, -2.1827873e-11, 1.1641532e-09, 4.3655746e-11, 0.05, -0.000114798546, 1.4145751, -1.1732607)
+layers = 512
+texture = ExtResource("3_hsh5v")
+
+[node name="Lent" type="MeshInstance3D" parent="fps_rig/Sniper/MeshInstance3D"]
+transform = Transform3D(0.3189173, -2.910383e-11, -1.1823431e-11, 6.366463e-12, -6.89397e-10, -0.30959585, 4.656613e-09, 0.015775964, -1.3387762e-08, 0.009083986, 1.4189733, -1.1517677)
+layers = 512
+mesh = SubResource("CylinderMesh_l170o")
+surface_material_override/0 = SubResource("StandardMaterial3D_hsh5v")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="fps_rig/Sniper"]
 libraries = {

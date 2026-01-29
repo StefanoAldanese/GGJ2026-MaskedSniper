@@ -1,0 +1,73 @@
+[33m62b51d7[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mScopeTrasparent[m[33m, [m[1;31morigin/ScopeTrasparent[m[33m)[m nothing
+[33m44c82b5[m fix: fov
+[33mf5fee2b[m add: scope but broken
+[33m0e4ca3a[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m, [m[1;32mScopeTrasparent2[m[33m)[m fix: mask generation search mesh too
+[33md084ae8[m[33m ([m[1;31morigin/mergeScopeAni-Room[m[33m, [m[1;32mmergeScopeAni-Room[m[33m)[m Merge remote-tracking branch 'origin/ballroom-changed' into mergeScopeAni-Room
+[33m5d6a558[m[33m ([m[1;31morigin/ballroom-changed[m[33m)[m changed old placeolder ballroom merge
+[33m0d56b1b[m[33m ([m[1;31morigin/scopeAnimation[m[33m, [m[1;32mscopeAnimation[m[33m)[m add: ui animation
+[33m0937a67[m add: animation rifle
+[33mb2f0bef[m Merge pull request #11 from StefanoAldanese/ui-merge-prepare
+[33ma811326[m[33m ([m[1;31morigin/ui-merge-prepare[m[33m, [m[1;32mui-merge-prepare[m[33m)[m Ignore .godot folder
+[33m2353fc0[m Merge remote-tracking branch 'origin/main' into ui-merge-prepare
+[33mb78c4fe[m Merge pull request #9 from StefanoAldanese/in-game-ui
+[33m0711d25[m[33m ([m[1;31morigin/in-game-ui[m[33m, [m[1;32min-game-ui[m[33m)[m Added the rifle animation
+[33m7ee4b1f[m[33m ([m[1;31morigin/fixing-ui[m[33m)[m Changed nights ui element, added bullets ui element, fixed UI scaling
+[33m0fe6959[m Merge pull request #7 from StefanoAldanese/in-game-ui
+[33m9f60995[m dhkafhajwfb
+[33m2590c9f[m fix wrong merge
+[33m0c4b09c[m Merge pull request #8 from StefanoAldanese/main
+[33ma7ee1e1[m fixed enemy spaws and input errors
+[33m9b9b826[m Added UI in game, and new property to PlayerData, day
+[33m07d6d07[m Merge branch 'gameplayLogic'
+[33m4a54b69[m[33m ([m[1;31morigin/gameplayLogic[m[33m)[m Fix: enemy generation logic
+[33m9afb755[m Merge remote-tracking branch 'origin/random_enemy_gen' into gameplayLogic
+[33mbd499b6[m Fix: clock again
+[33mb88db17[m fix: Correct game logic
+[33mea94fa1[m Merge remote-tracking branch 'origin/player-name-insertion' into gameplayLogic
+[33md942e1d[m Fix: clock
+[33m4bc0a05[m feature random enemy generation on scene load
+[33mecd0925[m[33m ([m[1;31morigin/player-name-insertion[m[33m)[m Added section to insert the player name, alongside two global variables (nickname and score)
+[33m94fdaa5[m Fix: untracked files
+[33m3237204[m[33m ([m[1;31morigin/main-menu-scores-with-back[m[33m)[m Added back button to scores
+[33m1b458b0[m fix: texture clock
+[33m0a76cf8[m Merge remote-tracking branch 'origin/main-menu'
+[33m07a5a06[m Merge branch 'timer'
+[33md94e912[m[33m ([m[1;31morigin/timer[m[33m)[m merge: timer + enemy-movment
+[33mc4ae31b[m[33m ([m[1;31morigin/main-menu[m[33m)[m added main-menu and scores (just the UI)
+[33mbd14efd[m Merge remote-tracking branch 'origin/enemy_movement' into timer
+[33md775c22[m feature: hour rand position
+[33mca5ce7b[m[33m ([m[1;31morigin/enemy_movement[m[33m)[m added random movement and billboard mechanic
+[33m8211aa3[m feature: clock implementation
+[33m087f268[m feature: Loaded asset noteblock
+[33mc52af16[m feature: Implemented material handling 2
+[33md093e28[m[33m ([m[1;31morigin/material[m[33m)[m feature: Implemented material handling
+[33maeaa228[m Merge branch 'main' of https://github.com/StefanoAldanese/GGJ2026-MaskedSniper
+[33m22be75f[m Merge branch 'main' of github.com:StefanoAldanese/GGJ2026-MaskedSniper
+[33m6d5aa46[m multiplied enemies and added left click for shoot input
+[33m6760377[m fix changed input type for notepad
+[33m3bacdeb[m Merge pull request #4 from StefanoAldanese/descriptionMask
+[33md687331[m[33m ([m[1;31morigin/descriptionMask[m[33m)[m feature: Implemented notebook logic
+[33m3db8508[m feature: Implemented the target system + targetOnlyMask
+[33m15d494c[m add: left and right band western style
+[33mb5a2631[m add: procedural mask generation logic
+[33m3821d85[m Merge branch 'main' of github.com:StefanoAldanese/GGJ2026-MaskedSniper
+[33m5c3f1a2[m Fix: Scope real real
+[33m681f8bd[m Merge branch 'main' of github.com:StefanoAldanese/GGJ2026-MaskedSniper
+[33mc3ef816[m[33m ([m[1;31morigin/shooting-ray[m[33m)[m Fix: player crash
+[33m0cab091[m Merge pull request #3 from StefanoAldanese/shooting-ray
+[33m60b7f01[m Fix: risolti conflitti con main su player e world
+[33m6fbc212[m Ignore Godot cache files
+[33maa7d36a[m Ignore Godot cache files
+[33m4a212d1[m added shooting
+[33m0d76807[m Merge pull request #1 from StefanoAldanese/shader-test
+[33m1fd3fdd[m[33m ([m[1;31morigin/shader-test[m[33m)[m added shader and changed world script
+[33macdb87a[m[33m ([m[1;31morigin/nests-and-teleport[m[33m)[m added miltiple sniping nests and teleport
+[33mbb0ef8e[m[33m ([m[1;31morigin/character-3d-limited-and-zoom[m[33m)[m fix
+[33m9f42f02[m added gitignore
+[33mbc520e5[m Creatoprimoblockoutballroom
+[33mcf52328[m added limits v and h and zoom
+[33md62c6c3[m[33m ([m[1;31morigin/character-3d-view[m[33m)[m added basic character controller
+[33m1c1c765[m test committ
+[33m4fd31b1[m create cartelle  base
+[33ma41f10b[m First Commit
+[33m03d3ea1[m Initial commit
