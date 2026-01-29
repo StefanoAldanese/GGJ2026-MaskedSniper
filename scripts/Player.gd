@@ -92,8 +92,6 @@ func _process(delta):
 
 # --- LOGICA PANIC MODE (SOLO EFFETTO VISIVO) ---
 func _process_panic_mode(delta):
-	if is_game_over: return
-	
 	# Il timer scorre matematicamente per il Game Over...
 	panic_timer -= delta
 	
@@ -158,6 +156,8 @@ func shoot() -> void:
 				_handle_victory()
 			else:
 				_handle_civilian_kill()
+	else:
+		_shot_missed()
 	
 	if current_ammo <= 0 and not is_game_over:
 		print("GAME OVER: Munizioni finite senza colpire il bersaglio!")
@@ -169,6 +169,13 @@ func _handle_victory():
 
 func _handle_civilian_kill():
 	if not is_panic_mode:
+		print("Proiettile sprecato, gli invitato sono allertati!")
+		is_panic_mode = true
+		# Resettiamo il timer usando la COSTANTE
+		panic_timer = PANIC_DURATION
+
+func _shot_missed():
+	if not is_panic_mode:
 		print("ATTENZIONE! Civile colpito. Hai 30 secondi per trovare il bersaglio vero!")
 		is_panic_mode = true
 		# Resettiamo il timer usando la COSTANTE
@@ -179,6 +186,9 @@ func _on_time_expired():
 	is_game_over = true
 
 func _input(event):
+	if event.is_action_pressed("restart_scene"):
+		get_tree().reload_current_scene()
+		
 	if is_game_over: return
 	
 	if event is InputEventMouseMotion:
@@ -190,8 +200,6 @@ func _input(event):
 	if event.is_action_pressed("shoot"):
 		shoot()
 		
-	if event.is_action_pressed("restart_scene"):
-		get_tree().reload_current_scene()
 	
 	if event.is_action_pressed("teleport"):
 		teleport_to_next_nest()
