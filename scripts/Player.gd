@@ -54,6 +54,12 @@ var current_ammo: int = 2
 var is_game_over: bool = false
 var is_panic_mode: bool = false
 
+var is_aiming: bool = false
+
+# UI BULLET
+var bullet_ui_blue: TextureRect
+var bullet_ui_red: TextureRect
+
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -88,19 +94,35 @@ func _physics_process(delta):
 func _process(delta):
 	if is_game_over: return
 	
-	# --- ANIMAZIONE TOOLS ---
-	var target_fov = ZOOM_FOV if Input.is_action_pressed("aim") else NORMAL_FOV
+	# --- GESTIONE AIMING E ANIMAZIONI SCOPE ---
+	# Controlliamo se il giocatore sta premendo il tasto aim
+	var aim_input = Input.is_action_pressed("aim")
+	
+	# Se lo stato è cambiato rispetto al frame precedente
+	if aim_input != is_aiming:
+		is_aiming = aim_input
+		# Chiamiamo l'animazione sulla sniper_camera
+		if sniper_camera.has_method("play_scope_anim"):
+			sniper_camera.play_scope_anim(is_aiming)
+
+	var target_fov = ZOOM_FOV if is_aiming else NORMAL_FOV
 	camera.fov = lerp(camera.fov, target_fov, delta * ZOOM_SPEED)
 	
-	var is_notepad_open = Input.is_action_pressed("notepad")
+	# --- GESTIONE NOTEPAD (BLOCCATO SE IN MIRA) ---
+	# Aggiunta condizione "and not is_aiming"
+	var is_notepad_req = Input.is_action_pressed("notepad")
 	var is_holding_f = Input.is_key_pressed(KEY_F)
 	
+	# Il taccuino si apre SOLO se richiesto E NON stiamo mirando
+	var should_show_tools = is_notepad_req and not is_aiming
+	
 	if sniper_camera and sniper_camera.has_method("set_lowered"):
-		sniper_camera.set_lowered(is_notepad_open or is_holding_f)
+		# Abbassa il fucile se stiamo guardando il taccuino o tenendo premuto F
+		sniper_camera.set_lowered(should_show_tools or is_holding_f)
 	
 	if tool_container:
 		var target_pos = container_hidden_pos
-		if Input.is_action_pressed("notepad"):
+		if should_show_tools:
 			target_pos = container_visible_pos
 		tool_container.position = tool_container.position.lerp(target_pos, delta * NOTEPAD_SPEED)
 		
@@ -163,7 +185,18 @@ func shoot() -> void:
 		print("Click! Munizioni esaurite.")
 		return
 	
+	# --- ANIMAZIONE SPARO ---
+	if sniper_camera.has_method("play_fire_anim"):
+		sniper_camera.play_fire_anim(is_aiming)
+	
 	current_ammo -= 1
+	
+	# --- UI PROIETTILI ---
+	if current_ammo == 1 and bullet_ui_blue:
+		bullet_ui_blue.visible = false
+	elif current_ammo == 0 and bullet_ui_red:
+		bullet_ui_red.visible = false
+	
 	print("Sparo! Munizioni rimanenti: ", current_ammo)
 	
 	if shoot_ray.is_colliding():
@@ -224,7 +257,7 @@ func _input(event):
 	if event.is_action_pressed("shoot"):
 		shoot()
 		
-	if event.is_action_pressed("teleport"):
+	if event.is_action_pressed("teleport") and not is_aiming:
 		teleport_to_next_nest()
 
 func set_sniper_nests(nests: Array):

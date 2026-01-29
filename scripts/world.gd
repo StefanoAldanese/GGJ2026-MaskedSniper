@@ -16,11 +16,15 @@ extends Node3D
 @onready var bullet_counter_red: TextureRect = $MarginContainer/HBoxContainer/BulletCounterAround/BulletCounterRed
 
 func _ready():
-	# 1. Setup Nidi Cecchino (tuo codice originale)
+	# 1. Setup riferimenti UI al Player ### AGGIUNTA ###
+	player.bullet_ui_blue = bullet_counter_blue
+	player.bullet_ui_red = bullet_counter_red
+	
+	# 2. Setup Nidi Cecchino (tuo codice originale)
 	initialize_player_data()
 	set_nests_ready()
 	var created_enemies = await _spawn_enemies()
-	# 2. Setup Nemici e Obiettivi (nuova logica)
+	# 3. Setup Nemici e Obiettivi (nuova logica)
 	_initialize_enemies_logic(created_enemies)
 
 func restart_scene():
