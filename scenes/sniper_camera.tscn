@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://0uw6bhdg21o3"]
+
+[ext_resource type="Script" uid="uid://bkkp28x4fsf5e" path="res://scenes/sniper_camera.gd" id="1_dl66a"]
+[ext_resource type="ArrayMesh" uid="uid://blfsxumc4fk2v" path="res://assets/scope/sniper.obj" id="1_wxa0x"]
+
+[node name="SniperCamera" type="Camera3D"]
+cull_mask = 1047553
+fov = 28.8
+script = ExtResource("1_dl66a")
+
+[node name="fps_rig" type="Node3D" parent="."]
+
+[node name="Sniper" type="Node3D" parent="fps_rig"]
+transform = Transform3D(0.9958257, -0.0001258518, -0.091275565, -2.8704856e-11, 0.99999905, -0.0013788097, 0.09127566, 0.0013730542, 0.9958247, -0.67102504, 0.12730908, -4.155876)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="fps_rig/Sniper"]
+transform = Transform3D(-1.2903845, 0, -0.15782185, 0, 1.3, 0, 0.15782185, 0, -1.2903845, 2.1544676, -2.1034596, -3.0869339)
+layers = 8
+mesh = ExtResource("1_wxa0x")
