@@ -200,22 +200,24 @@ func _get_random_mesh_from_folder(folder_path: String):
 		var file_name = dir.get_next()
 		
 		while file_name != "":
-			# Qui cerchiamo estensioni di modelli 3D supportati da Godot
-			if !file_name.begins_with(".") and (file_name.ends_with(".obj") or file_name.ends_with(".glb") or file_name.ends_with(".gltf")):
-				files.append(file_name)
+			if !file_name.begins_with("."):
+				# Rimuoviamo .import se presente (succede nei build esportati)
+				var clean_file = file_name.replace(".import", "")
+				
+				# Controlliamo se è un formato mesh supportato
+				if clean_file.ends_with(".obj") or clean_file.ends_with(".glb") or clean_file.ends_with(".res"):
+					if not files.has(clean_file):
+						files.append(clean_file)
 			file_name = dir.get_next()
 		
 		if files.size() > 0:
 			var chosen_file = files.pick_random()
 			var full_path = folder_path + chosen_file
+			# Carichiamo la risorsa (Godot gestirà internamente il reindirizzamento al file importato)
 			var mesh = load(full_path)
 			
-			# Puliamo il nome anche qui
-			# Es: "volto_gatto.glb" -> "Volto Gatto"
 			var clean_name = chosen_file.get_basename().replace("_", " ").capitalize()
-			
 			return { "name": clean_name, "mesh": mesh }
-	
 	return null
 
 func _force_mesh_size(target_size: float) -> void:
