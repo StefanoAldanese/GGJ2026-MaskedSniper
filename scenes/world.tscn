@@ -1,13 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://chqiabfct1qxx"]
+[gd_scene load_steps=19 format=3 uid="uid://chqiabfct1qxx"]
 
 [ext_resource type="Script" uid="uid://biwtu8713ebg0" path="res://scripts/world.gd" id="1_k0juu"]
 [ext_resource type="PackedScene" uid="uid://btkoix1h2xv5w" path="res://scenes/player.tscn" id="1_nnsk1"]
 [ext_resource type="PackedScene" uid="uid://dk27tgg7uxpvs" path="res://scenes/ballroom.tscn" id="2_rwgxs"]
 [ext_resource type="PackedScene" uid="uid://bgnhijarargp6" path="res://scenes/sniper_nest.tscn" id="3_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://b7jjmyiu1xgg5" path="res://scenes/enemy.tscn" id="5_71j4m"]
-[ext_resource type="Texture2D" uid="uid://whkfcv60b7hi" path="res://assets/uistuff/NIGHT Counter Border.png" id="6_i7141"]
+[ext_resource type="Texture2D" uid="uid://bhcspbn3wyeyu" path="res://assets/uistuff/NIGHT Counter Border V2.png" id="6_4mrxx"]
 [ext_resource type="FontFile" uid="uid://cqbqyiwq06rql" path="res://assets/uistuff/Kalnia-Medium.ttf" id="6_qfnet"]
 [ext_resource type="FontFile" uid="uid://c4ejry8kq60ll" path="res://assets/uistuff/Kalnia-Light.ttf" id="8_4mrxx"]
+[ext_resource type="Texture2D" uid="uid://cd0vf0phhisxc" path="res://assets/uistuff/Bullet Status Around.png" id="9_e3hyu"]
+[ext_resource type="Texture2D" uid="uid://cj7ib2045hj55" path="res://assets/uistuff/Bullet Status Blue.png" id="10_q5onr"]
+[ext_resource type="Texture2D" uid="uid://5axw7fsn8tow" path="res://assets/uistuff/Bullet Status Red.png" id="11_jhx03"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e5uuo"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -113,7 +116,7 @@ size_flags_vertical = 0
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("6_i7141")
+texture = ExtResource("6_4mrxx")
 stretch_mode = 2
 
 [node name="NightLabel" type="Label" parent="MarginContainer/HBoxContainer/TextureRect"]
@@ -137,9 +140,9 @@ vertical_alignment = 1
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 64
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer"]
 layout_direction = 2
@@ -167,3 +170,20 @@ label_settings = SubResource("LabelSettings_4mrxx")
 [node name="Control" type="Control" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="BulletCounterAround" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("9_e3hyu")
+stretch_mode = 2
+
+[node name="BulletCounterBlue" type="TextureRect" parent="MarginContainer/HBoxContainer/BulletCounterAround"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("10_q5onr")
+
+[node name="BulletCounterRed" type="TextureRect" parent="MarginContainer/HBoxContainer/BulletCounterAround"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("11_jhx03")

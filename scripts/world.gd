@@ -12,6 +12,9 @@ extends Node3D
 @onready var score_label: Label = $MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/ScoreLabel
 @onready var night_label: Label = $MarginContainer/HBoxContainer/TextureRect/NightLabel
 
+@onready var bullet_counter_blue: TextureRect = $MarginContainer/HBoxContainer/BulletCounterAround/BulletCounterBlue
+@onready var bullet_counter_red: TextureRect = $MarginContainer/HBoxContainer/BulletCounterAround/BulletCounterRed
+
 func _ready():
 	# 1. Setup Nidi Cecchino (tuo codice originale)
 	initialize_player_data()
