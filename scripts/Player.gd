@@ -24,6 +24,7 @@ var notepad_hidden_pos: Vector3
 
 var random_hour_start: float = 0.0
 
+
 # --- RIFERIMENTI AI NODI ---
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
@@ -33,7 +34,7 @@ var random_hour_start: float = 0.0
 @onready var clock: Node3D = $Head/Camera3D/ToolContainer/Clock      
 @onready var clock_hand_long: MeshInstance3D = $Head/Camera3D/ToolContainer/Clock/orologio/lancetta_lunga_geo
 @onready var clock_hand_short: MeshInstance3D = $Head/Camera3D/ToolContainer/Clock/orologio/lancetta_corta_geo
-
+@onready var sniper_camera: Camera3D = $Head/Camera3D/SubViewportContainer/SubViewport/SniperCamera
 # --- VARIABILI TIMER ---
 @export var kill_timer_limit: float = 90.0 
 
@@ -56,6 +57,8 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	camera.fov = NORMAL_FOV
 	
+	$Head/Camera3D/SubViewportContainer/SubViewport.size = DisplayServer.window_get_size()
+	
 	if tool_container:
 		tool_container.visible = true
 		if notepad: notepad.visible = true
@@ -70,12 +73,22 @@ func _ready():
 	# Impostiamo l'orologio a zero all'avvio
 	update_clock_hands(0.0)
 
+
+func _physics_process(delta):
+	$Head/Camera3D/SubViewportContainer/SubViewport/SniperCamera.global_transform = $Head/Camera3D.global_transform
+
 func _process(delta):
 	if is_game_over: return
 	
 	# --- ANIMAZIONE TOOLS ---
 	var target_fov = ZOOM_FOV if Input.is_action_pressed("aim") else NORMAL_FOV
 	camera.fov = lerp(camera.fov, target_fov, delta * ZOOM_SPEED)
+	
+	var is_notepad_open = Input.is_action_pressed("notepad")
+	var is_holding_f = Input.is_key_pressed(KEY_F)
+	
+	if sniper_camera and sniper_camera.has_method("set_lowered"):
+		sniper_camera.set_lowered(is_notepad_open or is_holding_f)
 	
 	if tool_container:
 		var target_pos = container_hidden_pos
@@ -196,13 +209,15 @@ func _input(event):
 		rotation.y = clamp(yaw + yaw_offset, -yaw_limit_min + yaw_offset, yaw_limit_max + yaw_offset)
 		pitch += -event.relative.y * MOUSE_SENS
 		head.rotation.x = clamp(pitch + pitch_offset, -pitch_limit_min + pitch_offset, pitch_limit_max + pitch_offset)
-	
+		sniper_camera.sway(Vector2(event.relative.x, event.relative.y))
+		
 	if event.is_action_pressed("shoot"):
 		shoot()
 		
 	
 	if event.is_action_pressed("teleport"):
 		teleport_to_next_nest()
+	
 
 func set_sniper_nests(nests: Array):
 	sniper_nests = nests
