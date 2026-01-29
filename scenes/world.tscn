@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://chqiabfct1qxx"]
+[gd_scene load_steps=16 format=3 uid="uid://chqiabfct1qxx"]
 
 [ext_resource type="Script" uid="uid://biwtu8713ebg0" path="res://scripts/world.gd" id="1_k0juu"]
 [ext_resource type="PackedScene" uid="uid://btkoix1h2xv5w" path="res://scenes/player.tscn" id="1_nnsk1"]
 [ext_resource type="PackedScene" uid="uid://dk27tgg7uxpvs" path="res://scenes/ballroom.tscn" id="2_rwgxs"]
 [ext_resource type="PackedScene" uid="uid://bgnhijarargp6" path="res://scenes/sniper_nest.tscn" id="3_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://b7jjmyiu1xgg5" path="res://scenes/enemy.tscn" id="5_71j4m"]
+[ext_resource type="Texture2D" uid="uid://whkfcv60b7hi" path="res://assets/uistuff/NIGHT Counter Border.png" id="6_i7141"]
+[ext_resource type="FontFile" uid="uid://cqbqyiwq06rql" path="res://assets/uistuff/Kalnia-Medium.ttf" id="6_qfnet"]
+[ext_resource type="FontFile" uid="uid://c4ejry8kq60ll" path="res://assets/uistuff/Kalnia-Light.ttf" id="8_4mrxx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e5uuo"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -17,6 +20,28 @@ sky_material = SubResource("ProceduralSkyMaterial_e5uuo")
 background_mode = 2
 sky = SubResource("Sky_nnsk1")
 tonemap_mode = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_7r4gi"]
+font = ExtResource("6_qfnet")
+font_size = 128
+font_color = Color(0.8, 0.8, 0.8, 1)
+outline_size = 16
+outline_color = Color(0.64, 0.64, 0.64, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.039215688)
+shadow_offset = Vector2(2, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_i7141"]
+font = ExtResource("6_qfnet")
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_w7kh3"]
+font = ExtResource("8_4mrxx")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_4mrxx"]
+font = ExtResource("6_qfnet")
+font_size = 32
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_k0juu")
@@ -70,3 +95,75 @@ yaw_min = 0.2
 yaw_max = 0.2
 
 [node name="Enemies" type="Node" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_i7141")
+stretch_mode = 2
+
+[node name="NightLabel" type="Label" parent="MarginContainer/HBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "3"
+label_settings = SubResource("LabelSettings_7r4gi")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer"]
+layout_direction = 2
+layout_mode = 2
+
+[node name="NicknameLabel" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Nickname"
+label_settings = SubResource("LabelSettings_i7141")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SCORESignifierLabel" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "SCORE: "
+label_settings = SubResource("LabelSettings_w7kh3")
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "67"
+label_settings = SubResource("LabelSettings_4mrxx")
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3

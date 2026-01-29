@@ -8,8 +8,13 @@ extends Node3D
 @onready var player: CharacterBody3D = $Player/Character
 @onready var enemies_container: Node = $Enemies
 
+@onready var nickname_label: Label = $MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/NicknameLabel
+@onready var score_label: Label = $MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/ScoreLabel
+@onready var night_label: Label = $MarginContainer/HBoxContainer/TextureRect/NightLabel
+
 func _ready():
 	# 1. Setup Nidi Cecchino (tuo codice originale)
+	initialize_player_data()
 	set_nests_ready()
 	var created_enemies = await _spawn_enemies()
 	# 2. Setup Nemici e Obiettivi (nuova logica)
@@ -88,3 +93,8 @@ func _initialize_enemies_logic(created_enemies: Array):
 	# Invia la descrizione del target al blocco note del giocatore
 	if player.has_method("receive_target_list"):
 		player.receive_target_list([target_description])
+		
+func initialize_player_data():
+	nickname_label.text = PlayerData.current_nickname
+	score_label.text = str(PlayerData.current_score)
+	night_label.text = str(PlayerData.current_day)

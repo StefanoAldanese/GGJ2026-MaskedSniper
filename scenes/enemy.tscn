@@ -2,12 +2,11 @@
 
 [ext_resource type="Script" uid="uid://caoojtocj44mg" path="res://scripts/enemy.gd" id="1_7p1mj"]
 [ext_resource type="PackedScene" uid="uid://c3hvdhjskh6r6" path="res://scenes/mask.tscn" id="2_md0e3"]
+[ext_resource type="Texture2D" uid="uid://cg4gwwn5j2drm" path="res://assets/Images/images.jpeg" id="3_4ra3w"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_md0e3"]
 radius = 0.8
 height = 2.2
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_md0e3"]
 
 [node name="Enemy" type="CharacterBody3D"]
 collision_layer = 2
@@ -19,13 +18,13 @@ base_wait_time = 1.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_md0e3")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.3843247, 0, 0, 0, 1.1263587, 0, 0, 0, 0.41218126, 0, 0, 0)
-mesh = SubResource("CylinderMesh_md0e3")
-skeleton = NodePath("../..")
-
 [node name="Head" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4541299, 0)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30476868, 0)
+billboard = 1
+texture = ExtResource("3_4ra3w")
