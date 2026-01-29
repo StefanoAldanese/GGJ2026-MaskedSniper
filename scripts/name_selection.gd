@@ -15,7 +15,7 @@ func _on_yes_pressed() -> void:
 		PlayerData.current_nickname = name
 		PlayerData.current_score = 0
 		PlayerData.current_day = 1
-		get_tree().change_scene_to_file("res://scenes/world.tscn")
+		get_tree().change_scene_to_file("res://scenes/UIStuff/angel_speech.tscn")
 
 func _on_no_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/UIStuff/main-menu.tscn")
