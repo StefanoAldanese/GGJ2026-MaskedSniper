@@ -69,6 +69,7 @@ func _ready():
 	
 	$Head/Camera3D/SubViewportContainer/SubViewport.size = DisplayServer.window_get_size()
 	
+	
 	# --- AGGIUNGI QUESTO BLOCCO ---
 	# Aspettiamo un frame per essere sicuri che il Viewport sia inizializzato
 	await get_tree().process_frame
@@ -111,7 +112,7 @@ func _physics_process(delta):
 
 func _process(delta):
 	if is_game_over: return
-	
+
 	# --- GESTIONE AIMING E ANIMAZIONI SCOPE ---
 	# Controlliamo se il giocatore sta premendo il tasto aim
 	var aim_input = Input.is_action_pressed("aim")

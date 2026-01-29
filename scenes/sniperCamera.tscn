@@ -109,7 +109,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(2.1544676, -2.1034596, -3.0869339), Vector3(0.768086, -1.9945401, 1.1268156)]
+"values": [Vector3(2.1544676, -2.1034596, -3.0869339), Vector3(0.784, -1.9639992, 1.1270001)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -121,7 +121,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, -3.019891, 0), Vector3(0.00070722034, -3.0198674, -0.02332431)]
+"values": [Vector3(0, -3.019891, 0), Vector3(-0.0033468879, -3.0524158, 0.00054499105)]
 }
 
 [sub_resource type="Animation" id="Animation_l170o"]
@@ -172,7 +172,7 @@ script = ExtResource("1_n1y1x")
 transform = Transform3D(0.9958257, -0.0001258518, -0.091275565, -2.8704856e-11, 0.99999905, -0.0013788097, 0.09127566, 0.0013730542, 0.9958247, -0.67102504, 0.12730908, -4.155876)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="fps_rig/Sniper"]
-transform = Transform3D(-1.2903839, 0, -0.15782158, 0, 1.3000021, 0, 0.15782177, 0, -1.2903823, 2.1544676, -2.1034596, -3.0869339)
+transform = Transform3D(-1.2903839, 0, -0.15782157, 0, 1.3000026, 0, 0.15782177, 0, -1.2903821, 2.1544676, -2.1034596, -3.0869339)
 layers = 10
 mesh = ExtResource("1_7ph7k")
 

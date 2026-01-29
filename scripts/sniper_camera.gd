@@ -43,20 +43,21 @@ func play_fire_anim(is_aiming: bool):
 		anim_player.play("fire_normal")
 		
 func setup_scope_material(viewport_texture: ViewportTexture):
-	# 1. Create a new material for the lens
 	var material = StandardMaterial3D.new()
 	
-	# 2. Assign the texture from the LensCamera
 	material.albedo_texture = viewport_texture
-	
-	# 3. Make it unshaded (so it glows like a screen/lens and ignores shadows)
 	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED 
 	
-	# 4. FIX MIRRORING/FLIPPING
-	# Godot ViewportTextures are often upside down on 3D meshes.
-	# We flip the Y axis of the UV map to correct this.
-	material.uv1_scale = Vector3(1, -1, 1) 
 	
-	# 5. Apply the material to the Lent mesh
+	# --- CORREZIONE COMANDI INVERTITI ---
+	# Se muovi il mouse a DESTRA e la visuale va a SINISTRA, devi mettere -1 anche sulla X.
+	# Qui mettiamo -1 sia su X che su Y per capovolgere tutto correttamente.
+	material.uv1_scale = Vector3(-1, -1, 1) 
+	
+	# --- CENTRATURA ---
+	# Poiché abbiamo messo -1 sia su X che su Y, dobbiamo compensare l'offset su entrambi.
+	# Offset a 1 riporta l'immagine al centro.
+	material.uv1_offset = Vector3(1, 1, 1)
+	
 	if sniper_scope:
 		sniper_scope.material_override = material
