@@ -8,7 +8,7 @@ const PATH_SHAPES = "res://assets/masks/shapes/"
 
 const AVAILABLE_COLORS = {
 	"Red": Color(0.8, 0.0, 0.1),
-	"Blu": Color(0.1, 0.1, 0.5),
+	"Blue": Color(0.1, 0.1, 0.5),
 	"Golden": Color(1.0, 0.84, 0.0),
 	"Green": Color(0.0, 0.6, 0.3),
 	"White": Color(0.95, 0.95, 0.95)
@@ -61,6 +61,7 @@ func _generate_random_look() -> void:
 	
 	var random_col_name = AVAILABLE_COLORS.keys().pick_random()
 	material.set_shader_parameter("mask_color", AVAILABLE_COLORS[random_col_name])
+	description += " " + random_col_name + " "
 	
 	var pattern_data = _get_random_texture_from_folder(PATH_PATTERNS)
 	if pattern_data:
@@ -72,10 +73,10 @@ func _generate_random_look() -> void:
 		if hat_data:
 			headgear_sprite.texture = hat_data.texture
 			# Rimpiccioliamo lo sprite: 0.001 è 10 volte più piccolo del default
-			headgear_sprite.pixel_size = 0.002 
+			headgear_sprite.pixel_size = 0.0015 
 			# Lo spostiamo un po' in avanti per non farlo compenetrare con la maschera
-			headgear_sprite.position.z = 1.5
-			headgear_sprite.position.y = 2
+			headgear_sprite.position.z = 1.6
+			headgear_sprite.position.y = 2.0
 			description += ", wearing " + hat_data.name
 
 	# 4. Gestione Accessorio (Scala corretta)
@@ -160,4 +161,3 @@ func _force_mesh_size(target_size: float) -> void:
 	base_position.y += vertical_raise
 	
 	visual_mesh.position = base_position
-	
