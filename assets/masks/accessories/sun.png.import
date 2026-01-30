@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c56qv2jcuxlon"
-path="res://.godot/imported/colletto giullare.png-6bacbcb892da9485eec3ef742928aa9e.ctex"
+uid="uid://cf2auykri0d0w"
+path="res://.godot/imported/sun.png-5a1ceba8727689f38e9428bfb5039c41.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/masks/accessories/colletto giullare.png"
-dest_files=["res://.godot/imported/colletto giullare.png-6bacbcb892da9485eec3ef742928aa9e.ctex"]
+source_file="res://assets/masks/accessories/sun.png"
+dest_files=["res://.godot/imported/sun.png-5a1ceba8727689f38e9428bfb5039c41.ctex"]
 
 [params]
 

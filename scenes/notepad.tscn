@@ -4,8 +4,7 @@
 [ext_resource type="ArrayMesh" uid="uid://chiyi7t8oa8bs" path="res://assets/Notepad/blocknotes.obj" id="2_pq6gc"]
 [ext_resource type="Material" uid="uid://us5gpgqv3vkp" path="res://assets/Notepad/Material/mat_notepad.tres" id="3_vobun"]
 [ext_resource type="FontFile" uid="uid://1j10gsvxo6a7" path="res://assets/font/Handodle-rg38A.ttf" id="4_vobun"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_vobun"]
+[ext_resource type="Texture2D" uid="uid://dsvljlibh7iwo" path="res://assets/Notepad/Polaroid.png" id="5_q2twp"]
 
 [node name="Notepad" type="Node3D"]
 script = ExtResource("1_nkxj1")
@@ -26,9 +25,11 @@ outline_size = 0
 horizontal_alignment = 0
 vertical_alignment = 0
 
-[node name="TargetPhoto" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.19125687, -0.058487695, 0, 0.058487695, 0.19125687, 0, 0, 0, 0.002, 0.21774974, 0.20248225, 0.029912233)
-mesh = SubResource("BoxMesh_vobun")
+[node name="Polaroid" type="Sprite3D" parent="."]
+transform = Transform3D(0.015416445, -0.004281733, 0, 0.004281733, 0.015416445, 0, 0, 0, 0.016, 0.1906161, 0.16810222, 0.025449052)
+shaded = true
+texture = ExtResource("5_q2twp")
 
-[node name="Sprite3D" type="Sprite3D" parent="TargetPhoto"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20.723312)
+[node name="Sprite3D" type="Sprite3D" parent="Polaroid"]
+transform = Transform3D(0.799403, 0.030905515, 0, -0.030905515, 0.799403, 0, 0, 0, 0.8000002, -0.54691696, 2.2088165, 0.89776707)
+shaded = true

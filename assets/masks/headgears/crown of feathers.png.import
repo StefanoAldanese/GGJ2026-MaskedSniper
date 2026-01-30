@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sfgyv4a6on2f"
-path="res://.godot/imported/cappello da pirata.png-59cfe562d28074d73f3a26c0c631c09b.ctex"
+uid="uid://dbmp4mye2cvs6"
+path="res://.godot/imported/crown of feathers.png-8e71f23abd96c8c883e4169893b327af.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/masks/headgears/cappello da pirata.png"
-dest_files=["res://.godot/imported/cappello da pirata.png-59cfe562d28074d73f3a26c0c631c09b.ctex"]
+source_file="res://assets/masks/headgears/crown of feathers.png"
+dest_files=["res://.godot/imported/crown of feathers.png-8e71f23abd96c8c883e4169893b327af.ctex"]
 
 [params]
 

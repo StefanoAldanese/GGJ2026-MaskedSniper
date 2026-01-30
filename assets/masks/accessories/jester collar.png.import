@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbmp4mye2cvs6"
-path="res://.godot/imported/corona piume.png-5491a463aa5aa7b87b7178b5ed6a7d33.ctex"
+uid="uid://c56qv2jcuxlon"
+path="res://.godot/imported/jester collar.png-6324848e562a1ac1d193359f7c5ea1c0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/masks/headgears/corona piume.png"
-dest_files=["res://.godot/imported/corona piume.png-5491a463aa5aa7b87b7178b5ed6a7d33.ctex"]
+source_file="res://assets/masks/accessories/jester collar.png"
+dest_files=["res://.godot/imported/jester collar.png-6324848e562a1ac1d193359f7c5ea1c0.ctex"]
 
 [params]
 

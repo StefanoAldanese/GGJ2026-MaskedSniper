@@ -57,6 +57,7 @@ func _generate_random_look() -> void:
 	if shape_data:
 		visual_mesh.mesh = shape_data.mesh
 		typeMask = shape_data.name
+		description += shape_data.name
 	
 	var random_col_name = AVAILABLE_COLORS.keys().pick_random()
 	material.set_shader_parameter("mask_color", AVAILABLE_COLORS[random_col_name])
@@ -75,6 +76,7 @@ func _generate_random_look() -> void:
 			# Lo spostiamo un po' in avanti per non farlo compenetrare con la maschera
 			headgear_sprite.position.z = 1.5
 			headgear_sprite.position.y = 2
+			description += ", wearing " + hat_data.name
 
 	# 4. Gestione Accessorio (Scala corretta)
 	if randf() > 0.5: 
@@ -84,6 +86,7 @@ func _generate_random_look() -> void:
 			accessory_sprite.pixel_size = 0.0015 # Ancora più piccolo
 			accessory_sprite.position.z = 1.5 # Davanti al cappello (sandwich)
 			headgear_sprite.position.y = -2
+			description += " and " + acc_data.name + " accessory "
 			
 	visual_mesh.material_override = material
 	_force_mesh_size(0.8)

@@ -3,7 +3,7 @@ extends Node3D
 @onready var label: Label3D = $Paper/Text
 
 # 1. Riferimento allo Sprite3D che mostrerà la foto
-@onready var photo_sprite: Sprite3D = $TargetPhoto/Sprite3D 
+@onready var photo_sprite: Sprite3D = $Polaroid/Sprite3D
 
 const PAPER_WIDTH = 1.2
 const PAPER_HEIGHT = 1.6
@@ -17,7 +17,7 @@ const MASK_PHOTO_PATH = "res://assets/Notepad/maskPhoto/"
 
 func update_target_info(targets: Array):
 	# --- LOGICA TESTO (Tuo codice esistente) ---
-	var content = "ORDINE DI ELIMINAZIONE:\n\n"
+	var content = "ORDER OF ELIMINATION:\n\n"
 	for t in targets:
 		content += "- " + t + "\n"
 	
