@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://j3vvw4ue5s3q"]
+[gd_scene load_steps=21 format=3 uid="uid://chqiabfct1qxx"]
 
 [ext_resource type="Script" uid="uid://biwtu8713ebg0" path="res://scripts/world.gd" id="1_k0juu"]
 [ext_resource type="PackedScene" uid="uid://btkoix1h2xv5w" path="res://scenes/player.tscn" id="1_nnsk1"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cd0vf0phhisxc" path="res://assets/uistuff/Bullet Status Around.png" id="9_e3hyu"]
 [ext_resource type="Texture2D" uid="uid://cj7ib2045hj55" path="res://assets/uistuff/Bullet Status Blue.png" id="10_q5onr"]
 [ext_resource type="Texture2D" uid="uid://5axw7fsn8tow" path="res://assets/uistuff/Bullet Status Red.png" id="11_jhx03"]
-[ext_resource type="PackedScene" uid="uid://d3goqd83v8rxp" path="res://scenes/UIStuff/message_screen.tscn" id="12_q5onr"]
+[ext_resource type="PackedScene" path="res://scenes/UIStuff/message_screen.tscn" id="12_q5onr"]
 [ext_resource type="PackedScene" uid="uid://bsiar2mkh122p" path="res://scenes/UIStuff/tips.tscn" id="13_jhx03"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e5uuo"]
@@ -54,7 +54,8 @@ font_size = 32
 [node name="World" type="Node3D"]
 script = ExtResource("1_k0juu")
 enemy_scene = ExtResource("5_71j4m")
-spawn_count = 35
+spawn_count = null
+spawn_range = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rwgxs")

@@ -136,9 +136,30 @@ func _on_i_won():
 	print("Message I won")
 	message_screen_won.visible = true
 	
+	# 1. Update the global score
+	
+	score_label.text = str(PlayerData.current_score)
+	
+	# 2. Wait a moment for the player to celebrate
+	await get_tree().create_timer(2.0).timeout
+	
+	# 3. Tell the SceneManager to handle the transition
+	if SceneManager.has_method("_on_player_won"):
+		SceneManager._on_player_won()
+	
 func _on_i_lost():
-	print("Message I lost")
+	print("Message I lost - Starting Arcade Sequence")
 	message_screen_lost.visible = true
+	
+	# Give the player 3 seconds to see the "Lost" message before flashing away
+	await get_tree().create_timer(3.0).timeout
+	
+	# Call the Autoload SceneManager
+	if SceneManager.has_method("_on_player_lost"):
+		SceneManager._on_player_lost()
+	else:
+		# Fallback if SceneManager isn't set up yet
+		get_tree().reload_current_scene()
 	
 func _on_i_shot_once():
 	print("Message I shot once")
