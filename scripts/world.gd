@@ -15,6 +15,9 @@ extends Node3D
 @onready var bullet_counter_blue: TextureRect = $MarginContainer/HBoxContainer/BulletCounterAround/BulletCounterBlue
 @onready var bullet_counter_red: TextureRect = $MarginContainer/HBoxContainer/BulletCounterAround/BulletCounterRed
 
+@onready var message_screen_won: PanelContainer = $MessageScreenWon
+@onready var message_screen_lost: PanelContainer = $MessageScreenLost
+
 func _ready():
 	# 1. Setup riferimenti UI al Player ### AGGIUNTA ###
 	player.bullet_ui_blue = bullet_counter_blue
@@ -22,6 +25,7 @@ func _ready():
 	
 	# 2. Setup Nidi Cecchino (tuo codice originale)
 	initialize_player_data()
+	initialize_player_signals()
 	set_nests_ready()
 	var created_enemies = await _spawn_enemies()
 	# 3. Setup Nemici e Obiettivi (nuova logica)
@@ -105,3 +109,27 @@ func initialize_player_data():
 	nickname_label.text = PlayerData.current_nickname
 	score_label.text = str(PlayerData.current_score)
 	night_label.text = str(PlayerData.current_day)
+
+func initialize_player_signals():
+	if player.has_signal("i_won"):
+		player.i_won.connect(_on_i_won)
+	if player.has_signal("i_lost"):
+		player.i_lost.connect(_on_i_lost)
+	if player.has_signal("i_shot_once"):
+		player.i_shot_once.connect(_on_i_shot_once)
+	if player.has_signal("i_shot_twice"):
+		player.i_shot_twice.connect(_on_i_shot_twice)
+		
+func _on_i_won():
+	print("Message I won")
+	message_screen_won.visible = true
+	
+func _on_i_lost():
+	print("Message I lost")
+	message_screen_lost.visible = true
+	
+func _on_i_shot_once():
+	print("Message I shot once")
+	
+func _on_i_shot_twice():
+	print("Message I shot twice")

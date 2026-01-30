@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c4xqmn55vtr72"]
+[gd_scene load_steps=13 format=3 uid="uid://c4xqmn55vtr72"]
 
 [ext_resource type="Script" uid="uid://d325blplt5kwa" path="res://scripts/main_menu.gd" id="1_c0tga"]
 [ext_resource type="Texture2D" uid="uid://d4fuvvjxt53s7" path="res://assets/uistuff/BaroqueII - MENUBG.jpg" id="2_8u8yn"]
@@ -7,7 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://duylp0d16nwor" path="res://assets/uistuff/BaroqueII - BUTTON Start.png" id="5_ui4ly"]
 [ext_resource type="Texture2D" uid="uid://ccpitnujemjuy" path="res://assets/uistuff/BaroqueII - BUTTON Scores (inactive).png" id="6_v7ins"]
 [ext_resource type="Texture2D" uid="uid://bmart5cvdba2" path="res://assets/uistuff/BaroqueII - BUTTON Scores.png" id="7_0300d"]
+[ext_resource type="Texture2D" uid="uid://dcf0y802sansa" path="res://assets/uistuff/BaroqueII - BUTTON Credits (Inactive).png" id="8_5jj1x"]
 [ext_resource type="FontFile" uid="uid://di6ks8mv85av8" path="res://assets/uistuff/NotoSerifTC-Regular.ttf" id="8_nqbcb"]
+[ext_resource type="Texture2D" uid="uid://duy7jsy2bc7sk" path="res://assets/uistuff/BaroqueII - BUTTON Credits.png" id="9_bbhhn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_15bby"]
 font = ExtResource("3_5jj1x")
@@ -72,6 +74,14 @@ texture_normal = ExtResource("6_v7ins")
 texture_pressed = ExtResource("7_0300d")
 texture_hover = ExtResource("7_0300d")
 texture_focused = ExtResource("7_0300d")
+
+[node name="ButtonCredits" type="TextureButton" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("8_5jj1x")
+texture_pressed = ExtResource("9_bbhhn")
+texture_hover = ExtResource("9_bbhhn")
+texture_disabled = ExtResource("8_5jj1x")
+texture_focused = ExtResource("9_bbhhn")
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
