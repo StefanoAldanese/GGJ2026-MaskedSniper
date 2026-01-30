@@ -18,6 +18,9 @@ extends Node3D
 @onready var message_screen_won: PanelContainer = $MessageScreenWon
 @onready var message_screen_lost: PanelContainer = $MessageScreenLost
 
+# tipo di mascera del target, usato nella logica per selezionare la foto giusta
+var target_mask_type: String = ""
+
 func _ready():
 	# 1. Setup riferimenti UI al Player ### AGGIUNTA ###
 	player.bullet_ui_blue = bullet_counter_blue
@@ -93,6 +96,15 @@ func _initialize_enemies_logic(created_enemies: Array):
 	target_enemy.spawn_mask("") 
 	var target_description = target_enemy.full_description
 	
+	# Controlliamo se il nemico ha effettivamente generato la maschera
+	if target_enemy.current_mask_node:
+		# Leggiamo la variabile locale 'typeMask' dallo script della maschera
+		var tipo_maschera = target_enemy.current_mask_node.typeMask
+		# La salviamo nella variabile Globale (Singleton)
+		PlayerData.target_mask_type = tipo_maschera
+		print("TIPO MASCHERA SALVATO NEL GLOBAL: ", PlayerData.target_mask_type)
+	
+	print("DESCRIZIONE TARGET GENERATA: ", target_description)
 	# --- FASE B: GENERAZIONE ALTRI NEMICI ---
 	for enemy in created_enemies:
 		if enemy != target_enemy:
