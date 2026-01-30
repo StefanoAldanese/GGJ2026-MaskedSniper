@@ -74,18 +74,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40389386, 5.1589746, 9.687
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Luci"]
 transform = Transform3D(0.99160135, -0.0137074385, 0.12860368, -0.12933213, -0.1050962, 0.9860163, 0, -0.9943676, -0.10598635, 0, -0.9427738, 0)
 layers = 513
-light_color = Color(1, 0.8666667, 0.6666667, 1)
-light_energy = 0.05
+light_color = Color(0.9999997, 0.8767862, 0.6792259, 1)
+light_energy = 0.032
 light_indirect_energy = 0.0
+light_volumetric_fog_energy = 12.301
+light_specular = 0.0
 shadow_enabled = true
+shadow_bias = 8.062
+shadow_normal_bias = 2.776
+shadow_opacity = 0.79
+shadow_blur = 4.981
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="Luci"]
 transform = Transform3D(0.8356732, 0.058210578, -0.54613364, 0.5492271, -0.088569954, 0.83096635, -8.83402e-10, -0.9943676, -0.10598636, 0, -0.9427738, 0)
 layers = 513
-light_color = Color(1, 0.8666667, 0.6666667, 1)
-light_energy = 0.05
+light_color = Color(0.9999997, 0.8767862, 0.6792259, 1)
+light_energy = 0.032
 light_indirect_energy = 0.0
+light_volumetric_fog_energy = 12.301
+light_specular = 0.0
 shadow_enabled = true
+shadow_bias = 8.062
+shadow_normal_bias = 2.776
+shadow_opacity = 0.79
+shadow_blur = 4.981
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Luci"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49144045, 0.29721212, 1.468853)
@@ -133,18 +145,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40389386, 5.1589746, -3.18
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Luci2"]
 transform = Transform3D(0.99160135, -0.0137074385, 0.12860368, -0.12933213, -0.1050962, 0.9860163, 0, -0.9943676, -0.10598635, 0, -0.9427738, 0)
 layers = 513
-light_color = Color(1, 0.8666667, 0.6666667, 1)
-light_energy = 0.05
+light_color = Color(0.9999997, 0.8767862, 0.6792259, 1)
+light_energy = 0.032
 light_indirect_energy = 0.0
+light_volumetric_fog_energy = 12.301
+light_specular = 0.0
 shadow_enabled = true
+shadow_bias = 8.062
+shadow_normal_bias = 2.776
+shadow_opacity = 0.79
+shadow_blur = 4.981
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="Luci2"]
 transform = Transform3D(0.8356732, 0.058210574, -0.5461337, 0.5492271, -0.088569954, 0.8309663, -8.83402e-10, -0.9943676, -0.10598636, 0, -0.9427738, 0)
 layers = 513
-light_color = Color(1, 0.8666667, 0.6666667, 1)
-light_energy = 0.05
+light_color = Color(0.9999997, 0.8767862, 0.6792259, 1)
+light_energy = 0.032
 light_indirect_energy = 0.0
+light_volumetric_fog_energy = 12.301
+light_specular = 0.0
 shadow_enabled = true
+shadow_bias = 8.062
+shadow_normal_bias = 2.776
+shadow_opacity = 0.79
+shadow_blur = 4.981
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Luci2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49144045, 0.29721212, 1.468853)

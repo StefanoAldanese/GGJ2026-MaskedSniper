@@ -1,8 +1,20 @@
-[gd_scene load_steps=13 format=3 uid="uid://blha173thvevt"]
+[gd_scene load_steps=18 format=3 uid="uid://blha173thvevt"]
 
-[ext_resource type="ArrayMesh" uid="uid://blfsxumc4fk2v" path="res://assets/scope/sniper.obj" id="1_7ph7k"]
-[ext_resource type="Script" uid="uid://tdmi52p5e1s8" path="res://scripts/sniper_camera.gd" id="1_n1y1x"]
+[ext_resource type="Script" uid="uid://bpwsraqi6f3d" path="res://scripts/sniper_camera.gd" id="1_n1y1x"]
+[ext_resource type="ArrayMesh" uid="uid://dh2liicpjask1" path="res://assets/scope/texture sniper/sniper(2).obj" id="2_jcs88"]
 [ext_resource type="Texture2D" uid="uid://dd0tjli0617fy" path="res://assets/scope/Mirino.png" id="3_hsh5v"]
+[ext_resource type="Texture2D" uid="uid://ds6t7waci7s4m" path="res://assets/scope/texture sniper/sniper_sniper_initialShadingGroup_BaseColor.png" id="3_jcs88"]
+[ext_resource type="Texture2D" uid="uid://8h0fxv32ghe8" path="res://assets/scope/texture sniper/sniper_sniper_initialShadingGroup_Metallic.png" id="4_c2n4v"]
+[ext_resource type="Texture2D" uid="uid://codarkkai4dce" path="res://assets/scope/texture sniper/sniper_sniper_initialShadingGroup_Normal.png" id="5_46hqo"]
+[ext_resource type="Texture2D" uid="uid://ck6so44ugq02b" path="res://assets/scope/texture sniper/sniper_sniper_initialShadingGroup_Roughness.png" id="6_38byk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_getc8"]
+albedo_texture = ExtResource("3_jcs88")
+metallic = 1.0
+metallic_texture = ExtResource("4_c2n4v")
+roughness_texture = ExtResource("6_38byk")
+normal_enabled = true
+normal_texture = ExtResource("5_46hqo")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hsh5v"]
 
@@ -174,7 +186,8 @@ transform = Transform3D(0.9958257, -0.0001258518, -0.091275565, -2.8704856e-11, 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="fps_rig/Sniper"]
 transform = Transform3D(-1.290384, 0, -0.15782161, 0, 1.3000021, 0, 0.15782179, 0, -1.2903825, 2.1544676, -2.1034596, -3.0869339)
 layers = 10
-mesh = ExtResource("1_7ph7k")
+mesh = ExtResource("2_jcs88")
+surface_material_override/0 = SubResource("StandardMaterial3D_getc8")
 
 [node name="Sprite3D" type="Sprite3D" parent="fps_rig/Sniper/MeshInstance3D"]
 transform = Transform3D(0.049980503, -0.0013960819, 0, 0.0013960821, 0.04998051, -1.4551915e-11, 0, 7.275958e-12, 0.05, -0.0030978024, 1.4144967, -1.1733526)

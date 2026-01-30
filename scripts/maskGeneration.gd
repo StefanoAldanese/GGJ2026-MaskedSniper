@@ -11,13 +11,11 @@ const PATH_SHAPES = "res://assets/masks/shapes/"           # Modelli 3D (.obj, .
 # --- CONFIGURAZIONE COLORI ---
 # Dizionario: "Nome che appare a schermo" -> Valore del Colore
 const AVAILABLE_COLORS = {
-	"Rosso Cremisi": Color(0.8, 0.0, 0.1),
-	"Blu Notte": Color(0.1, 0.1, 0.5),
-	"Oro": Color(1.0, 0.84, 0.0),
-	"Verde Smeraldo": Color(0.0, 0.6, 0.3),
-	"Nero": Color(0.1, 0.1, 0.1),
-	"Viola Reale": Color(0.5, 0.0, 0.5),
-	"Bianco": Color(0.95, 0.95, 0.95)
+	"Red": Color(0.8, 0.0, 0.1),
+	"Blu": Color(0.1, 0.1, 0.5),
+	"Golden": Color(1.0, 0.84, 0.0),
+	"Green": Color(0.0, 0.6, 0.3),
+	"White": Color(0.95, 0.95, 0.95)
 }
 
 # --- RIFERIMENTI AI NODI ---
