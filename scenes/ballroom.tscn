@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://nybmve8p6l4o"]
+[gd_scene load_steps=22 format=4 uid="uid://nybmve8p6l4o"]
 
 [ext_resource type="ArrayMesh" uid="uid://bylaep62qp7a4" path="res://assets/map/colonne_con_mura/colonne_nuove.obj" id="1_4dwnt"]
 [ext_resource type="AudioStream" uid="uid://s72r1614qec8" path="res://assets/sounds/chattering.mp3" id="2_bwbxk"]
@@ -14,6 +14,8 @@
 [ext_resource type="ArrayMesh" uid="uid://d3ss1p0djftxm" path="res://assets/map/BALCONATA/bancone_nuovo.obj" id="10_dr454"]
 [ext_resource type="ArrayMesh" uid="uid://cjem2wu1bcyq3" path="res://assets/map/cupola/cupola_nuova.obj" id="11_e2ouj"]
 [ext_resource type="ArrayMesh" uid="uid://cuselrorgra2b" path="res://assets/map/cupola/muro_uv_aggiornato.obj" id="12_hpueb"]
+[ext_resource type="Material" uid="uid://bsypn31yhytkx" path="res://assets/scope/grey.material" id="13_gmyhi"]
+[ext_resource type="ArrayMesh" uid="uid://dmgakg4wtobi4" path="res://assets/map/casa Snuper/casa_sniper.obj" id="13_rl1vx"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_kd3cm"]
 vertices = PackedVector3Array(-12.859533, 1.0435699, -6.5359383, -12.859533, 1.0435699, -0.53593826, -12.359533, 1.0435699, -0.28593826, 11.390467, 1.0435699, 3.2140617, 11.390467, 1.0435699, -10.535938, -12.359533, 1.0435699, -6.7859383, -12.359533, 1.0435699, -10.535938, -12.359533, 1.0435699, 3.2140617, -18.859533, 1.0435699, 0.21406174, -17.859533, 1.0435699, 0.71406174, -15.109533, 1.0435699, 0.71406174, -20.109533, 1.0435699, -6.0359383, -20.609533, 1.0435699, -4.7859383, -20.609533, 1.0435699, -2.0359383, -15.109533, 1.0435699, -7.7859383, -17.609533, 1.0435699, -7.7859383)
@@ -183,6 +185,15 @@ mesh = ExtResource("11_e2ouj")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="AreaDiGiocoCompleta/MeshInstance3D5"]
 mesh = ExtResource("12_hpueb")
+surface_material_override/0 = ExtResource("13_gmyhi")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="AreaDiGiocoCompleta"]
+mesh = ExtResource("13_rl1vx")
+surface_material_override/0 = ExtResource("13_gmyhi")
+surface_material_override/1 = ExtResource("8_qa5hj")
+surface_material_override/2 = ExtResource("8_qa5hj")
+surface_material_override/3 = ExtResource("13_gmyhi")
+surface_material_override/4 = ExtResource("3_ke1ns")
 
 [node name="chattering" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
