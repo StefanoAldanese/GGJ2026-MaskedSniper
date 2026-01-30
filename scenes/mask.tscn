@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c3hvdhjskh6r6"]
 
-[ext_resource type="Script" uid="uid://biu6ww7fx11bm" path="res://scripts/maskGeneration.gd" id="1_in0c2"]
+[ext_resource type="Script" uid="uid://cll0nhhapd00d" path="res://scripts/maskGeneration.gd" id="1_in0c2"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_rv8xw"]
 
@@ -10,3 +10,9 @@ script = ExtResource("1_in0c2")
 [node name="Visual" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.9, 7.86805e-08, 0, 7.86805e-08, 0.9, 3.4969112e-08, 6.8784674e-15, 7.86805e-08, -0.4, 0, 0, 0)
 mesh = SubResource("SphereMesh_rv8xw")
+
+[node name="HeadgearSprite" type="Sprite3D" parent="Visual"]
+transform = Transform3D(1, 6.681497e-22, -6.352747e-22, 6.6814943e-22, 1, -1.7763568e-14, 1.0164395e-20, 4.2632564e-14, 1, 3.1771464e-08, 0.36342302, -0.82284075)
+
+[node name="AccessorySprite" type="Sprite3D" parent="Visual"]
+transform = Transform3D(1, 6.681497e-22, -6.352747e-22, 6.6814954e-22, 1, -1.7763568e-14, 8.4703295e-21, 4.2632564e-14, 1, -2.3151363e-08, -0.2648207, -0.73034763)

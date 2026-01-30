@@ -35,7 +35,7 @@ func update_target_info(targets: Array):
 		label.pixel_size = BASE_PIXEL_SIZE * scale_factor
 		label.width = MAX_WIDTH_3D / label.pixel_size
 		
-	# --- 3. LOGICA FOTO (NUOVA) ---
+	# --- 3. LOGICA FOTO ---
 	_load_target_photo()
 
 func _load_target_photo():
