@@ -2,7 +2,7 @@ extends Node3D
 
 @export var enemy_scene: PackedScene 
 @export var spawn_count: int = 15
-@export var spawn_range := 30
+@export var spawn_range := 10
 
 @onready var sniper_nests: Array = $SniperNests.get_children()
 @onready var player: CharacterBody3D = $Player/Character

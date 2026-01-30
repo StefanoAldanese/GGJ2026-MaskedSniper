@@ -50,7 +50,7 @@ font_size = 32
 [node name="World" type="Node3D"]
 script = ExtResource("1_k0juu")
 enemy_scene = ExtResource("5_71j4m")
-spawn_count = 62
+spawn_count = 35
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.8805877, 0.3911376, -0.26753837, 0.3789648, -0.24227886, 0.8931331, 0.28451908, -0.8878696, -0.36157516, -3.0034347, 2.159711, -11.656767)

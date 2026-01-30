@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 const MOUSE_SENS = 0.002
 const NORMAL_FOV = 70.0
-const ZOOM_FOV = 20.0
+const ZOOM_FOV = 5.0
 const ZOOM_SPEED = 5.0
 const NOTEPAD_SPEED = 10.0
 
@@ -27,7 +27,7 @@ var normal_material: StandardMaterial3D = null
 var panic_material: StandardMaterial3D = null
 
 var teleport_hold_time: float = 0.0
-const TELEPORT_REQUIRED_TIME: float = 2.0
+const TELEPORT_REQUIRED_TIME: float = 1
 var is_teleporting: bool = false
 var teleport_cooldown: float = 0.0
 const TELEPORT_COOLDOWN_TIME: float = 0.5 # Mezzo secondo di blocco
@@ -45,11 +45,15 @@ const TELEPORT_COOLDOWN_TIME: float = 0.5 # Mezzo secondo di blocco
 
 @onready var lens_camera: Camera3D = $Head/Camera3D/ScopeViewport/LensCamera
 @onready var scope_viewport: SubViewport = $Head/Camera3D/ScopeViewport
+@onready var enemies_container = get_tree().root.find_child("Enemies", true, false)
 
 @onready var curtain_left: ColorRect = ColorRect.new()
 @onready var curtain_right: ColorRect = ColorRect.new()
 # --- VARIABILI TIMER ---
 @export var kill_timer_limit: float = 90.0 
+@onready var shoot_sound: AudioStreamPlayer3D = $Head/ShootSound
+@onready var chattering = get_tree().root.find_child("chattering", true, false)
+@onready var panic_sound = get_tree().root.find_child("panic", true, false)
 
 # DEFINIAMO LA DURATA TOTALE DEL PANICO QUI
 const PANIC_DURATION: float = 30.0 
@@ -77,7 +81,7 @@ func _ready():
 	camera.fov = NORMAL_FOV
 	
 	$Head/Camera3D/SubViewportContainer/SubViewport.size = DisplayServer.window_get_size()
-	
+	chattering.play()
 	# Setup Tende (Curtains)
 	for c in [curtain_left, curtain_right]:
 		add_child(c)
@@ -277,6 +281,8 @@ func shoot() -> void:
 	if sniper_camera.has_method("play_fire_anim"):
 		sniper_camera.play_fire_anim(is_aiming)
 	
+	shoot_sound.play()
+	
 	current_ammo -= 1
 	
 	# --- UI PROIETTILI ---
@@ -311,9 +317,18 @@ func _handle_victory():
 	emit_signal("i_won")
 	is_game_over = true
 
+
+
+func _switch_to_panic_audio():
+	if enemies_container:
+		panic_sound.play()
+		for enemy in enemies_container.get_children():
+			enemy.go_into_panic()
+
 func _handle_civilian_kill():
 	if not is_panic_mode:
 		print("Proiettile sprecato, gli invitato sono allertati!")
+		_switch_to_panic_audio()
 		is_panic_mode = true
 		# Resettiamo il timer usando la COSTANTE
 		panic_timer = PANIC_DURATION
@@ -322,6 +337,7 @@ func _handle_civilian_kill():
 func _shot_missed():
 	if not is_panic_mode:
 		print("ATTENZIONE! Civile colpito. Hai 30 secondi per trovare il bersaglio vero!")
+		_switch_to_panic_audio()
 		is_panic_mode = true
 		# Resettiamo il timer usando la COSTANTE
 		panic_timer = PANIC_DURATION

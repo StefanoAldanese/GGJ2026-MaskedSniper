@@ -155,7 +155,7 @@ func _generate_random_look() -> void:
 		description = desc_base
 		
 	# Size Mask
-	_force_mesh_size(0.5)
+	_force_mesh_size(0.8)
 
 
 # --- FUNZIONI HELPER (DI UTILITÀ) ---

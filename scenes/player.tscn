@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://btkoix1h2xv5w"]
+[gd_scene load_steps=11 format=3 uid="uid://btkoix1h2xv5w"]
 
 [ext_resource type="Script" uid="uid://dfehvkp3wopmf" path="res://scripts/Player.gd" id="1_3vyb7"]
 [ext_resource type="Shader" uid="uid://dvwxd7leturlu" path="res://shaders/PostProcessShader.gdshader" id="2_g2els"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://blha173thvevt" path="res://scenes/sniperCamera.tscn" id="2_tuyoq"]
 [ext_resource type="PackedScene" uid="uid://bre1yi2b5omv3" path="res://scenes/notepad.tscn" id="4_dqkch"]
 [ext_resource type="PackedScene" uid="uid://bgwqaube5jf28" path="res://scenes/clock.tscn" id="5_qlg0r"]
+[ext_resource type="AudioStream" uid="uid://c86j1epl0wnpa" path="res://assets/sounds/shoot.mp3" id="7_fjrip"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g2els"]
 
@@ -112,3 +113,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="AudioListener3D" type="AudioListener3D" parent="Character/Head/Camera3D"]
+current = true
+
+[node name="ShootSound" type="AudioStreamPlayer3D" parent="Character/Head"]
+stream = ExtResource("7_fjrip")

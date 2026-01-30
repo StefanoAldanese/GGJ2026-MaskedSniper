@@ -48,21 +48,23 @@ animations = [{
 collision_layer = 2
 script = ExtResource("1_7p1mj")
 mask_scene = ExtResource("2_md0e3")
-base_speed = 6.0
-base_wait_time = 1.0
+base_speed = 4
+base_wait_time = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.7986704, 0, 0, 0, 0.7986704, 0, 0, 0, 0.7986704, 0, 0.3051192, 0)
 shape = SubResource("CapsuleShape3D_md0e3")
 
 [node name="Head" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6473253, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1187793, 0)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
 
 [node name="Sprite3D" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30476868, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7585318, 0)
+pixel_size = 0.015
 billboard = 2
 sprite_frames = SubResource("SpriteFrames_md484")
 autoplay = "default"
+speed_scale = 2.0

@@ -13,9 +13,9 @@ var current_mask_node: Node3D = null
 var bob_time := 0.0
 
 # Personality stats
-@export var base_speed := 2.5
+@export var base_speed := 1
 @export var base_wander_radius := 10.0
-@export var base_wait_time := 5.0
+@export var base_wait_time := 10
 
 var speed: float
 var wander_radius: float
@@ -31,6 +31,17 @@ func _ready() -> void:
 func start_pathing():
 	_set_new_random_target()
 
+func go_into_panic():
+	# Increase speed and reduce wait time
+	speed = base_speed * 3.0       # Triple the speed
+	wait_time = base_wait_time * 0.2 # Reduce wait time to 20%
+	
+	# Optional: Reset the current wait timer so they move immediately
+	wait_timer = wait_time 
+	
+	# If you have a specific panic animation or color change, trigger it here
+	# mod_sprite.modulate = Color.RED
+
 func apply_personality():
 	var speed_mul := 1.0
 	var wander_mul := 1.0
@@ -38,11 +49,11 @@ func apply_personality():
 
 	match personality:
 		Personality.CALM:
-			speed_mul = 0.5; wander_mul = 0.8; wait_mul = 2.5
+			speed_mul = 0.5; wander_mul = 0.8; wait_mul = 4
 		Personality.NERVOUS:
-			speed_mul = 1.8; wander_mul = 1.2; wait_mul = 0.5
+			speed_mul = 1.8; wander_mul = 1.2; wait_mul = 1
 		Personality.AGGRESSIVE:
-			speed_mul = 1.2; wander_mul = 2.0; wait_mul = 1
+			speed_mul = 1.2; wander_mul = 2.0; wait_mul = 0.2
 
 	speed = base_speed * speed_mul
 	wander_radius = base_wander_radius * wander_mul
