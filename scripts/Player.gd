@@ -52,6 +52,8 @@ const TELEPORT_COOLDOWN_TIME: float = 0.5 # Mezzo secondo di blocco
 # --- VARIABILI TIMER ---
 @export var kill_timer_limit: float = 90.0 
 @onready var shoot_sound: AudioStreamPlayer3D = $Head/ShootSound
+@onready var tools_sound: AudioStreamPlayer3D = $Head/swoosh
+@onready var police_siren = get_tree().root.find_child("police_siren", true, false)
 @onready var chattering = get_tree().root.find_child("chattering", true, false)
 @onready var panic_sound = get_tree().root.find_child("panic", true, false)
 
@@ -75,6 +77,7 @@ var is_aiming: bool = false
 var bullet_ui_blue: TextureRect
 var bullet_ui_red: TextureRect
 
+var last_tool_state: bool = false
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -205,6 +208,12 @@ func _process(delta):
 	var should_show_tools = is_notepad_req and not is_aiming and not is_teleporting
 	var is_holding_f = Input.is_key_pressed(KEY_F)
 	
+	
+	# PLAY SOUND ONLY ON CHANGE
+	if should_show_tools != last_tool_state:
+		tools_sound.play()
+		last_tool_state = should_show_tools
+		
 	# Il taccuino si apre SOLO se richiesto E NON stiamo mirando
 	
 	if sniper_camera and sniper_camera.has_method("set_lowered"):
@@ -320,10 +329,16 @@ func _handle_victory():
 
 
 func _switch_to_panic_audio():
-	if enemies_container:
+	if panic_sound:
 		panic_sound.play()
-		for enemy in enemies_container.get_children():
-			enemy.go_into_panic()
+		
+	# --- POLICE SIREN LOGIC ---
+	if police_siren:
+		police_siren.play()
+	
+	# Tell enemies to run
+	for enemy in enemies_container.get_children():
+		enemy.go_into_panic()
 
 func _handle_civilian_kill():
 	if not is_panic_mode:

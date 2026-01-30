@@ -54,7 +54,7 @@ font_size = 32
 [node name="World" type="Node3D"]
 script = ExtResource("1_k0juu")
 enemy_scene = ExtResource("5_71j4m")
-spawn_count = 62
+spawn_count = 35
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rwgxs")
