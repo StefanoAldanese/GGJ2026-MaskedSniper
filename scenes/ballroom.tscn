@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://nybmve8p6l4o"]
+[gd_scene load_steps=21 format=4 uid="uid://nybmve8p6l4o"]
 
 [ext_resource type="ArrayMesh" uid="uid://bylaep62qp7a4" path="res://assets/map/colonne_con_mura/colonne_nuove.obj" id="1_4dwnt"]
 [ext_resource type="AudioStream" uid="uid://s72r1614qec8" path="res://assets/sounds/chattering.mp3" id="2_bwbxk"]
@@ -14,6 +14,7 @@
 [ext_resource type="ArrayMesh" uid="uid://d3ss1p0djftxm" path="res://assets/map/BALCONATA/bancone_nuovo.obj" id="10_dr454"]
 [ext_resource type="ArrayMesh" uid="uid://cjem2wu1bcyq3" path="res://assets/map/cupola/cupola_nuova.obj" id="11_e2ouj"]
 [ext_resource type="ArrayMesh" uid="uid://cuselrorgra2b" path="res://assets/map/cupola/muro_uv_aggiornato.obj" id="12_hpueb"]
+[ext_resource type="AudioStream" uid="uid://din4lmlxdelv4" path="res://assets/sounds/police_siren.mp3" id="15_rl1vx"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_kd3cm"]
 vertices = PackedVector3Array(-12.859533, 1.0435699, -6.5359383, -12.859533, 1.0435699, -0.53593826, -12.359533, 1.0435699, -0.28593826, 11.390467, 1.0435699, 3.2140617, 11.390467, 1.0435699, -10.535938, -12.359533, 1.0435699, -6.7859383, -12.359533, 1.0435699, -10.535938, -12.359533, 1.0435699, 3.2140617, -18.859533, 1.0435699, 0.21406174, -17.859533, 1.0435699, 0.71406174, -15.109533, 1.0435699, 0.71406174, -20.109533, 1.0435699, -6.0359383, -20.609533, 1.0435699, -4.7859383, -20.609533, 1.0435699, -2.0359383, -15.109533, 1.0435699, -7.7859383, -17.609533, 1.0435699, -7.7859383)
@@ -109,6 +110,7 @@ shadow_mesh = SubResource("ArrayMesh_7phcf")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(-1.0773445, 7.3848583e-10, 8.741966e-08, 0, 0.9999644, -0.008447294, -9.418446e-08, -0.008447294, -0.9999644, -7.6274624, -2.437828, -3.622342)
+visible = false
 navigation_mesh = SubResource("NavigationMesh_kd3cm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
@@ -187,9 +189,14 @@ mesh = ExtResource("12_hpueb")
 [node name="chattering" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 stream = ExtResource("2_bwbxk")
-volume_db = 25.0
+volume_db = 18.0
 
 [node name="panic" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 stream = ExtResource("3_u6eat")
-volume_db = 25.0
+volume_db = 18.0
+
+[node name="police_siren" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.03506, 0, 60.44599)
+stream = ExtResource("15_rl1vx")
+volume_db = 80.0
