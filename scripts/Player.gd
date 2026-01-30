@@ -376,8 +376,8 @@ func _on_time_expired():
 	
 
 func _input(event):
-	if event.is_action_pressed("restart_scene"):
-		get_tree().reload_current_scene()
+	# if event.is_action_pressed("restart_scene"):
+	#	get_tree().reload_current_scene()
 		
 	if is_game_over: return
 

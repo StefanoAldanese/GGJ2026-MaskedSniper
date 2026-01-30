@@ -9,5 +9,5 @@ extends PanelContainer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	label.text = testo
-	score_label.text = str(PlayerData.current_score)
+	score_label.text = str(PlayerData.current_score +100)
 	pass # Replace with function body.

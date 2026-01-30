@@ -17,8 +17,8 @@ const AVAILABLE_COLORS = {
 # --- RIFERIMENTI ---
 @onready var visual_mesh: MeshInstance3D = $Visual
 # Riferimenti ai nuovi nodi Sprite3D (Assicurati che i nomi coincidano nell'editor)
-@onready var headgear_sprite: Sprite3D = $Visual/HeadgearSprite
-@onready var accessory_sprite: Sprite3D = $Visual/AccessorySprite
+@onready var headgear_sprite: Sprite3D = $HeadgearSprite
+@onready var accessory_sprite: Sprite3D = $AccessorySprite
 
 const LAYERED_SHADER = preload("res://shaders/mask_layered.gdshader")
 
@@ -26,7 +26,7 @@ var description: String = ""
 var typeMask: String = ""
 
 
-const MAX_SPRITE_SIZE = 5
+const MAX_SPRITE_SIZE = 3
 
 
 func _ready() -> void:
@@ -73,10 +73,10 @@ func _generate_random_look() -> void:
 		if hat_data:
 			headgear_sprite.texture = hat_data.texture
 			# Rimpiccioliamo lo sprite: 0.001 è 10 volte più piccolo del default
-			_set_sprite_to_target_width(headgear_sprite, MAX_SPRITE_SIZE)
+			_set_sprite_to_target_width(headgear_sprite, MAX_SPRITE_SIZE * 0.5)
 			# Lo spostiamo un po' in avanti per non farlo compenetrare con la maschera
-			headgear_sprite.position.z = 1.6
-			headgear_sprite.position.y = 2.0
+			headgear_sprite.position.z = 2.5
+			headgear_sprite.position.y = 0.0
 			description += ", wearing " + hat_data.name
 
 	# 4. Gestione Accessorio (Scala corretta)
@@ -85,8 +85,8 @@ func _generate_random_look() -> void:
 		if acc_data:
 			accessory_sprite.texture = acc_data.texture
 			_set_sprite_to_target_width(accessory_sprite, MAX_SPRITE_SIZE * 0.5)
-			accessory_sprite.position.z = 1.4 # Davanti al cappello (sandwich)
-			accessory_sprite.position.y = -1.0
+			accessory_sprite.position.z = -1.8 # Davanti al cappello (sandwich)
+			accessory_sprite.position.y = -0.2
 			description += " and " + acc_data.name + " accessory "
 			
 	visual_mesh.material_override = material

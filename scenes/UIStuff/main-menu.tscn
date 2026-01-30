@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://c4xqmn55vtr72"]
 
-[ext_resource type="Script" uid="uid://d325blplt5kwa" path="res://scripts/main_menu.gd" id="1_c0tga"]
+[ext_resource type="Script" uid="uid://dmnksunhd868t" path="res://scripts/main_menu.gd" id="1_c0tga"]
 [ext_resource type="Texture2D" uid="uid://djiu0q4fear1l" path="res://assets/main_menu_art.png" id="2_5jj1x"]
 [ext_resource type="Texture2D" uid="uid://dg07sgsf0sf1b" path="res://assets/uistuff/Logo DDAEWS.png" id="3_bbhhn"]
 [ext_resource type="Texture2D" uid="uid://c8h2jukjss344" path="res://assets/uistuff/BaroqueII - Start (inactive).png" id="4_bbhhn"]
