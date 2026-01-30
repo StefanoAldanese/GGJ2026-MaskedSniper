@@ -17,34 +17,37 @@ uniform float accessory_opacity : hint_range(0.0, 1.0) = 0.0;
 
 
 void fragment() {
-	// --- FASE 1: LIVELLO BASE ---
-	// Preleviamo il valore di grigio dal pattern
-	vec4 pattern_val = texture(pattern_texture, UV);
-	
-	// Moltiplichiamo il colore scelto per il pattern.
-	// Se il pattern è bianco -> Colore pieno.
-	// Se il pattern è grigio scuro -> Colore scuro (ombreggiatura).
-	vec3 base_layer = mask_color.rgb * pattern_val.rgb;
-	
-	// --- FASE 2: LIVELLO ACCESSORIO (Overlay) ---
-	vec4 hat_val = texture(headgear_texture, UV);
-	float hat_alpha = hat_val.a * headgear_opacity;
-	// Mixiamo il cappello sopra la base
-	vec3 layer_after_hat = mix(base_layer, hat_val.rgb, hat_alpha);
-	
-	// 3. ACCESSORY LAYER (Mix sopra il risultato precedente)
-	vec4 acc_val = texture(accessory_texture, UV);
-	float acc_alpha = acc_val.a * accessory_opacity;
-	// Mixiamo l'accessorio sopra (base + cappello)
-	
-	// Dove acc_alpha è 0, vediamo il base_layer.
-	// Dove acc_alpha è 1, vediamo accessory_val.rgb.
-	vec3 final_color = mix(layer_after_hat, acc_val.rgb, acc_alpha);
-	
-	// --- FASE 3: COMPOSIZIONE ---
-	ALBEDO = final_color;
-	
-	// Impostazioni standard materiale
-	ROUGHNESS = 0.5;
-	METALLIC = 0.0;
+    // --- FASE 1: LIVELLO BASE ---
+    // Preleviamo il valore di grigio dal pattern
+    vec4 pattern_val = texture(pattern_texture, UV);
+    
+    // Moltiplichiamo il colore scelto per il pattern.
+    // Se il pattern è bianco -> Colore pieno.
+    // Se il pattern è grigio scuro -> Colore scuro (ombreggiatura).
+    vec3 base_layer = mask_color.rgb * pattern_val.rgb;
+    
+    // --- FASE 2: LIVELLO ACCESSORIO (Overlay) ---
+    vec4 hat_val = texture(headgear_texture, UV);
+    float hat_alpha = hat_val.a * headgear_opacity;
+    // Mixiamo il cappello sopra la base
+    vec3 layer_after_hat = mix(base_layer, hat_val.rgb, hat_alpha);
+    
+    // 3. ACCESSORY LAYER (Mix sopra il risultato precedente)
+    vec4 acc_val = texture(accessory_texture, UV);
+    float acc_alpha = acc_val.a * accessory_opacity;
+    
+    // Dove acc_alpha è 0, vediamo il base_layer.
+    // Dove acc_alpha è 1, vediamo accessory_val.rgb.
+    vec3 final_color = mix(layer_after_hat, acc_val.rgb, acc_alpha);
+    
+    // --- FASE 3: COMPOSIZIONE ---
+    ALBEDO = final_color;
+    
+    // --- MODIFICA PER LUMINOSITÀ ---
+    // Assegnando EMISSION uguale al colore finale, la maschera sarà visibile anche al buio.
+    EMISSION = final_color * 0.5; 
+    
+    // Impostazioni standard materiale
+    ROUGHNESS = 0.5;
+    METALLIC = 0.0;
 }
