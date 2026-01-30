@@ -28,6 +28,8 @@ const LAYERED_SHADER = preload("res://shaders/mask_layered.gdshader")
 # Il nemico leggerà questa variabile per sapere chi è.
 var description: String = ""
 
+var typeMask: String = ""
+
 func _ready() -> void:
 	# Appena la maschera viene creata, generiamo il suo aspetto
 	# _generate_random_look()
@@ -51,6 +53,7 @@ func generate_safe_look(forbidden_description: String = "") -> void:
 	if attempts >= 50:
 		print("WARNING: Impossible to generate a Mask after 50 tries!")
 
+
 func _generate_random_look() -> void:
 	# Creiamo una nuova istanza del materiale shader per questa specifica maschera
 	var material = ShaderMaterial.new()
@@ -71,7 +74,7 @@ func _generate_random_look() -> void:
 		# Se troviamo un file, lo applichiamo alla MeshInstance
 		visual_mesh.mesh = shape_data.mesh
 		shape_name = shape_data.name # Es: "A Becco" o "Tonda"
-	
+		typeMask = shape_name
 	# ---------------------------------------------------------
 	# FASE 1: SCELTA DEL COLORE (TINTA BASE)
 	# ---------------------------------------------------------
