@@ -26,6 +26,12 @@ var random_hour_start: float = 0.0
 var normal_material: StandardMaterial3D = null
 var panic_material: StandardMaterial3D = null
 
+var teleport_hold_time: float = 0.0
+const TELEPORT_REQUIRED_TIME: float = 2.0
+var is_teleporting: bool = false
+var teleport_cooldown: float = 0.0
+const TELEPORT_COOLDOWN_TIME: float = 0.5 # Mezzo secondo di blocco
+
 # --- RIFERIMENTI AI NODI ---
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
@@ -39,6 +45,9 @@ var panic_material: StandardMaterial3D = null
 
 @onready var lens_camera: Camera3D = $Head/Camera3D/ScopeViewport/LensCamera
 @onready var scope_viewport: SubViewport = $Head/Camera3D/ScopeViewport
+
+@onready var curtain_left: ColorRect = ColorRect.new()
+@onready var curtain_right: ColorRect = ColorRect.new()
 # --- VARIABILI TIMER ---
 @export var kill_timer_limit: float = 90.0 
 
@@ -69,8 +78,18 @@ func _ready():
 	
 	$Head/Camera3D/SubViewportContainer/SubViewport.size = DisplayServer.window_get_size()
 	
+	# Setup Tende (Curtains)
+	for c in [curtain_left, curtain_right]:
+		add_child(c)
+		c.color = Color.BLACK
+		c.anchor_bottom = 1.0
+		c.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		# Assicuriamoci che siano sopra tutto il resto nella UI
+		c.z_index = 10 
 	
-	# --- AGGIUNGI QUESTO BLOCCO ---
+	# Posizione iniziale (fuori schermo)
+	_update_curtains(0.0)
+	
 	# Aspettiamo un frame per essere sicuri che il Viewport sia inizializzato
 	await get_tree().process_frame
 	
@@ -145,13 +164,44 @@ func _process(delta):
 	# ar target_fov = ZOOM_FOV if is_aiming else NORMAL_FOV
 	# camera.fov = lerp(camera.fov, target_fov, delta * ZOOM_SPEED)
 	
-	# --- GESTIONE NOTEPAD (BLOCCATO SE IN MIRA) ---
-	# Aggiunta condizione "and not is_aiming"
+# --- LOGICA TELEPORT CON TENDE ---
+
+# Gestione del cooldown (scorre sempre se maggiore di 0)
+	if teleport_cooldown > 0:
+		teleport_cooldown -= delta
+
+	# --- LOGICA TELEPORT CON TENDE ---
+	var teleport_input = Input.is_action_pressed("teleport")
+	
+	# Aggiungiamo "teleport_cooldown <= 0" alla condizione
+	if teleport_input and not is_aiming and teleport_cooldown <= 0:
+		is_teleporting = true
+		teleport_hold_time += delta
+		
+		var progress = clamp(teleport_hold_time / TELEPORT_REQUIRED_TIME, 0.0, 1.0)
+		_update_curtains(progress)
+		
+		if teleport_hold_time >= TELEPORT_REQUIRED_TIME:
+			teleport_to_next_nest()
+			teleport_hold_time = 0.0
+			teleport_cooldown = TELEPORT_COOLDOWN_TIME # ATTIVA IL COOLDOWN QUI
+	else:
+		# Se il tasto viene rilasciato O se siamo in cooldown dopo un salto
+		is_teleporting = false # Forza lo stato a false così puoi sparare/usare il taccuino
+		teleport_hold_time = move_toward(teleport_hold_time, 0.0, delta * 2.0)
+		var progress = clamp(teleport_hold_time / TELEPORT_REQUIRED_TIME, 0.0, 1.0)
+		_update_curtains(progress)
+		
+		# Stato is_teleporting finché le tende non sono quasi del tutto aperte
+		if teleport_hold_time <= 0.1:
+			is_teleporting = false
+	# --- BLOCCO AZIONI ---
+	# Modifica la condizione del notepad per includere "and not is_teleporting"
 	var is_notepad_req = Input.is_action_pressed("notepad")
+	var should_show_tools = is_notepad_req and not is_aiming and not is_teleporting
 	var is_holding_f = Input.is_key_pressed(KEY_F)
 	
 	# Il taccuino si apre SOLO se richiesto E NON stiamo mirando
-	var should_show_tools = is_notepad_req and not is_aiming
 	
 	if sniper_camera and sniper_camera.has_method("set_lowered"):
 		# Abbassa il fucile se stiamo guardando il taccuino o tenendo premuto F
@@ -216,7 +266,7 @@ func update_clock_hands(progress_ratio: float):
 		clock_hand_short.rotation_degrees.y = random_hour_start + (minutes_angle / 12.0)
 
 func shoot() -> void:
-	if is_game_over: return
+	if is_game_over or is_teleporting: return # Bloccato se sta cambiando nido
 	
 	if current_ammo <= 0:
 		print("Click! Munizioni esaurite.")
@@ -294,9 +344,6 @@ func _input(event):
 	if event.is_action_pressed("shoot"):
 		shoot()
 		
-	if event.is_action_pressed("teleport") and not is_aiming:
-		teleport_to_next_nest()
-
 func set_sniper_nests(nests: Array):
 	sniper_nests = nests
 	if sniper_nests.size() > 0:
@@ -342,3 +389,13 @@ func _apply_clock_color(is_panic: bool):
 		clock_hand_long.set_surface_override_material(0, mat)
 	if clock_hand_short:
 		clock_hand_short.set_surface_override_material(0, mat)
+		
+func _update_curtains(progress: float):
+	var screen_width = get_viewport().get_visible_rect().size.x
+	var curtain_width = (screen_width / 2.0) * progress
+	
+	curtain_left.size = Vector2(curtain_width, get_viewport().get_visible_rect().size.y)
+	curtain_right.size = Vector2(curtain_width, get_viewport().get_visible_rect().size.y)
+	
+	curtain_left.position = Vector2(0, 0)
+	curtain_right.position = Vector2(screen_width - curtain_width, 0)
