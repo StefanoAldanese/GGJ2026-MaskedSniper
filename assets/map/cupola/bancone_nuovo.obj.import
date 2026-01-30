@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d3r7f34km37dh"
+path="res://.godot/imported/bancone_nuovo.obj-625920c72f907de4ae44e5fb4a1ea8fb.mesh"
+
+[deps]
+
+files=["res://.godot/imported/bancone_nuovo.obj-625920c72f907de4ae44e5fb4a1ea8fb.mesh"]
+
+source_file="res://assets/map/cupola/bancone_nuovo.obj"
+dest_files=["res://.godot/imported/bancone_nuovo.obj-625920c72f907de4ae44e5fb4a1ea8fb.mesh", "res://.godot/imported/bancone_nuovo.obj-625920c72f907de4ae44e5fb4a1ea8fb.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
