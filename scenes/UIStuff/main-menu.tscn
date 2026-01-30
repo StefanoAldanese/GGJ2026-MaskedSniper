@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://c4xqmn55vtr72"]
+[gd_scene load_steps=12 format=3 uid="uid://c4xqmn55vtr72"]
 
 [ext_resource type="Script" uid="uid://d325blplt5kwa" path="res://scripts/main_menu.gd" id="1_c0tga"]
-[ext_resource type="Texture2D" uid="uid://d4fuvvjxt53s7" path="res://assets/uistuff/BaroqueII - MENUBG.jpg" id="2_8u8yn"]
-[ext_resource type="FontFile" uid="uid://ddolf1qrlhqen" path="res://assets/uistuff/Kalnia-SemiBold.ttf" id="3_5jj1x"]
+[ext_resource type="Texture2D" uid="uid://djiu0q4fear1l" path="res://assets/main_menu_art.png" id="2_5jj1x"]
+[ext_resource type="Texture2D" uid="uid://dg07sgsf0sf1b" path="res://assets/uistuff/Logo DDAEWS.png" id="3_bbhhn"]
 [ext_resource type="Texture2D" uid="uid://c8h2jukjss344" path="res://assets/uistuff/BaroqueII - Start (inactive).png" id="4_bbhhn"]
 [ext_resource type="Texture2D" uid="uid://duylp0d16nwor" path="res://assets/uistuff/BaroqueII - BUTTON Start.png" id="5_ui4ly"]
 [ext_resource type="Texture2D" uid="uid://ccpitnujemjuy" path="res://assets/uistuff/BaroqueII - BUTTON Scores (inactive).png" id="6_v7ins"]
@@ -10,10 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://dcf0y802sansa" path="res://assets/uistuff/BaroqueII - BUTTON Credits (Inactive).png" id="8_5jj1x"]
 [ext_resource type="FontFile" uid="uid://di6ks8mv85av8" path="res://assets/uistuff/NotoSerifTC-Regular.ttf" id="8_nqbcb"]
 [ext_resource type="Texture2D" uid="uid://duy7jsy2bc7sk" path="res://assets/uistuff/BaroqueII - BUTTON Credits.png" id="9_bbhhn"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_15bby"]
-font = ExtResource("3_5jj1x")
-font_size = 64
 
 [sub_resource type="LabelSettings" id="LabelSettings_nbft7"]
 font = ExtResource("8_nqbcb")
@@ -35,7 +31,7 @@ script = ExtResource("1_c0tga")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
-texture = ExtResource("2_8u8yn")
+texture = ExtResource("2_5jj1x")
 expand_mode = 3
 stretch_mode = 6
 
@@ -50,10 +46,10 @@ theme_override_constants/margin_bottom = 128
 layout_mode = 2
 alignment = 1
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Eyes Wide Shot"
-label_settings = SubResource("LabelSettings_15bby")
+texture = ExtResource("3_bbhhn")
+stretch_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

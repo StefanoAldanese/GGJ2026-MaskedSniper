@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsiar2mkh122p"]
+
+[ext_resource type="Script" uid="uid://bqxd47hdujs0m" path="res://scripts/tipsscen.gd" id="1_5mgr3"]
+[ext_resource type="Texture2D" uid="uid://cu8p8j1urw3dm" path="res://assets/uistuff/TIP Controls x05.png" id="2_6td7m"]
+
+[node name="Tips" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5mgr3")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -572.5
+offset_right = 572.5
+offset_bottom = 480.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_bottom = 128
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_6td7m")
+stretch_mode = 3
