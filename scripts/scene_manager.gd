@@ -1,9 +1,10 @@
 extends Node
 
 # These are now the "Rewards" for winning
-var flash_scene = load("res://scenes/FlashScene.tscn")
-var lore_scene = load("res://scenes/LoreScene.tscn")
+var day_scene = load("res://scenes/FlashScene.tscn")
+var lore_scene = load("res://scenes/lore_card.tscn")
 var game_scene_path = "res://scenes/world.tscn"
+
 
 func _on_player_won():
 	print("VITTORIA! Target eliminato.")
@@ -15,15 +16,7 @@ func _on_player_lost():
 
 # --- WIN SEQUENCE (Lore + Flash) ---
 func _start_win_sequence():
-	PlayerData.current_score += 100
-	# 1. Flash Scene (Reward Part 1)
-	if flash_scene:
-		var flash = flash_scene.instantiate()
-		get_tree().root.add_child(flash)
-		await get_tree().create_timer(2.0).timeout
-		flash.queue_free()
-	
-	# 2. Lore Scene (Reward Part 2)
+
 	if lore_scene:
 		var lore = lore_scene.instantiate()
 		get_tree().root.add_child(lore)

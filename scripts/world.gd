@@ -151,8 +151,8 @@ func _on_i_lost():
 	print("Message I lost - Starting Arcade Sequence")
 	message_screen_lost.visible = true
 	
-	# Give the player 2 seconds to see the "Lost" message before flashing away
-	await get_tree().create_timer(2.0).timeout
+	# Give the player 3 seconds to see the "Lost" message before flashing away
+	await get_tree().create_timer(3.0).timeout
 	
 	# Call the Autoload SceneManager
 	if SceneManager.has_method("_on_player_lost"):
