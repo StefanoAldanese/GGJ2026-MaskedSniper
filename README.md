@@ -1,6 +1,6 @@
 # Il Dolo dell'Angelo: Eyes Wide Shot
 
-![Main Menu Banner](Screenshot%20From%202026-01-31%2000-29-32.jpg)
+<img width="1912" height="1074" alt="Screenshot From 2026-01-31 00-29-32" src="https://github.com/user-attachments/assets/7f3316c2-cf26-466b-9abc-5147522e7022" />
 
 > *"What must we do to heal our sins?"*
 
@@ -15,11 +15,13 @@ A mysterious figure known only as **"The Angel"** tasks you with eliminating spe
 
 Keep completing missions to piece together the fragmented truth of what happened to your world.
 
-![Gameplay Wide Shot](Screenshot%20From%202026-01-31%2000-29-57.jpg)
+<img width="1912" height="1074" alt="Screenshot From 2026-01-31 00-31-46" src="https://github.com/user-attachments/assets/c513ccfb-1d30-46fe-9aca-4590f80edf00" />
 
 ---
 
 ## Gameplay Mechanics
+
+<img width="1912" height="1074" alt="Screenshot From 2026-01-31 00-29-57" src="https://github.com/user-attachments/assets/659a4d85-fe9e-42cd-9963-c845ff869f1b" />
 
 Your goal is to identify and eliminate the target before time runs out. The crowd is dense, and everyone is hiding behind a mask.
 
@@ -30,7 +32,8 @@ The game utilizes **procedural generation** for the NPCs. Every round, targets a
 * **The Scope:** Use your sniper scope (implemented via a dual-camera render setup) to scan the crowd and identify the correct combination of traits.
 * **Relocate:** The environment is complex. Hold `C` to teleport between different "nests" or vantage points to get a better angle on the crowd.
 
-![Notebook Brief](Screenshot%20From%202026-01-31%2000-30-09.jpg)
+<img width="1912" height="1074" alt="Screenshot From 2026-01-31 00-30-09" src="https://github.com/user-attachments/assets/7c4a7d99-73f0-4b3e-af89-6e392cfb64ca" />
+
 
 ### Panic Mode
 Accuracy is everything. If you fire and miss, or kill the wrong innocent partygoer:
@@ -38,6 +41,9 @@ Accuracy is everything. If you fire and miss, or kill the wrong innocent partygo
 1.  **Chaos Erupts:** The crowd enters **Panic Mode**, moving faster and erratically.
 2.  **Time Fractures:** Your clock breaks—you can no longer track how much time you have left.
 3.  **Last Chance:** The police (*Le Guardie*) are alerted. You have a very brief window to find and eliminate the real target before you are apprehended.
+
+<img width="1912" height="1074" alt="Screenshot From 2026-01-31 00-31-20" src="https://github.com/user-attachments/assets/2a0a8def-d591-45f5-be34-eb54059d2e47" />
+
 
 ---
 
@@ -73,6 +79,8 @@ Accuracy is everything. If you fire and miss, or kill the wrong innocent partygo
 ---
 
 ## The Team
+
+<img width="1912" height="1074" alt="Screenshot From 2026-01-31 00-34-17" src="https://github.com/user-attachments/assets/3c1ae195-6c28-4f31-b034-50fa4edb78ca" />
 
 Created by **Sting Entertainment** for GGJ 2026.
 
