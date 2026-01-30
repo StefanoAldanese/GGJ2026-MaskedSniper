@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b3wfalrv8ulx6" path="res://scenes/UIStuff/credits-section.tscn" id="1_h8sgf"]
 [ext_resource type="FontFile" uid="uid://bx4s41xrc4ury" path="res://assets/uistuff/Kalnia-Regular.ttf" id="1_lfhq7"]
-[ext_resource type="Script" uid="uid://dgdy6npfme1ju" path="res://scripts/credits.gd" id="1_pwkb6"]
+[ext_resource type="Script" uid="uid://debtbdgg0keek" path="res://scripts/credits.gd" id="1_pwkb6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pwkb6"]
 font = ExtResource("1_lfhq7")
@@ -54,45 +54,36 @@ label_settings = SubResource("LabelSettings_pwkb6")
 
 [node name="Game Design & Development" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_h8sgf")]
 layout_mode = 2
-section_title = "Game Design"
-section_text = "Andrea Copellino, Donato D'Ambrosio, Stefano Aldanese"
+script = null
 
 [node name="UI Design & Development" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_h8sgf")]
 layout_mode = 2
-section_title = "UI Design & Development"
-section_text = "Andrea Copellino"
+script = null
 
 [node name="Animations" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_h8sgf")]
 layout_mode = 2
-section_title = "Animations"
-section_text = "Stefano Aldanese"
+script = null
 
 [node name="Enemy Behavior" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_h8sgf")]
 layout_mode = 2
-section_title = "Enemy Behavior"
-section_text = "Donato D'Ambrosio"
+script = null
 
 [node name="3D Assets" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_h8sgf")]
 layout_mode = 2
-section_title = "3D Assets"
-section_text = "Tommaso Solustri, Gabriel Fiorotto"
+script = null
 
 [node name="Shaders" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_h8sgf")]
 layout_mode = 2
-section_title = "Shaders"
-section_text = "jgyuygu"
+script = null
 
 [node name="Enemy Behavior2" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_h8sgf")]
 layout_mode = 2
-section_title = "Enemy Behavior"
-section_text = "Donato D'Ambrosio"
+script = null
 
 [node name="3D Assets2" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_h8sgf")]
 layout_mode = 2
-section_title = "3D Assets"
-section_text = "Tommaso Solustri, Gabriel Fiorotto"
+script = null
 
 [node name="Shaders2" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_h8sgf")]
 layout_mode = 2
-section_title = "Shaders"
-section_text = "jgyuygu"
+script = null
