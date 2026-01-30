@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 PlayerData="*res://scripts/player_data.gd"
+SceneManager="*res://scripts/scene_manager.gd"
 
 [display]
 
