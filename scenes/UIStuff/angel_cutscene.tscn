@@ -1,3 +1,15 @@
-[gd_scene format=3 uid="uid://bv23n66tcayx7"]
+[gd_scene load_steps=2 format=3 uid="uid://bv23n66tcayx7"]
+
+[ext_resource type="VideoStream" uid="uid://7g783pj75u78" path="res://assets/videos/auracutscene.ogv" id="1_peris"]
 
 [node name="Angel Cutscene" type="Node"]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("1_peris")
+autoplay = true
+loop = true

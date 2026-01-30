@@ -404,3 +404,8 @@ func _update_curtains(progress: float):
 	
 	curtain_left.position = Vector2(0, 0)
 	curtain_right.position = Vector2(screen_width - curtain_width, 0)
+
+signal i_shot_once
+signal i_shot_twice
+signal i_won
+signal i_lost

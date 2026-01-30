@@ -11,6 +11,8 @@ font_size = 64
 [node name="Angel Speech" type="Node"]
 script = ExtResource("1_mki3g")
 
+[node name="Angel Cutscene" parent="." instance=ExtResource("3_v8iuq")]
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,22 +31,20 @@ size_flags_vertical = 8
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
-text = "Parte 1 del messaggio"
+text = "Your target wears a specific Mask"
 label_settings = SubResource("LabelSettings_mki3g")
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
-text = "Parte 2 del messaggio"
+text = "You are equipped with two bullets"
 label_settings = SubResource("LabelSettings_mki3g")
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
-text = "Parte 3 del messaggio"
+text = "All relevant info is in your brief (Hold SPACE)"
 label_settings = SubResource("LabelSettings_mki3g")
 horizontal_alignment = 1
-
-[node name="Angel Cutscene" parent="." instance=ExtResource("3_v8iuq")]

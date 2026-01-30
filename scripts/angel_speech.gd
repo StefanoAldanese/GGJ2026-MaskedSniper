@@ -5,7 +5,8 @@ extends Node
 @onready var line_3: Label = $MarginContainer/VBoxContainer/Label3
 
 @export var game_scene: PackedScene
-@export var delay := 3.0
+@export var delay := 3.1
+@export var delay_beginning := 0
 
 var current_step := 0
 var timer: SceneTreeTimer
@@ -29,17 +30,19 @@ func _input(event: InputEvent) -> void:
 
 func run_sequence() -> void:
 	# Step 1
-	await wait_or_skip()
+	await wait_or_skip_beginning()
 	line_1.visible = true
 	current_step = 1
 	
 	# Step 2
 	await wait_or_skip()
+	line_1.visible = false
 	line_2.visible = true
 	current_step = 2
 	
 	# Step 3
 	await wait_or_skip()
+	line_2.visible = false
 	line_3.visible = true
 	current_step = 3
 	
@@ -50,6 +53,11 @@ func run_sequence() -> void:
 func wait_or_skip():
 	# Questa funzione aspetta il delay oppure prosegue se l'utente clicca
 	timer = get_tree().create_timer(delay)
+	await timer.timeout
+	
+func wait_or_skip_beginning():
+	# Questa funzione aspetta il delay oppure prosegue se l'utente clicca
+	timer = get_tree().create_timer(delay_beginning)
 	await timer.timeout
 
 func advance_sequence():
