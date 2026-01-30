@@ -42,22 +42,50 @@ func play_fire_anim(is_aiming: bool):
 	else:
 		anim_player.play("fire_normal")
 		
+		
+#I'm Burining out
 func setup_scope_material(viewport_texture: ViewportTexture):
-	var material = StandardMaterial3D.new()
+	# Creiamo uno ShaderMaterial invece dello StandardMaterial3D
+	var material = ShaderMaterial.new()
+	var shader = Shader.new()
 	
-	material.albedo_texture = viewport_texture
-	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED 
+	# Scriviamo il codice dello shader direttamente qui dentro.
+	# Questo shader fa due cose:
+	# 1. Mostra la texture.
+	# 2. Rende invisibile tutto ciò che è fuori dal cerchio (raggio 0.5).
+	shader.code = """
+	shader_type spatial;
+	render_mode unshaded, cull_disabled; // Unshaded per vederlo al buio
+
+	uniform sampler2D lens_tx : source_color, filter_linear_mipmap;
+
+	void fragment() {
+		// Mappatura UV standard
+		vec2 uv = UV;
+		
+		// 1. Mostra l'immagine della camera
+		vec4 color = texture(lens_tx, uv);
+		ALBEDO = color.rgb;
+
+		// 2. TAGLIO CIRCOLARE (Cookie Cutter)
+		// Calcola la distanza dal centro (0.5, 0.5)
+		vec2 center = vec2(0.5, 0.5);
+		float dist = distance(uv, center);
+
+		// Se siamo distanti più di 0.5 dal centro (fuori dal cerchio), Alpha a 0.
+		// Usiamo smoothstep per un bordo leggermente morbido (anti-aliasing)
+		float alpha = 1.0 - smoothstep(0.49, 0.50, dist);
+		
+		ALPHA = alpha;
+	}
+	"""
 	
+	# Assegniamo lo shader creato al materiale
+	material.shader = shader
 	
-	# --- CORREZIONE COMANDI INVERTITI ---
-	# Se muovi il mouse a DESTRA e la visuale va a SINISTRA, devi mettere -1 anche sulla X.
-	# Qui mettiamo -1 sia su X che su Y per capovolgere tutto correttamente.
-	material.uv1_scale = Vector3(-1, -1, 1) 
+	# Passiamo la texture del Viewport allo shader
+	material.set_shader_parameter("lens_tx", viewport_texture)
 	
-	# --- CENTRATURA ---
-	# Poiché abbiamo messo -1 sia su X che su Y, dobbiamo compensare l'offset su entrambi.
-	# Offset a 1 riporta l'immagine al centro.
-	material.uv1_offset = Vector3(1, 1, 1)
-	
+	# Applichiamo il materiale alla mesh
 	if sniper_scope:
 		sniper_scope.material_override = material

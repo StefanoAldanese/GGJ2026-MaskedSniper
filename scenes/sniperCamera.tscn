@@ -4,14 +4,14 @@
 [ext_resource type="Script" uid="uid://tdmi52p5e1s8" path="res://scripts/sniper_camera.gd" id="1_n1y1x"]
 [ext_resource type="Texture2D" uid="uid://dd0tjli0617fy" path="res://assets/scope/Mirino.png" id="3_hsh5v"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_l170o"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_hsh5v"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_n1y1x"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_hsh5v"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hsh5v"]
 resource_local_to_scene = true
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_n1y1x")
+albedo_texture = SubResource("ViewportTexture_hsh5v")
 
 [sub_resource type="Animation" id="Animation_hsh5v"]
 length = 0.001
@@ -109,7 +109,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(2.1544676, -2.1034596, -3.0869339), Vector3(0.784, -1.9639992, 1.1270001)]
+"values": [Vector3(2.1544676, -2.1034596, -3.0869339), Vector3(0.769, -1.964, 1.127)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -121,7 +121,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, -3.019891, 0), Vector3(-0.0033468879, -3.0524158, 0.00054499105)]
+"values": [Vector3(0, -3.019891, 0), Vector3(0.00070722034, -3.0198674, -0.02332431)]
 }
 
 [sub_resource type="Animation" id="Animation_l170o"]
@@ -172,19 +172,19 @@ script = ExtResource("1_n1y1x")
 transform = Transform3D(0.9958257, -0.0001258518, -0.091275565, -2.8704856e-11, 0.99999905, -0.0013788097, 0.09127566, 0.0013730542, 0.9958247, -0.67102504, 0.12730908, -4.155876)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="fps_rig/Sniper"]
-transform = Transform3D(-1.2903839, 0, -0.15782157, 0, 1.3000026, 0, 0.15782177, 0, -1.2903821, 2.1544676, -2.1034596, -3.0869339)
+transform = Transform3D(-1.290384, 0, -0.15782161, 0, 1.3000021, 0, 0.15782179, 0, -1.2903825, 2.1544676, -2.1034596, -3.0869339)
 layers = 10
 mesh = ExtResource("1_7ph7k")
 
 [node name="Sprite3D" type="Sprite3D" parent="fps_rig/Sniper/MeshInstance3D"]
-transform = Transform3D(0.05, -5.002221e-12, -2.3283064e-10, 5.002221e-12, 0.05, -2.1827873e-11, 1.1641532e-09, 4.3655746e-11, 0.05, -0.000114798546, 1.4145751, -1.1732607)
+transform = Transform3D(0.049980503, -0.0013960819, 0, 0.0013960821, 0.04998051, -1.4551915e-11, 0, 7.275958e-12, 0.05, -0.0030978024, 1.4144967, -1.1733526)
 layers = 512
 texture = ExtResource("3_hsh5v")
 
 [node name="Lent" type="MeshInstance3D" parent="fps_rig/Sniper/MeshInstance3D"]
-transform = Transform3D(0.3189173, -2.910383e-11, -1.1823431e-11, 6.366463e-12, -6.89397e-10, -0.30959585, 4.656613e-09, 0.015775964, -1.3387762e-08, 0.009083986, 1.4189733, -1.1517677)
+transform = Transform3D(-0.16, -1.3589622e-09, 1.0296368e-15, 0, -3.9340248e-10, -0.156, 2.4159327e-08, -0.009, 6.8189765e-09, 0.0012232065, 1.4189986, -1.165266)
 layers = 512
-mesh = SubResource("CylinderMesh_l170o")
+mesh = SubResource("PlaneMesh_hsh5v")
 surface_material_override/0 = SubResource("StandardMaterial3D_hsh5v")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="fps_rig/Sniper"]

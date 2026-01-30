@@ -105,10 +105,14 @@ func _ready():
 	update_clock_hands(0.0)
 	
 func _physics_process(delta):
+	# Keep the Sniper Camera (the weapon model) following your head
 	$Head/Camera3D/SubViewportContainer/SubViewport/SniperCamera.global_transform = camera.global_transform
 	
-	if lens_camera:
-		lens_camera.global_transform = camera.global_transform
+	if lens_camera and sniper_camera and sniper_camera.sniper_scope:
+		# Match the zoom camera position to the physical "Lent" mesh
+		lens_camera.global_position = sniper_camera.sniper_scope.global_position
+		# Match the rotation to where you are actually looking
+		lens_camera.global_transform.basis = camera.global_transform.basis
 
 func _process(delta):
 	if is_game_over: return

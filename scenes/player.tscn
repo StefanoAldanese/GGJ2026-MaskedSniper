@@ -54,7 +54,7 @@ size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
 [node name="LensCamera" type="Camera3D" parent="Character/Head/Camera3D/ScopeViewport"]
-cull_mask = 1048053
+cull_mask = 1048037
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Character/Head/Camera3D"]
 anchors_preset = 15
