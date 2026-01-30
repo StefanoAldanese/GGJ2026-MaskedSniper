@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://clu67exiqw2l5"
+path="res://.godot/imported/stanza_compilata(1).obj-74cda9bb409b94da814d9de1603a27ee.mesh"
+
+[deps]
+
+files=["res://.godot/imported/stanza_compilata(1).obj-74cda9bb409b94da814d9de1603a27ee.mesh"]
+
+source_file="res://assets/map/BALCONATA/stanza_compilata(1).obj"
+dest_files=["res://.godot/imported/stanza_compilata(1).obj-74cda9bb409b94da814d9de1603a27ee.mesh", "res://.godot/imported/stanza_compilata(1).obj-74cda9bb409b94da814d9de1603a27ee.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

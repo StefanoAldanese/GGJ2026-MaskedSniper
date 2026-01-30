@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c5mpy4t7flf30"
+path="res://.godot/imported/scale_nuove.obj-1219897c0f98df143c521749e762970c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/scale_nuove.obj-1219897c0f98df143c521749e762970c.mesh"]
+
+source_file="res://assets/map/SCALE/scale_nuove.obj"
+dest_files=["res://.godot/imported/scale_nuove.obj-1219897c0f98df143c521749e762970c.mesh", "res://.godot/imported/scale_nuove.obj-1219897c0f98df143c521749e762970c.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
