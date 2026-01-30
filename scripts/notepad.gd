@@ -1,62 +1,67 @@
 extends Node3D
 
 @onready var label: Label3D = $Paper/Text
-
-# 1. Riferimento allo Sprite3D che mostrerà la foto
 @onready var photo_sprite: Sprite3D = $Polaroid/Sprite3D
 
 const PAPER_WIDTH = 1.2
 const PAPER_HEIGHT = 1.6
-const MARGIN = 0.15            
-const MAX_WIDTH_3D = PAPER_WIDTH - MARGIN
-const MAX_HEIGHT_3D = PAPER_HEIGHT - MARGIN
-const BASE_PIXEL_SIZE = 0.001    
-
-# 2. Definiamo il percorso base dove hai le immagini
+const BASE_PIXEL_SIZE = 0.001       
 const MASK_PHOTO_PATH = "res://assets/Notepad/maskPhoto/"
 
+# --- MODIFICA QUESTO VALORE PER STRINGERE IL TESTO ---
+# Se metti 900 è largo, se metti 300 è molto stretto.
+# Prova con 400 o 500 per vedere l'effetto "a capo" immediato.
+const TEXT_COLUMN_WIDTH_PIXEL = 400.0 
+
+# Calcoliamo l'altezza massima in 3D (per il ridimensionamento se il testo è troppo lungo)
+# Usiamo un margine di sicurezza (0.2 sopra e 0.2 sotto)
+const MAX_HEIGHT_3D = PAPER_HEIGHT - 0.4 
+
 func update_target_info(targets: Array):
-	# --- LOGICA TESTO (Tuo codice esistente) ---
+	# --- 1. COSTRUZIONE TESTO ---
 	var content = "ORDER OF ELIMINATION:\n\n"
 	for t in targets:
 		content += "- " + t + "\n"
 	
-	label.pixel_size = BASE_PIXEL_SIZE
 	label.text = content
-	label.autowrap_mode = TextServer.AUTOWRAP_WORD
-	label.width = MAX_WIDTH_3D / BASE_PIXEL_SIZE
+	
+	# --- 2. IMPOSTAZIONE LARGHEZZA FORZATA ---
+	label.pixel_size = BASE_PIXEL_SIZE
+	
+	# Questo è il comando magico: Autowrap SMART cerca di non spezzare le parole a metà
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART 
+	
+	# Qui imponiamo la larghezza in pixel. 
+	# Se il testo supera 450px (o quello che hai messo), va a capo.
+	label.width = TEXT_COLUMN_WIDTH_PIXEL 
+	
 	label.force_update_transform() 
 	
+	# --- 3. CONTROLLO E RIDIMENSIONAMENTO (ZOOM OUT) ---
+	# Se, andando a capo tante volte, il testo diventa troppo alto e esce dal foglio...
 	var text_aabb = label.get_aabb()
 	var current_height_3d = text_aabb.size.y
 	
 	if current_height_3d > MAX_HEIGHT_3D:
+		# ...rimpiccioliamo tutto (riducendo il pixel_size)
 		var scale_factor = MAX_HEIGHT_3D / current_height_3d
 		label.pixel_size = BASE_PIXEL_SIZE * scale_factor
-		label.width = MAX_WIDTH_3D / label.pixel_size
 		
-	# --- 3. LOGICA FOTO ---
+		# IMPORTANTE: Se rimpiccioliamo i pixel, dobbiamo AUMENTARE la width in proporzione
+		# per mantenere visivamente la stessa colonna stretta sul foglio.
+		label.width = TEXT_COLUMN_WIDTH_PIXEL / scale_factor
+		
+	# --- 4. CARICAMENTO FOTO ---
 	_load_target_photo()
 
 func _load_target_photo():
-	# Recuperiamo il tipo salvato nel singleton (es. "Larva", "Bruta")
 	var mask_type = PlayerData.target_mask_type
-	
 	if mask_type == "":
-		print("Nessun tipo di maschera specificato nel PlayerData.")
-		photo_sprite.texture = null # Pulisce se non c'è target
+		photo_sprite.texture = null
 		return
 
-	# Costruiamo il percorso completo: "res://.../Larva.png"
-	# Nota: Assicurati che mask_type abbia la stessa capitalizzazione del file (es. Larva vs larva)
 	var full_path = MASK_PHOTO_PATH + mask_type + ".png"
-	
-	# Controlliamo se il file esiste prima di caricarlo per evitare crash
 	if ResourceLoader.exists(full_path):
-		var texture = load(full_path)
-		photo_sprite.texture = texture
-		print("Foto caricata con successo: ", full_path)
+		photo_sprite.texture = load(full_path)
 	else:
-		print("ERRORE: Immagine non trovata al percorso: ", full_path)
-		# Opzionale: Carica un'immagine di default/errore
-		# photo_sprite.texture = load("res://assets/Notepad/maskPhoto/unknown.png")
+		print("ERRORE: Immagine non trovata: ", full_path)
