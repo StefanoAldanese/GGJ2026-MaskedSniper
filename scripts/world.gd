@@ -18,10 +18,13 @@ extends Node3D
 @onready var message_screen_won: PanelContainer = $MessageScreenWon
 @onready var message_screen_lost: PanelContainer = $MessageScreenLost
 
+@export var day_splash_scene: PackedScene
+
 # tipo di mascera del target, usato nella logica per selezionare la foto giusta
 var target_mask_type: String = ""
 
 func _ready():
+	await _show_day_intro()
 	# 1. Setup riferimenti UI al Player ### AGGIUNTA ###
 	player.bullet_ui_blue = bullet_counter_blue
 	player.bullet_ui_red = bullet_counter_red
@@ -33,6 +36,20 @@ func _ready():
 	var created_enemies = await _spawn_enemies()
 	# 3. Setup Nemici e Obiettivi (nuova logica)
 	_initialize_enemies_logic(created_enemies)
+
+func _show_day_intro():
+	if day_splash_scene:
+		var splash = day_splash_scene.instantiate()
+		add_child(splash)
+		
+		# Set the day number from your Global PlayerData
+		if splash.has_method("set_day"):
+			splash.set_day(PlayerData.current_day)
+		
+		# Show for 2 seconds then vanish
+		await get_tree().create_timer(2.0).timeout
+		splash.queue_free()
+
 
 func restart_scene():
 	get_tree().reload_current_scene()
@@ -134,6 +151,8 @@ func initialize_player_signals():
 		
 func _on_i_won():
 	print("Message I won")
+	PlayerData.current_score += 100
+	PlayerData.current_day += 1
 	message_screen_won.visible = true
 	
 	# 1. Update the global score

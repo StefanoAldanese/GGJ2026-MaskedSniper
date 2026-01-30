@@ -26,7 +26,7 @@ var description: String = ""
 var typeMask: String = ""
 
 
-const MAX_SPRITE_SIZE = 0.4
+const MAX_SPRITE_SIZE = 5
 
 
 func _ready() -> void:
@@ -73,7 +73,7 @@ func _generate_random_look() -> void:
 		if hat_data:
 			headgear_sprite.texture = hat_data.texture
 			# Rimpiccioliamo lo sprite: 0.001 è 10 volte più piccolo del default
-			headgear_sprite.pixel_size = 0.0015 
+			_set_sprite_to_target_width(headgear_sprite, MAX_SPRITE_SIZE)
 			# Lo spostiamo un po' in avanti per non farlo compenetrare con la maschera
 			headgear_sprite.position.z = 1.6
 			headgear_sprite.position.y = 2.0
@@ -84,9 +84,9 @@ func _generate_random_look() -> void:
 		var acc_data = _get_random_texture_from_folder(PATH_ACCESSORIES)
 		if acc_data:
 			accessory_sprite.texture = acc_data.texture
-			accessory_sprite.pixel_size = 0.0015 # Ancora più piccolo
-			accessory_sprite.position.z = 1.5 # Davanti al cappello (sandwich)
-			headgear_sprite.position.y = -2
+			_set_sprite_to_target_width(accessory_sprite, MAX_SPRITE_SIZE * 0.5)
+			accessory_sprite.position.z = 1.4 # Davanti al cappello (sandwich)
+			accessory_sprite.position.y = -1.0
 			description += " and " + acc_data.name + " accessory "
 			
 	visual_mesh.material_override = material
@@ -161,3 +161,12 @@ func _force_mesh_size(target_size: float) -> void:
 	base_position.y += vertical_raise
 	
 	visual_mesh.position = base_position
+	
+func _set_sprite_to_target_width(sprite: Sprite3D, target_width_meters: float) -> void:
+	if sprite.texture == null:
+		return
+	
+	var width_pixels = sprite.texture.get_width()
+	if width_pixels > 0:
+		# Calculate how big each pixel needs to be to hit the target width
+		sprite.pixel_size = target_width_meters / float(width_pixels)

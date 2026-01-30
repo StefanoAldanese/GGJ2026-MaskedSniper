@@ -9,8 +9,6 @@ var game_scene_path = "res://scenes/world.tscn"
 func _on_player_won():
 	print("VITTORIA! Target eliminato.")
 	_start_win_sequence()
-	PlayerData.current_score += 100
-	PlayerData.current_score += 1
 	
 
 func _on_player_lost():
@@ -19,7 +17,8 @@ func _on_player_lost():
 
 # --- WIN SEQUENCE (Lore + Flash) ---
 func _start_win_sequence():
-
+	
+	
 	if lore_scene:
 		var lore = lore_scene.instantiate()
 		get_tree().root.add_child(lore)
