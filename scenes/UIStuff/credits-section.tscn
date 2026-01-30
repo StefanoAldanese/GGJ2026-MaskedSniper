@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3wfalrv8ulx6"]
+
+[ext_resource type="FontFile" uid="uid://c4ejry8kq60ll" path="res://assets/uistuff/Kalnia-Light.ttf" id="1_4apbd"]
+[ext_resource type="Script" uid="uid://jip4pcv2vrab" path="res://scenes/UIStuff/credits_section.gd" id="1_wsonm"]
+[ext_resource type="FontFile" uid="uid://bx4s41xrc4ury" path="res://assets/uistuff/Kalnia-Regular.ttf" id="2_wsonm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_204j2"]
+font = ExtResource("1_4apbd")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_3rajj"]
+font = ExtResource("2_wsonm")
+font_size = 32
+
+[node name="Credit Section" type="VBoxContainer"]
+offset_right = 263.0
+offset_bottom = 92.0
+script = ExtResource("1_wsonm")
+
+[node name="Section Name" type="Label" parent="."]
+layout_mode = 2
+text = "Name"
+label_settings = SubResource("LabelSettings_204j2")
+
+[node name="Section Contents" type="Label" parent="."]
+layout_mode = 2
+text = "Contents"
+label_settings = SubResource("LabelSettings_3rajj")
