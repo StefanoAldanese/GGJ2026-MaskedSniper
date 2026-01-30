@@ -177,7 +177,7 @@ func _process(delta):
 	if teleport_cooldown > 0:
 		teleport_cooldown -= delta
 
-	# --- LOGICA TELEPORT CON TENDE ---
+# --- LOGICA TELEPORT CON TENDE ---
 	var teleport_input = Input.is_action_pressed("teleport")
 	
 	# Aggiungiamo "teleport_cooldown <= 0" alla condizione
@@ -190,12 +190,23 @@ func _process(delta):
 		
 		if teleport_hold_time >= TELEPORT_REQUIRED_TIME:
 			teleport_to_next_nest()
-			teleport_hold_time = 0.0
-			teleport_cooldown = TELEPORT_COOLDOWN_TIME # ATTIVA IL COOLDOWN QUI
+			
+			# --- MODIFICA QUI ---
+			# RIMUOVI QUESTA RIGA: teleport_hold_time = 0.0 
+			# Lasciando il tempo al massimo, al prossimo frame il cooldown sarà attivo,
+			# il codice andrà nell'ELSE e le tende si apriranno fluidamente.
+			
+			teleport_cooldown = TELEPORT_COOLDOWN_TIME # ATTIVA IL COOLDOWN
+			
 	else:
 		# Se il tasto viene rilasciato O se siamo in cooldown dopo un salto
-		is_teleporting = false # Forza lo stato a false così puoi sparare/usare il taccuino
+		is_teleporting = false 
+		
+		# --- GESTIONE RIAPERTURA ---
+		# Qui avviene la magia: move_toward riduce il valore gradualmente da 1.0 a 0.0
+		# Questo crea l'animazione <-||->
 		teleport_hold_time = move_toward(teleport_hold_time, 0.0, delta * 2.0)
+		
 		var progress = clamp(teleport_hold_time / TELEPORT_REQUIRED_TIME, 0.0, 1.0)
 		_update_curtains(progress)
 		
