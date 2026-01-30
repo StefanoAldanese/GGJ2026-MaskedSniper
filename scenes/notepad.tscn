@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bre1yi2b5omv3"]
+[gd_scene load_steps=6 format=3 uid="uid://bre1yi2b5omv3"]
 
-[ext_resource type="Script" uid="uid://b157mswdxkehm" path="res://scripts/notepad.gd" id="1_nkxj1"]
+[ext_resource type="Script" uid="uid://cov22qr355626" path="res://scripts/notepad.gd" id="1_nkxj1"]
 [ext_resource type="ArrayMesh" uid="uid://chiyi7t8oa8bs" path="res://assets/Notepad/blocknotes.obj" id="2_pq6gc"]
 [ext_resource type="Material" uid="uid://us5gpgqv3vkp" path="res://assets/Notepad/Material/mat_notepad.tres" id="3_vobun"]
 [ext_resource type="FontFile" uid="uid://1j10gsvxo6a7" path="res://assets/font/Handodle-rg38A.ttf" id="4_vobun"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vobun"]
 
 [node name="Notepad" type="Node3D"]
 script = ExtResource("1_nkxj1")
@@ -23,3 +25,10 @@ font = ExtResource("4_vobun")
 outline_size = 0
 horizontal_alignment = 0
 vertical_alignment = 0
+
+[node name="TargetPhoto" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.19125687, -0.058487695, 0, 0.058487695, 0.19125687, 0, 0, 0, 0.002, 0.21774974, 0.20248225, 0.029912233)
+mesh = SubResource("BoxMesh_vobun")
+
+[node name="Sprite3D" type="Sprite3D" parent="TargetPhoto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20.723312)
