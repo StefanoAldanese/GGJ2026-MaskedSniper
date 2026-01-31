@@ -4,7 +4,7 @@
 
 > *"What must we do to heal our sins?"*
 
-**Global Game Jam 2026 Entry** **Theme:** Mask
+**[Global Game Jam 2026 Entry](https://globalgamejam.org/games/2026/eyes-wide-shot-8)** **Theme:** Mask
 
 ---
 
