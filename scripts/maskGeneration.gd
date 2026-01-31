@@ -100,14 +100,26 @@ func _get_random_texture_from_folder(folder_path: String):
 		var files = []
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
+		
 		while file_name != "":
+			# IF EXPORTED: File often appears as "image.png.import"
+			# We strip ".import" or ".remap" to get the original resource path
+			if file_name.ends_with(".import"):
+				file_name = file_name.replace(".import", "")
+			elif file_name.ends_with(".remap"):
+				file_name = file_name.replace(".remap", "")
+			
+			# Now we check the extension on the "clean" name
 			if !file_name.begins_with(".") and (file_name.ends_with(".png") or file_name.ends_with(".jpg")):
 				files.append(file_name)
+			
 			file_name = dir.get_next()
+			
 		if files.size() > 0:
 			var chosen_file = files.pick_random()
 			var full_path = folder_path + chosen_file
-			var texture = load(full_path)
+			# load() automatically handles finding the internal imported file
+			var texture = load(full_path) 
 			var clean_name = chosen_file.get_basename().replace("_", " ").capitalize()
 			return { "name": clean_name, "texture": texture }
 	return null
