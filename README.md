@@ -8,6 +8,11 @@
 
 ---
 
+## Trailer
+
+https://github.com/user-attachments/assets/967db3f8-c68d-4e75-9f38-f3418abf0941
+
+
 ## About The Game
 **Il Dolo dell'Angelo: Eyes Wide Shot** is a tactical sniper arcade game set in a dystopian alternate reality known as *La Nuova Serenissima*.
 
@@ -57,7 +62,6 @@ Accuracy is everything. If you fire and miss, or kill the wrong innocent partygo
 | **Space (Hold)** | Check Brief & Watch |
 | **C (Hold)** | Teleport to next vantage point |
 
-![Sniper Scope View](Screenshot%20From%202026-01-31%2000-31-20.jpg)
 
 ---
 
