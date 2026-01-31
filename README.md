@@ -1,6 +1,6 @@
 # Il Dolo dell'Angelo: Eyes Wide Shot
+https://github.com/user-attachments/assets/967db3f8-c68d-4e75-9f38-f3418abf0941
 
-<img width="1912" height="1074" alt="Screenshot From 2026-01-31 00-29-32" src="https://github.com/user-attachments/assets/7f3316c2-cf26-466b-9abc-5147522e7022" />
 
 > *"What must we do to heal our sins?"*
 
@@ -8,9 +8,9 @@
 
 ---
 
-## Trailer
 
-https://github.com/user-attachments/assets/967db3f8-c68d-4e75-9f38-f3418abf0941
+
+<img width="1912" height="1074" alt="Screenshot From 2026-01-31 00-29-32" src="https://github.com/user-attachments/assets/7f3316c2-cf26-466b-9abc-5147522e7022" />
 
 
 ## About The Game
