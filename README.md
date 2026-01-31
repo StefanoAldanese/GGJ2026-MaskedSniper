@@ -89,9 +89,9 @@ Accuracy is everything. If you fire and miss, or kill the wrong innocent partygo
 
 Created by **Sting Entertainment** for GGJ 2026.
 
-* **Stefano Emanuele Aldanese** - Programmer
-* **Donato D'Ambrosio** - Programmer
-* **Andrea Copellino** - Programmer & UI Designer
+* **[Stefano Emanuele Aldanese](https://github.com/StefanoAldanese)** - Programmer
+* **[Donato D'Ambrosio](https://github.com/Donny1301)** - Programmer
+* **[Andrea Copellino](https://github.com/andreacopellino1)** - Programmer & UI Designer
 * **Gabriel Fiorotto** - 3D Artist
 * **Tommaso Solustri** - 3D Artist
 
