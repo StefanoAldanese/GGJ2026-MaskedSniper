@@ -85,6 +85,8 @@ Accuracy is everything. If you fire and miss, or kill the wrong innocent partygo
 
 ## The Team
 
+<img width="1912" height="1074" alt="Screenshot From 2026-01-31 00-34-17" src="https://github.com/user-attachments/assets/3c1ae195-6c28-4f31-b034-50fa4edb78ca" />
+
 Created by **Sting Entertainment** for GGJ 2026.
 
 * **[Stefano Emanuele Aldanese](https://github.com/StefanoAldanese)** - Programmer
@@ -92,9 +94,6 @@ Created by **Sting Entertainment** for GGJ 2026.
 * **[Andrea Copellino](https://github.com/andreacopellino1)** - Programmer & UI Designer
 * **Gabriel Fiorotto** - 3D Artist
 * **Tommaso Solustri** - 3D Artist
-
-<img width="1912" height="1074" alt="Screenshot From 2026-01-31 00-34-17" src="https://github.com/user-attachments/assets/3c1ae195-6c28-4f31-b034-50fa4edb78ca" />
-
 
 
 ---
