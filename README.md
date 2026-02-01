@@ -62,6 +62,7 @@ Accuracy is everything. If you fire and miss, or kill the wrong innocent partygo
 | **Left Click** | Shoot |
 | **Space (Hold)** | Check Brief & Watch |
 | **C (Hold)** | Teleport to next vantage point |
+| **F (Hold)** | Hold down the rifle |
 
 
 ---
