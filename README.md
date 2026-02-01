@@ -53,7 +53,7 @@ Accuracy is everything. If you fire and miss, or kill the wrong innocent partygo
 
 ---
 
-## ⌨Controls
+## Controls
 
 | Key | Action |
 | :--- | :--- |
