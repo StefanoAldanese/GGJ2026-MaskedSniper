@@ -16,7 +16,6 @@ const AVAILABLE_COLORS = {
 
 # --- RIFERIMENTI ---
 @onready var visual_mesh: MeshInstance3D = $Visual
-# Riferimenti ai nuovi nodi Sprite3D (Assicurati che i nomi coincidano nell'editor)
 @onready var headgear_sprite: Sprite3D = $HeadgearSprite
 @onready var accessory_sprite: Sprite3D = $AccessorySprite
 
@@ -92,7 +91,7 @@ func _generate_random_look() -> void:
 	visual_mesh.material_override = material
 	_force_mesh_size(0.8)
 
-# --- HELPER FUNCTIONS (Invariate tranne force_mesh_size) ---
+# --- HELPER FUNCTIONS ---
 
 func _get_random_texture_from_folder(folder_path: String):
 	var dir = DirAccess.open(folder_path)
